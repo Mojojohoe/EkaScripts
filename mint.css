@@ -17,10 +17,14 @@ grid-template-columns: 1fr;
 grid-template-rows: 30px 1fr;
 grid-column-gap: 0px;
 grid-row-gap: 0px;
+height:100%;  
 }
 
 #top-nav { grid-area: 1 / 1 / 2 / 2; }
-#main-page { grid-area: 2 / 1 / 3 / 2; }
+#main-page { 
+  grid-area: 2 / 1 / 3 / 2; 
+  position: initial;
+           }
 
 #main-page{
 display: grid;
