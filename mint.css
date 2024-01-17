@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Sintony:wght@400;700&display=swap');
+
+#chat-pane,#ulist-pane  {
+  font-family: "Sintony", sans-serif !important;
+  font-weight: 300;
+  font-style: normal;
+}
+time{
+font-family: Verdana, Arial, sans-serif !important;
+}
+a {
+color:#a1eda4;
+}
+body {
+display: grid;
+grid-template-columns: 1fr;
+grid-template-rows: 30px 1fr;
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+}
+
+#top-nav { grid-area: 1 / 1 / 2 / 2; }
+#main-page { grid-area: 2 / 1 / 3 / 2; }
+
+#main-page{
+display: grid;
+grid-template-columns: 1fr 200px;
+grid-template-rows: 1fr;
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+}
+
+#left { grid-area: 1 / 1 / 2 / 2;
+    margin-right:0px !important}
+#ulist-pane { grid-area: 1 / 2 / 2 / 3; }
+
+#left {
+display: grid;
+grid-template-columns: 1fr;
+grid-template-rows: auto 1fr 38px;
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+}
+
+#tabs-pane { grid-area: 1 / 1 / 2 / 2; }
+#hoverbox-pane { grid-area: 2 / 1 / 3 / 2; }
+#chat-pane { grid-area: 2 / 1 / 3 / 2; }
+#input-pane { grid-area: 3 / 1 / 4 / 2; }
