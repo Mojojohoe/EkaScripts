@@ -12,7 +12,7 @@ a {
 color:#a1eda4;
 }
 .navbar {
-  margin:none;
+  margin:0px;
 }
 #main-page #left #input-pane {
     height: 36px;
