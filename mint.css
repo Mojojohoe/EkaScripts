@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Sintony:wght@400;700&display=swap');
 
 #chat-pane,#ulist-pane  {
-  font-family: "Sintony", sans-serif !important;
+  font-family: "Sintony", sans-serif;
   font-weight: 300;
   font-style: normal;
 }
 time{
-font-family: Verdana, Arial, sans-serif !important;
+font-family: Verdana, Arial, sans-serif;
 }
 a {
 color:#a1eda4;
