@@ -19,7 +19,10 @@ grid-column-gap: 0px;
 grid-row-gap: 0px;
 height:100%;  
 }
-
+ #main-page, #top-nav, #hoverbox-pane, #left, #chat-pane, #input-pane {  
+   position: initial;
+    height:100%;  
+ }
 #top-nav { 
   grid-area: 1 / 1 / 2 / 2; 
 position: initial;
@@ -27,10 +30,6 @@ position: initial;
 }
 #main-page { 
   grid-area: 2 / 1 / 3 / 2; 
-  position: initial;
-           }
-
-#main-page{
 display: grid;
 grid-template-columns: 1fr 200px;
 grid-template-rows: 1fr;
@@ -48,7 +47,6 @@ grid-template-columns: 1fr;
 grid-template-rows: auto 1fr 38px;
 grid-column-gap: 0px;
 grid-row-gap: 0px;
-height:100%;  
 }
 
 #tabs-pane { grid-area: 1 / 1 / 2 / 2; }
@@ -56,10 +54,9 @@ height:100%;
   grid-area: 2 / 1 / 3 / 2; 
   height:0px;
   display:none;
-  position: initial;
 }
 #chat-pane { 
   grid-area: 2 / 1 / 3 / 2; 
-   height:100%;  
+  
 }
 #input-pane { grid-area: 3 / 1 / 4 / 2; }
