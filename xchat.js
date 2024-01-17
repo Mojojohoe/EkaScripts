@@ -1,4 +1,9 @@
 /*! JChat - v1.0.0 - 2022-07-01 */
+/*! Mint Injection - v0.0.2 - 2023-01-17 -----------------------------------------------------\
+* This file is specifically used for the Mint Eta extension.
+* It is a copy of the original with some modifications.
+* (This is cleaner than force-redefining every function after it has executed at least once)
+*---------------------------------------------------------------------------------------------/
 
 /*!
  * Bootstrap v3.1.1 (http://getbootstrap.com)
