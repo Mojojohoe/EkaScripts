@@ -7046,9 +7046,9 @@ function onClickLogoutLink(event) {
  */
 function layoutEntirePage() {
     
-    $("#input-pane").height($("#main-sender-form").height() + 2);
+  //  $("#input-pane").height($("#main-sender-form").height() + 2);
     
-    $("#chat-pane").height($("#left").height() - $("#input-pane").outerHeight(true) - $("#tabs-pane").outerHeight(true));
+  //  $("#chat-pane").height($("#left").height() - $("#input-pane").outerHeight(true) - $("#tabs-pane").outerHeight(true));
 }
 
 
