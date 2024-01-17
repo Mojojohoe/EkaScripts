@@ -11,3 +11,9 @@ font-family: Verdana, Arial, sans-serif;
 a {
 color:#a1eda4;
 }
+.navbar {
+  margin:none;
+}
+#main-page #left #input-pane {
+    height: 36px;
+}
