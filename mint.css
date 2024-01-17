@@ -48,7 +48,9 @@ height:100%;
 }
 
 #tabs-pane { grid-area: 1 / 1 / 2 / 2; }
-#hoverbox-pane { grid-area: 2 / 1 / 3 / 2; }
+#hoverbox-pane { grid-area: 2 / 1 / 3 / 2; 
+               height:0px
+               display:none;}
 #chat-pane { 
   grid-area: 2 / 1 / 3 / 2; 
    height:100%;  
