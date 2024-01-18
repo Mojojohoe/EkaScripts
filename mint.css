@@ -7,6 +7,9 @@ body{
   font-weight: 300;
   font-style: normal;
 }
+#chat-pane {
+padding-left: 6px;
+}
 time{
 font-family: Verdana, Arial, sans-serif !important;
 }
@@ -48,4 +51,8 @@ color:#a1eda4;
 }
 #ulist-room-name > h6 {
  margin: 0px;
+}
+#input-pane {
+    position: relative;
+    background: black;
 }
