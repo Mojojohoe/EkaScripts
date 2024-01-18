@@ -38,10 +38,14 @@ color:#a1eda4;
 }
 #ulist-room-name {
     position: fixed;
+    top: 0px;
+    z-index: 3;
     border-bottom: 1px solid #2b2828;
-    margin-bottom: 8px;
-    background: black;
-    height: 29px;
+    background: #020202;
+    height: 20px;
     width: 100%;
-    padding: 5px;
+    padding: 19px;
+}
+#ulist-room-name > h6 {
+ margin: 0px;
 }
