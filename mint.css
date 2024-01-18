@@ -55,4 +55,5 @@ color:#a1eda4;
 #input-pane {
     position: relative;
     background: black;
+      top: 5px;
 }
