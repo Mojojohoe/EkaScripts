@@ -17,3 +17,6 @@ color:#a1eda4;
 #main-page #left #input-pane {
     height: 36px;
 }
+#hover-box {
+    z-index: 4;
+}
