@@ -29,12 +29,7 @@ color:#a1eda4;
 #main-sender-body {
     height: 35px;
 }
-#ulist-itself {
-    margin-bottom: 30px;
-}
 #ulist-pane > p {
-    position: fixed;
-    bottom: 0px;
     width: 200px;
     text-align: center;
 }
