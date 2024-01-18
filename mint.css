@@ -37,5 +37,8 @@ color:#a1eda4;
     margin-top: 34px;
 }
 #ulist-room-name {
-     position: fixed;
+    position: fixed;
+    border-bottom: 1px solid #2b2828;
+    margin-bottom: 8px;
+    background: black;
 }
