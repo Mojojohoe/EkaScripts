@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Sintony:wght@400;700&display=swap');
-
+body{
+  overflow: hidden;
+}
 #chat-pane,#ulist-pane  {
   font-family: "Sintony", sans-serif;
   font-weight: 300;
@@ -26,4 +28,13 @@ color:#a1eda4;
 }
 #main-sender-body {
     height: 35px;
+}
+#ulist-itself {
+    margin-bottom: 30px;
+}
+#ulist-pane > p {
+    position: fixed;
+    bottom: 0px;
+    width: 200px;
+    text-align: center;
 }
