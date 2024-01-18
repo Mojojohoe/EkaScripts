@@ -3,12 +3,12 @@ body{
   overflow: hidden;
 }
 #chat-pane,#ulist-pane  {
-  font-family: "Sintony", sans-serif !impotant;
+  font-family: "Sintony", sans-serif !important;
   font-weight: 300;
   font-style: normal;
 }
 time{
-font-family: Verdana, Arial, sans-serif !impotant;
+font-family: Verdana, Arial, sans-serif !important;
 }
 a {
 color:#a1eda4;
