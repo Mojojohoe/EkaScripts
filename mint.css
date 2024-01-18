@@ -20,3 +20,10 @@ color:#a1eda4;
 #hover-box {
     z-index: 4;
 }
+#main-page #left {
+    margin-right: 0px;
+    width: calc(100% - 200px);
+}
+#main-sender-body {
+    height: 35px;
+}
