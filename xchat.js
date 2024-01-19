@@ -6596,18 +6596,25 @@ function onClickHighlight(event) {
 }
 
 function onClickIgnore(event) {
-    var ule = $(this).parents("tr").data("ule");
-    var cid = ule.charId;
-    if (ses.ignored[cid]) {
-        ses.ignored[cid] = false;
-        $(this).removeClass("ignored");
-    }
-    else {
-        ses.ignored[cid] = true;
-        $(this).addClass("ignored");
-    }
-    chatAction("ignoreCharacter", {charId: cid, newVal: ses.ignored[cid]});
-    event.preventDefault();
+    var ele = $(this).parents("tr");
+          var ule = ele.data("ule");
+          var cid = ule.charId;
+
+          if (ses.ignored[cid]) {
+            ses.ignored[cid] = false;
+            $(this).removeClass("ignored");
+            ele.removeClass("ignored");
+          } else {
+            ses.ignored[cid] = true;
+            $(this).addClass("ignored");
+            ele.addClass("ignored");
+          }
+
+          chatAction("ignoreCharacter", {
+            charId: cid,
+            newVal: ses.ignored[cid]
+          });
+          event.preventDefault();
 }
 
 function onClickMinimap(e) {
