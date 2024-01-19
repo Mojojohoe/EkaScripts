@@ -57,3 +57,14 @@ color:#a1eda4;
     background: black;
       top: 5px;
 }
+.bg-warning {
+    background-color: rgba(255, 10, 35, 0.2);
+    color: rgba(255, 10, 35, 0.6);
+}
+.bg-success {
+    background-color: rgb(73 237 114 / 20%);
+    color: rgb(57 255 10 / 60%);
+}
+#main-playpause:not(.paused) {
+    color: #e32941;
+}
