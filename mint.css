@@ -65,6 +65,6 @@ color:#a1eda4;
     background-color: rgb(73 237 114 / 20%);
     color: rgb(57 255 10 / 60%);
 }
-#main-playpause:not(.paused) {
+#main-playpause.paused {
     color: #e32941;
 }
