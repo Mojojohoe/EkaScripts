@@ -59,11 +59,11 @@ color:#a1eda4;
 }
 .bg-warning {
     background-color: rgba(255, 10, 35, 0.2);
-    color: rgba(255, 10, 35, 0.6);
+    color: rgba(255, 10, 35, 0.6) !important;
 }
 .bg-success {
     background-color: rgb(73 237 114 / 20%);
-    color: rgb(57 255 10 / 60%);
+    color: rgb(57 255 10 / 60%) !important;
 }
 #main-playpause.paused {
     color: #e32941;
