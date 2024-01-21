@@ -22,9 +22,6 @@ color:#a1eda4;
 #main-page #left #input-pane {
     height: 36px;
 }
-#hover-box {
-    z-index: 4;
-}
 #main-page #left {
     margin-right: 0px;
     width: calc(100% - 200px);
@@ -179,9 +176,10 @@ max-height:25px;
     }
 }
 #hover-box {
-    border: solid 1px #2d2a2a;
+  border: solid 1px #2d2a2a;
+  opacity: 1; 
 }
 .sender-input-group .flan-control {
     border: 0px;
-    transition: unset; 
+    transition: unset;
 }
