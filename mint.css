@@ -98,6 +98,7 @@ opacity:1;
   margin-right: 5px;
   margin-left: -5px;
   vertical-align: middle;
+  padding: 3px;
 }
 .eyecon:hover + span > .info, .eyecon:hover + span > span > .info, .info:hover{
   display:inline-block !important;
@@ -107,7 +108,7 @@ opacity:1;
 }
 .body{
     padding-right: 30px;
-    direction: rtl;
+    direction: ltr;
 }
 .info{
   direction: unset;
