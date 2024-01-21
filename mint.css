@@ -142,5 +142,6 @@ opacity:1;
     color: rgb(164 243 207 / 70%) !important;
 }
 .info.mint{
+ border-right:1px solid; 
  border-right-color:#8fd9a3;
 }
