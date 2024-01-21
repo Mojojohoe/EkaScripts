@@ -81,7 +81,7 @@ opacity:0.3;
 .pmclick:hover > .icon{
 opacity:1;
 }
-.chatmsg > .name.pmclick > .info{
+.chatmsg > .name.pmclick > .info, .chatmsg > .body > .name.pmclick > .info{
   display:none;
   height:25px;
   width:100px;
