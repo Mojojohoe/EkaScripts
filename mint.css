@@ -165,6 +165,10 @@ max-height:25px;
   padding: 1px 5px;
   outline: 1px auto #a1eda4;  
 }
+button.anchor:active {
+
+  outline: 1px auto #a1eda4;  
+}
 .flash{
   animation: flash 2s ease-in-out 0.2s 1 backwards;
 }
@@ -182,5 +186,6 @@ max-height:25px;
 }
 .sender-input-group .flan-control {
     border: 0px;
+    box-shadow: unset;
     transition: unset;
 }
