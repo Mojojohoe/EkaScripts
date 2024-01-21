@@ -162,7 +162,7 @@ opacity:1;
     color: #d5fbd6;
     transform: translate(0px, -1px) scale(1.2);
 }
-msg-delete {
+.msg-delete {
   position: inherit !important;
   margin-right: 0px !important;
   background-color: transparent !important;
