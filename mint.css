@@ -57,6 +57,13 @@ color:#a1eda4;
     background: black;
       top: 5px;
 }
+#chat-pane > :not(.chatmsg){
+    border-radius: 6px;
+    margin: 4px;
+    padding: 4px;
+    background-color: rgb(183 229 211 / 20%);
+    color: rgb(164 243 207 / 70%) !important;
+}
 .bg-warning {
     background-color: rgba(255, 10, 35, 0.2);
     color: rgba(255, 10, 35, 0.6) !important;
