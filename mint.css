@@ -109,6 +109,9 @@ opacity:1;
     padding-right: 30px;
     direction: rtl;
 }
+.info{
+  direction: unset;
+}
 .chatmsg.private:not(.from-me) > .pmclick > .name > span:after{
   position: absolute;
   top: 3px;
