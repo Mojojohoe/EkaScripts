@@ -91,6 +91,6 @@ opacity:1;
   margin-right: 5px;
   vertical-align: middle;
 }
-.chatmsg > .eyecon:hover + .info, .chatmsg > .eyecon:hover + .body > .name.pmclick:hover > .info{
+.eyecon:hover + .info, .chatmsg > .eyecon:hover + .body > .name.pmclick:hover > .info{
   display:inline-block;
 }
