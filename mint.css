@@ -162,6 +162,10 @@ opacity:1;
   display: inline-block;
   transform: translate(0px, -1px);
 }
+#left button{
+max-height:25px;
+  outline-color:#a1eda4;
+}
 .flash{
   animation: flash 2s ease-in-out 0.2s 1 backwards;
 }
