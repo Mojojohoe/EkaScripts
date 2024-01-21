@@ -99,21 +99,21 @@ opacity:1;
 }
 .chatmsg.private:not(.from-me):after{
   position: absolute;
-  top: 0;
+  top: 3px;
   right:0;
   width: 25px;
   height: 25px;
   font-size: inherit;
-  color: inherit;
+  color: currentColor;
   content: "⮜";
 }
 .chatmsg.private.from-me):after{
   position: absolute;
-  top: 0;
+  top: 3px;
   right:0;
   width: 25px;
   height: 25px;
   font-size: inherit;
-  color: inherit;
+  color: currentColor;
   content: "⮞";
 }
