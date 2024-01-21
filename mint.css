@@ -91,7 +91,7 @@ opacity:1;
   margin-right: 5px;
   vertical-align: middle;
 }
-.eyecon:hover + span, .chatmsg > .eyecon:hover + .body > .name.pmclick:hover > .info{
+.eyecon:hover + span > .info, .eyecon:hover + span > span > .info{
   display:inline-block;
   background:pink;
 }
