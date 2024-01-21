@@ -7014,7 +7014,9 @@ function attachEventHandlers()
     $("#hoverbox-pane").on("click", ".group [data-pmtarget]", onClickPmtargetForGroupchat);
     
     /* Clicking on names in the userlist, or main chat pane. */
-    $("#ulist-pane, #chat-pane").on("click", "[data-pmtarget]", onClickPmtarget);
+    $("#ulist-pane").on("click", "[data-pmtarget]", onClickPmtarget);
+
+     $(".name.pmclick").on("click", "[data-pmtarget]", onClickPmtarget);
     
     /* Context Menu right clicking on names */
     $.contextMenu({
