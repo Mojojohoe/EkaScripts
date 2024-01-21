@@ -97,7 +97,7 @@ opacity:1;
 .chatmsg.private{
   position: relative;
 }
-.chatmsg.private:not(.from-me):after{
+.chatmsg.private:not(.from-me) > .pmclick > .name > span:after{
   position: absolute;
   top: 3px;
   right:0;
@@ -108,7 +108,7 @@ opacity:1;
   content: "⮜";
   opacity:0.6;
 }
-.chatmsg.private.from-me:after{
+.chatmsg.private.from-me > .pmclick > .name > span:after{
   position: absolute;
   top: 3px;
   right:0;
@@ -119,6 +119,6 @@ opacity:1;
   content: "⮞";
   opacity:0.6;
 }
-.chatmsg.private:hover:after{
+.chatmsg.private:hover > .pmclick > .name > span:after{
   opacity:1;
 }
