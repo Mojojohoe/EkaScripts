@@ -89,6 +89,7 @@ opacity:1;
   background-color:#222222;
   border: 1px solid #2b2828;
   margin-right: 5px;
+  margin-left: -5px;
   vertical-align: middle;
 }
 .eyecon:hover + span > .info, .eyecon:hover + span > span > .info, .info:hover{
