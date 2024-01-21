@@ -6971,12 +6971,14 @@ function attachEventHandlers()
     });
     
     // Show the deletion button on eligible messages.
+    /*
     var $msgDelBtn = $("<div class='msg-delete' title='Delete'>&times;</div>");
     $(document).on("mouseenter", ".deletable", function() {
         $(this).prepend($msgDelBtn);
     }).on("mouseleave", ".deletable", function() {
         $msgDelBtn.detach();
     });
+    */
     
     // Highlight row on hover, and submit on click of button.
     $(document).on("click", ".msg-delete", function() {
