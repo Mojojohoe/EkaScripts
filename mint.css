@@ -162,3 +162,14 @@ opacity:1;
   display: inline-block;
   transform: translate(0px, -1px);
 }
+.flash{
+  animation: 0.2s ease-in-out 1.5s 1 flash;
+}
+@-webkit-keyframes flash {
+    0% {
+        background-color: rgba(101, 219, 162,0.5);
+    }
+    100% {
+        background-color: rgba(101, 219, 162,0);
+    }
+}
