@@ -160,9 +160,10 @@ opacity:1;
   transform: translate(0px, -1px);
 }
 
-#left button{
+button.anchor {
 max-height:25px;
-  outline-color:#a1eda4;
+  padding: 1px 5px;
+  outline: 1px auto #a1eda4;  
 }
 .flash{
   animation: flash 2s ease-in-out 0.2s 1 backwards;
