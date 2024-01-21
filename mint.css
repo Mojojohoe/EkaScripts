@@ -94,3 +94,26 @@ opacity:1;
 .eyecon:hover + span > .info, .eyecon:hover + span > span > .info, .info:hover{
   display:inline-block !important;
 }
+.chatmsg.private{
+  position: relative;
+}
+.chatmsg.private:not(.from-me):after{
+  position: absolute;
+  top: 0;
+  right:0;
+  width: 25px;
+  height: 25px;
+  font-size: inherit;
+  color: inherit;
+  content: "⮜";
+}
+.chatmsg.private.from-me):after{
+  position: absolute;
+  top: 0;
+  right:0;
+  width: 25px;
+  height: 25px;
+  font-size: inherit;
+  color: inherit;
+  content: "⮞";
+}
