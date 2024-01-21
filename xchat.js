@@ -5471,6 +5471,7 @@ var HOVER_CHAT_COMMANDS = {
             }
 
             wWindows[this.leash] = this;
+		layoutEntirePage();
         }
         return this;
     };
@@ -5518,6 +5519,7 @@ var HOVER_CHAT_COMMANDS = {
             $cleanup.remove();
         }
         delete wWindows[this.leash];
+	layoutEntirePage();
         return this;
     };
 
