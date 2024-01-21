@@ -163,7 +163,7 @@ opacity:1;
   transform: translate(0px, -1px);
 }
 .flash{
-  animation: 0.2s ease-in-out 1.5s 1 flash;
+  animation: flash 2s ease-in-out 0.2s 1 backwards;
 }
 @-webkit-keyframes flash {
     0% {
