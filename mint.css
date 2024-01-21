@@ -57,7 +57,7 @@ color:#a1eda4;
     background: black;
       top: 5px;
 }
-#chat-pane:has[class] > :not(.chatmsg){
+#chat-pane > :not(.chatmsg):has[class] {
     border-radius: 6px;
     margin: 4px;
     padding: 4px;
