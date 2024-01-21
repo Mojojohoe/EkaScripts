@@ -162,6 +162,7 @@ opacity:1;
   display: inline-block;
   transform: translate(0px, -1px);
 }
+
 #left button{
 max-height:25px;
   outline-color:#a1eda4;
@@ -176,4 +177,11 @@ max-height:25px;
     100% {
         background-color: rgba(101, 219, 162,0);
     }
+}
+#hover-box {
+    border: solid 1px #2d2a2a;
+}
+.sender-input-group .flan-control {
+    border: 0px;
+    transition: unset; 
 }
