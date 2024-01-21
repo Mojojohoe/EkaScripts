@@ -106,8 +106,9 @@ opacity:1;
   font-size: inherit;
   color: currentColor;
   content: "⮜";
+  opacity:0.6;
 }
-.chatmsg.private.from-me):after{
+.chatmsg.private.from-me:after{
   position: absolute;
   top: 3px;
   right:0;
@@ -116,4 +117,8 @@ opacity:1;
   font-size: inherit;
   color: currentColor;
   content: "⮞";
+  opacity:0.6;
+}
+.chatmsg.private:hover:after{
+  opacity:1;
 }
