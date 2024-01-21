@@ -92,6 +92,5 @@ opacity:1;
   vertical-align: middle;
 }
 .eyecon:hover + span > .info, .eyecon:hover + span > span > .info{
-  display:inline-block;
-  background:pink;
+  display:inline-block !important;
 }
