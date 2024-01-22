@@ -6562,10 +6562,12 @@ $msg.find('.body, .body *').contents().filter(function() {
   // Apply the text conversion to each element's text content
   if (this.nodeType === 3) {
     // Text node
-    this.nodeValue = this.nodeValue.split(" ").map(word => `<b>${word.slice(0, Math.ceil(word.length / 2))}</b>${word.slice(Math.ceil(word.length / 2))}`).join(" ");
+    const words = this.nodeValue.split(" ").map(word => `<b>${word.slice(0, Math.ceil(word.length / 2))}</b>${word.slice(Math.ceil(word.length / 2))}`).join(" ");
+    $(this).replaceWith(words);
   } else {
     // Element node
-    $(this).html($(this).text().split(" ").map(word => `<b>${word.slice(0, Math.ceil(word.length / 2))}</b>${word.slice(Math.ceil(word.length / 2))}`).join(" "));
+    const words = $(this).text().split(" ").map(word => `<b>${word.slice(0, Math.ceil(word.length / 2))}</b>${word.slice(Math.ceil(word.length / 2))}`).join(" ");
+    $(this).html(words);
   }
 });
 
