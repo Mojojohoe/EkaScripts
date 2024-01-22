@@ -6560,7 +6560,8 @@ $msg.find('*').contents().filter(function() {
   return this.nodeType === 3; // Filter only text nodes
 }).each(function() {
   // Apply the text conversion to each text node's content
-  this.nodeValue = this.nodeValue.split(" ").map(word => `<b>${word.slice(0, Math.ceil(word.length / 2))}</b>${word.slice(Math.ceil(word.length / 2))}`).join(" ");
+$(this).html($(this).text().split(" ").map(word => `<b>${word.slice(0, Math.ceil(word.length / 2))}</b>${word.slice(Math.ceil(word.length / 2))}`).join(" "));
+	
 });
 
     // For whispers, the leash of the chat pane is the name, not leashId
