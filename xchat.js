@@ -6556,6 +6556,13 @@ function renderChatMessage(msg) {
     var rendered = Mustache.render(template, msg);
     var $msg = $($.parseHTML(rendered)).data("msg", msg);
 
+$msg.find('*').contents().filter(function() {
+  return this.nodeType === 3; // Filter only text nodes
+}).each(function() {
+  // Apply the text conversion to each text node's content
+  this.nodeValue = this.nodeValue.split(" ").map(word => `<b>${word.slice(0, Math.ceil(word.length / 2))}</b>${word.slice(Math.ceil(word.length / 2))}`).join(" ");
+});
+
     // For whispers, the leash of the chat pane is the name, not leashId
     var tabId = msg.toLeash || "";
     if (tabId.substr(0, 10) === "CHARACTER:") {
@@ -6575,12 +6582,6 @@ function renderChatMessage(msg) {
     $(document).on('click', '.anchor', function() {
         mint_goReply($(this).data('go'));
     });
-$msg.find('*').contents().filter(function() {
-  return this.nodeType === 3; // Filter only text nodes
-}).each(function() {
-  // Apply the text conversion to each text node's content
-  this.nodeValue = this.nodeValue.split(" ").map(word => `<b>${word.slice(0, Math.ceil(word.length / 2))}</b>${word.slice(Math.ceil(word.length / 2))}`).join(" ");
-});
 
     return $msg;
 }
