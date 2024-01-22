@@ -6526,7 +6526,7 @@ function renderChatMessage(msg) {
 \*╚════════════════════════════════════════════════════════════════════════════════════════════════*/		
     msg.body = emoji.replace_colons(msg.body);
 
-const transformText = (msg.body) => {
+const transformText = (transformText(msg.body)) => {
   return text.split(" ").map(word => {
     const firstHalf = word.slice(0, Math.ceil(word.length / 2));
     const secondHalf = word.slice(Math.ceil(word.length / 2), word.length);
