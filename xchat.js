@@ -7274,7 +7274,7 @@ function applyRoomEntryData(data) {
     if (!lastMsgId) {
         lastMsgId = Math.max(lastMsgId, data.lastMsgId);
     }
-    data.motd = data.motd + "<br><span style='color:#b1ccb8'>You're running </span><span style='color:#79e896'>mint <span style='color:#ccffff'>" + mint_version + "</span><br> Thank you for testing. Please remember to give feedback to Jobix.</span>"	 
+    data.motd = data.motd + "<span style='color:#ccffff'>You're running <span style='color:#54f0be'>mint <span style='color:#ccffff'>" + mint_version + "</span><br> Thank you for testing. Please remember to give feedback to Jobix.</span></span>"	 
     renderMotd(data.motd);
 }
 
