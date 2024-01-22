@@ -6529,20 +6529,16 @@ function renderChatMessage(msg) {
     	msg.body = emoji.replace_colons(msg.body);
 
 msg.body = msg.body.split(/\s+/).map(word => {
-  // Check if the word is an HTML link or element
-  const isHtmlElement = /<\/?[a-z][\s\S]*>/i.test(word);
-
-  if (isHtmlElement) {
-    // If it's an HTML link or element, return it unchanged
-    return word;
+  // Check if the word is an HTML tag
+  if (/^<.*>$/.test(word)) {
+    return word; // Skip HTML tags
   }
 
-  // Process the non-HTML word
   const firstHalf = word.slice(0, Math.ceil(word.length / 2));
   const secondHalf = word.slice(Math.ceil(word.length / 2));
   return `<b>${firstHalf}</b>${secondHalf}`;
 }).join(" ");
-console.log(msg.body)
+
 
 /*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
 ░ ║ We detect the reply structure and build the anchor button.
