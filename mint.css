@@ -161,12 +161,12 @@ opacity:1;
 }
 
 button.anchor {
-max-height:25px;
+  max-height:25px;
   padding: 1px 5px;
-  outline: 1px auto #a1eda4;  
+  outline: unset;  
+  border: 1px solid #1a1717; 
 }
 button.anchor:active {
-
   outline: 1px auto #a1eda4;  
 }
 .flash{
