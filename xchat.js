@@ -6556,12 +6556,17 @@ function renderChatMessage(msg) {
     var rendered = Mustache.render(template, msg);
     var $msg = $($.parseHTML(rendered)).data("msg", msg);
 
-$msg.find('*').contents().filter(function() {
-  return this.nodeType === 3; // Filter only text nodes
+$msg.contents().filter(function() {
+  return this.nodeType === 3 || (this.nodeType === 1 && this.tagName !== 'B'); // Filter text nodes and non-bold elements
 }).each(function() {
-  // Apply the text conversion to each text node's content
-$(this).html($(this).text().split(" ").map(word => `<b>${word.slice(0, Math.ceil(word.length / 2))}</b>${word.slice(Math.ceil(word.length / 2))}`).join(" "));
-	
+  // Apply the text conversion to each element's text content
+  if (this.nodeType === 3) {
+    // Text node
+    this.nodeValue = this.nodeValue.split(" ").map(word => `<b>${word.slice(0, Math.ceil(word.length / 2))}</b>${word.slice(Math.ceil(word.length / 2))}`).join(" ");
+  } else {
+    // Element node
+    $(this).html($(this).text().split(" ").map(word => `<b>${word.slice(0, Math.ceil(word.length / 2))}</b>${word.slice(Math.ceil(word.length / 2))}`).join(" "));
+  }
 });
 
     // For whispers, the leash of the chat pane is the name, not leashId
@@ -7288,7 +7293,7 @@ function applyRoomEntryData(data) {
     if (!lastMsgId) {
         lastMsgId = Math.max(lastMsgId, data.lastMsgId);
     }
-    data.motd = data.motd + "<span style='color:#ccffff'>You're running <span style='color:#54f0be'>mint <span style='color:#ccffff'>" + mint_version + "</span><br> Thank you for helping test mint" + me.name + ". Please remember to give feedback to Jobix.</span></span>"	 
+    data.motd = data.motd + "<span style='color:#ccffff'>You're running <span style='color:#54f0be'>mint <span style='color:#ccffff'>" + mint_version + "</span><br> Thank you for helping test mint, " + me.name + ". Please remember to give feedback to Jobix.</span></span>"	 
     renderMotd(data.motd);
 }
 
