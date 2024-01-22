@@ -8,8 +8,12 @@
 
 /*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
 ░ ║ Mint-specific comments look like this. 
+░ ║ Let's load in emoji support.
 \*╚════════════════════════════════════════════════════════════════════════════════════════════════*/
-
+    let emojiSupport = document.createElement("script");
+    emojiSupport.type = "text/javascript";
+    emojiSupport.src = "https://cdnjs.cloudflare.com/ajax/libs/emoji-js/3.8.0/emoji.min.js";
+    document.head.appendChild(emojiSupport);
 /*!
  * Bootstrap v3.1.1 (http://getbootstrap.com)
  * Copyright 2011-2014 Twitter, Inc.
