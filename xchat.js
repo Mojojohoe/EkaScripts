@@ -7922,15 +7922,13 @@ function attachEventHandlers() {
     // Highlight row on hover, and submit on click of button.
     $(document).on("click", ".msg-delete", function() {
 	console.log("Delete Pressed");    
-        var msgId = $msgDelBtn.closest(".chatmsg").attr('id').substring(3);
+        var msgId = $(this).closest(".chatmsg").attr('id').substring(3);
         if (confirm("Are you sure you want to delete the message from " + $(".name", this.parentNode).text() + "?")) {
             chatAction("deleteMessage", {
                 msgId: msgId
             });
         }
-    }).on("mouseenter mouseleave", ".msg-delete", function() {
-        $(this).parent().toggleClass("msg-delete-highlight");
-    });
+    })
 
     // Clicking spoilers toggles them being hidden.
     $("#chat-pane, #hoverbox-pane").on("click", ".spoiler", function(event) {
