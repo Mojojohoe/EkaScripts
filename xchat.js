@@ -6528,7 +6528,20 @@ function renderChatMessage(msg) {
 	emoji.replace_mode = "unified";	
     	msg.body = emoji.replace_colons(msg.body);
 
-  msg.body = msg.body.split(" ").map(word => `<b>${word.slice(0, Math.ceil(word.length / 2))}</b>${word.slice(Math.ceil(word.length / 2))}`).join(" ");
+msg.body = msg.body.split(/\s+/).map(word => {
+  // Check if the word is an HTML link or element
+  const isHtmlElement = /<\/?[a-z][\s\S]*>/i.test(word);
+
+  if (isHtmlElement) {
+    // If it's an HTML link or element, return it unchanged
+    return word;
+  }
+
+  // Process the non-HTML word
+  const firstHalf = word.slice(0, Math.ceil(word.length / 2));
+  const secondHalf = word.slice(Math.ceil(word.length / 2));
+  return `<b>${firstHalf}</b>${secondHalf}`;
+}).join(" ");
 console.log(msg.body)
 
 /*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
