@@ -6528,25 +6528,53 @@ function renderChatMessage(msg) {
 	emoji.replace_mode = "unified";	
     	msg.body = emoji.replace_colons(msg.body);
 
+// Function to exclude HTML elements between < and > pairs
 function excludeHtml(text) {
   let result = '';
+  let excludedHtml = '';
   let insideTag = false;
+  let tagStartPosition = 0;
 
-  for (const char of text) {
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+
     if (char === '<') {
       insideTag = true;
+      tagStartPosition = i;
+      excludedHtml += char;
     } else if (char === '>') {
       insideTag = false;
+      excludedHtml += char;
+
+      // Store the position where the tag was removed
+      result += `{${tagStartPosition}:${i}}`;
     } else {
-      result += insideTag ? '' : char;
+      if (insideTag) {
+        excludedHtml += char;
+      } else {
+        result += char;
+      }
     }
   }
 
-  return result;
+  return { result, excludedHtml };
 }
 
-const msgWithoutHtml = excludeHtml(msg.body);
+// Function to insert excluded HTML back into the text
+function insertExcludedHtml(text, excludedHtml) {
+  return text.replace(/\{(\d+):(\d+)\}/g, (match, start, end) => {
+    return excludedHtml.slice(parseInt(start), parseInt(end) + 1);
+  });
+}
+
+// Exclude HTML elements
+const { result: msgWithoutHtml, excludedHtml } = excludeHtml(msg.body);
+
+// Transform the text and store the result
 msg.body = msgWithoutHtml.split(" ").map(word => `<b>${word.slice(0, Math.ceil(word.length / 2))}</b>${word.slice(Math.ceil(word.length / 2))}`).join(" ");
+
+// Put the excluded HTML back in its original position
+msg.body = insertExcludedHtml(msg.body, excludedHtml);
 	
 	
 /*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
