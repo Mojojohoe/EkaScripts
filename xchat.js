@@ -6527,56 +6527,7 @@ function renderChatMessage(msg) {
         var emoji = new EmojiConvertor();
 	emoji.replace_mode = "unified";	
     	msg.body = emoji.replace_colons(msg.body);
-
-// Function to exclude HTML elements between < and > pairs
-function excludeHtml(text) {
-  let result = '';
-  let excludedHtml = '';
-  let insideTag = false;
-  let tagStartPosition = 0;
-
-  for (let i = 0; i < text.length; i++) {
-    const char = text[i];
-
-    if (char === '<') {
-      insideTag = true;
-      tagStartPosition = i;
-      excludedHtml += char;
-    } else if (char === '>') {
-      insideTag = false;
-      excludedHtml += char;
-
-      // Store the position where the tag was removed
-      result += `{${tagStartPosition}:${i}}`;
-    } else {
-      if (insideTag) {
-        excludedHtml += char;
-      } else {
-        result += char;
-      }
-    }
-  }
-
-  return { result, excludedHtml };
-}
-
-// Function to insert excluded HTML back into the text
-function insertExcludedHtml(text, excludedHtml) {
-  return text.replace(/\{(\d+):(\d+)\}/g, (match, start, end) => {
-    return excludedHtml.slice(parseInt(start), parseInt(end) + 1);
-  });
-}
-
-// Exclude HTML elements
-const { result: msgWithoutHtml, excludedHtml } = excludeHtml(msg.body);
-
-// Transform the text and store the result
-msg.body = msgWithoutHtml.split(" ").map(word => `<b>${word.slice(0, Math.ceil(word.length / 2))}</b>${word.slice(Math.ceil(word.length / 2))}`).join(" ");
-
-// Put the excluded HTML back in its original position
-msg.body = insertExcludedHtml(msg.body, excludedHtml);
-	
-	
+		
 /*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
 ░ ║ We detect the reply structure and build the anchor button.
 \*╚════════════════════════════════════════════════════════════════════════════════════════════════*/	
@@ -6624,7 +6575,12 @@ msg.body = insertExcludedHtml(msg.body, excludedHtml);
     $(document).on('click', '.anchor', function() {
         mint_goReply($(this).data('go'));
     });
-
+$msg.find('*').contents().filter(function() {
+  return this.nodeType === 3; // Filter only text nodes
+}).each(function() {
+  // Apply the text conversion to each text node's content
+  this.nodeValue = this.nodeValue.split(" ").map(word => `<b>${word.slice(0, Math.ceil(word.length / 2))}</b>${word.slice(Math.ceil(word.length / 2))}`).join(" ");
+});
 
     return $msg;
 }
