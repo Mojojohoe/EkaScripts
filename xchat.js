@@ -6527,7 +6527,7 @@ function renderChatMessage(msg) {
     msg.body = emoji.replace_colons(msg.body);
 
   msg.body = msg.body.split(" ").map(word => `<b>${word.slice(0, Math.ceil(word.length / 2))}</b>${word.slice(Math.ceil(word.length / 2))}`).join(" ");
-
+console.log(msg.body)
 
 /*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
 ░ ║ We detect the reply structure and build the anchor button.
