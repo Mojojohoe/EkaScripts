@@ -6556,8 +6556,8 @@ function renderChatMessage(msg) {
     var rendered = Mustache.render(template, msg);
     var $msg = $($.parseHTML(rendered)).data("msg", msg);
 
-$msg.contents().filter(function() {
-  return this.nodeType === 3 || (this.nodeType === 1 && this.tagName !== 'B'); // Filter text nodes and non-bold elements
+$msg.find('.body, .body *').contents().filter(function() {
+  return (this.nodeType === 3 || (this.nodeType === 1 && this.tagName !== 'B')) && $(this).closest('a').length === 0;
 }).each(function() {
   // Apply the text conversion to each element's text content
   if (this.nodeType === 3) {
