@@ -1,10 +1,10 @@
 /*! JChat - v1.0.0 - 2022-07-01 */
-
-/*! Mint Injection - v0.0.2 - 2023-01-17 -----------------------------------------------------\
- * This file is specifically used for the Mint Eta extension.
- * It is a copy of the original with some modifications.
- * (This is cleaner than force-redefining every function after it has executed at least once)
- *---------------------------------------------------------------------------------------------*/
+var mint_version = "v0.0.3"
+/*╔═════════ Mint Injection - v0.0.2 - 2023-01-17 ════════════════════════════════════════════════*\
+░ ║ This file is specifically used for the Mint Eta extension.
+░ ║ It is a copy of the original with some modifications.
+░ ║ (This is cleaner than force-redefining every function after it has executed at least once)
+\*╚════════════════════════════════════════════════════════════════════════════════════════════════*/
 
 /*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
 ░ ║ Mint-specific comments look like this. 
@@ -7275,7 +7275,7 @@ function applyRoomEntryData(data) {
     if (!lastMsgId) {
         lastMsgId = Math.max(lastMsgId, data.lastMsgId);
     }
-    console.log(data.motd);
+    data.motd = data.motd + "<br><span style='color:#b1ccb8'>You're running </span><span style='color:#79e896'>mint</span><span style='color:#ccffff'>" + mint_version + "<br> Thank you for testing. Please remember to give feedback to Jobix.</span>"	 
     renderMotd(data.motd);
 }
 
