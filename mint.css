@@ -346,6 +346,7 @@ input:-internal-autofill-selected {
 }
 #root{
 height:100%;
+ max-height:30vh; 
 }
 #mint_config-close{
   position: absolute;
