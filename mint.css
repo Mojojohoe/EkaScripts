@@ -216,8 +216,9 @@ button.anchor:active {
   width:100%;
   display: flex;
 }
-.styleOptions{
-  width:30%;
+.styleOptions {
+    width: 25%;
+    border-right: 1px solid #80b996;
 }
 #mint_config-menu h2 {
     width: 100%;
