@@ -18,7 +18,7 @@ var mint_version = "v0.0.3"
     let pickerSupport = document.createElement("script");
     pickerSupport.type = "text/javascript";
     pickerSupport.src = "https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js";
-    document.head.appendChild(bionicSupport);
+    document.head.appendChild(pickerSupport);
 /*!
  * Bootstrap v3.1.1 (http://getbootstrap.com)
  * Copyright 2011-2014 Twitter, Inc.
