@@ -339,9 +339,11 @@ min-width:60%;
     position: relative;
 }
 
-em-emoji-picker {
-    display: none;
-}
+ em-emoji-picker {
+        height: 40vh;
+        min-height: 300px;
+        max-height: 40vh;
+      }
 
 #showEmoji.active + #emojiMart em-emoji-picker {
     display: inline-block;
