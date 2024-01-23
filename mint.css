@@ -213,6 +213,8 @@ button.anchor:active {
 .settingsContent{
   height: calc(100% - 20%);
   overflow-y:scroll;
+  width:100%;
+  display: flex;
 }
 .styleOptions{
   width:30%;
