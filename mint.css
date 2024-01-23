@@ -214,6 +214,9 @@ button.anchor:active {
   height: calc(100% - 20%);
   overflow-y:scroll;
 }
+.styleOptions{
+  width:30%;
+}
 #mint_config-menu h2 {
     width: 100%;
     display: inline;
