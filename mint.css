@@ -206,6 +206,9 @@ button.anchor:active {
     left: 50%;
     border-radius: 20px;
     border: 2px inset #0c1a14;
+    display:none;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 .settingsContent{
   height: calc(100% - 20%);
