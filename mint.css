@@ -193,13 +193,12 @@ button.anchor:active {
     box-shadow: unset;
     transition: unset;
 }
-
 #mint_config-menu {
   background-color: #222222;
   color:#54f0be;
   padding:10px;
   text-align:center;
-  display: none;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 #mint_config-menu h2{
   width:100%;
@@ -207,6 +206,9 @@ button.anchor:active {
 }
 #mint_config-menu details{
   text-align:left;
+}
+#mint_config-menu .template{
+  
 }
 #mint_config-menu .styleOptions div{
   width: 250px;
@@ -276,4 +278,21 @@ button.anchor:active {
 }
 #filterTemplate{
   display: none;
+}
+.pickerContainer{
+  position: absolute;
+  left: 34px;
+  top: 0px
+}
+#emojiContainer{
+  position: relative;
+}
+.pickerContainer{
+  display: none;
+}
+#showEmoji.active + .pickerContainer{
+  display: inline-block;
+}
+#showEmoji.active {
+  outline: 1px solid white;
 }
