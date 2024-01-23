@@ -5,15 +5,32 @@ var mint_version = "v0.0.3"
 ░ ║ It is a copy of the original with some modifications.
 ░ ║ (This is cleaner than force-redefining every function after it has executed at least once)
 \*╚════════════════════════════════════════════════════════════════════════════════════════════════*/
-
 /*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
 ░ ║ Mint-specific comments look like this. 
+░ ║ Functions for loading and storing mint settings.
+\*╚════════════════════════════════════════════════════════════════════════════════════════════════*/
+    function mint_localStore(key, value) {
+      localStorage.setItem(key, JSON.stringify(value));
+    }
+    function mint_localLoad(key) {
+      const value = localStorage.getItem(key);
+      return value ? JSON.parse(value) : null;
+    }
+/*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
 ░ ║ Let's load in emoji support.
 \*╚════════════════════════════════════════════════════════════════════════════════════════════════*/
     let emojiSupport = document.createElement("script");
     emojiSupport.type = "text/javascript";
     emojiSupport.src = "https://cdnjs.cloudflare.com/ajax/libs/emoji-js/3.8.0/emoji.min.js";
     document.head.appendChild(emojiSupport);
+/*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
+░ ║ Let's load in bionic text support.
+\*╚════════════════════════════════════════════════════════════════════════════════════════════════*/
+              let newScriptBionic = document.createElement("script");
+              newScriptBionic.type = "text/javascript";
+              newScriptBionic.src =
+                "https://cdn.jsdelivr.net/npm/text-vide/dist/index.iife.js";
+              document.head.appendChild(newScriptBionic);
 /*!
  * Bootstrap v3.1.1 (http://getbootstrap.com)
  * Copyright 2011-2014 Twitter, Inc.
@@ -8011,13 +8028,13 @@ function onClickLogoutLink(event) {
  * @returns {undefined}
  */
 function layoutEntirePage() {
-
     $("#input-pane").height($("#main-sender-form").height() + 2);
-
     $("#chat-pane").height($("#left").height() - $("#input-pane").outerHeight(true) - $("#tabs-pane").outerHeight(true));
 }
 
-
+/*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
+░ ║ Mint-specific functions
+\*╚════════════════════════════════════════════════════════════════════════════════════════════════*/
 
 
 //# sourceMappingURL=xchat.js.map
