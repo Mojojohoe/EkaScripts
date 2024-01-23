@@ -280,6 +280,7 @@ button.anchor:active {
 
 .pickerContainer {
     display: inline;
+  position: absolute;
 }
 
 .emoji-button {
