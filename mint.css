@@ -207,6 +207,10 @@ button.anchor:active {
     border-radius: 20px;
     border: 2px inset #0c1a14;
     display:none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
 }
 
 #mint_config-menu h2 {
