@@ -69,6 +69,10 @@ color:#a1eda4;
     background-color: rgb(73 237 114 / 20%) !important;
     color: rgb(57 255 10 / 60%) !important;
 }
+.bg-note {
+    background-color: rgb(73 237 114 / 20%) !important;
+    color: rgb(57 255 10 / 60%) !important;
+}
 #main-playpause.paused {
     color: #e32941;
 }
@@ -191,61 +195,42 @@ button.anchor:active {
 }
 
 #mint_config-menu {
-    color: #90d5c6;
-  border: 0px;
+  background-color: #222222;
+  color:#54f0be;
+  padding:10px;
+  text-align:center;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-#mint_config-menu_wrapper{
-  background: #040404; 
-  border-radius: 20px;
+#mint_config-menu h2{
+  width:100%;
+  display:inline;
 }
-#mint_config-menu .field_label {
-font-size: 16px;
-  
+#mint_config-menu details{
+  text-align:left;
 }
-#mint_config-menu .section_header_holder {
-    margin-top: 24px;
-      display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-evenly;
+#mint_config-menu .styleOptions div{
+  width: 250px;
+  height: 30px;
 }
-#mint_config-menu .reset, #mint_config-menu .reset a, #mint_config-menu_buttons_holder {
-    color: #000;
-    text-align: right;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    align-items: center;
+#mint_config-menu .styleOptions div span{
+    float: right;
 }
-#mint_config-menu .saveclose_buttons {
-    margin: 16px 10px 10px;
-    padding: 2px 12px;
-    color: #97ffd0;
+#mint_config-menu .styleOptions summary{
+    margin-bottom: 25px;
 }
-#mint_config-menu .center {
-    text-align: center;
-    padding: 20px;
-}
-#mint_config-menu [type="checkbox"] {
-  display: inline-block;
-  position: relative;
-  padding-left: 30px;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+#mint_config-menu .behaviorDropdown,#mint_config-menu button, #mint_config-menu input, #mint_config-menu select{
+    height: 25px;
 }
 #mint_config-menu input[type="checkbox"] {
     position: relative;
-    width: 80px;
-    height: 40px;
+    width: 40px;
+    height: 20px;
     -webkit-appearance: none;
     background: #ff7066;
     outline: none;
-    border-radius: 20px;
+    border-radius: 10px;
     box-shadow: inset 0 0 5px rgba(255, 0, 0, 0.2);
-    transition: 0.7s;
+    transition: 0.2s;
 }
 
 #mint_config-menu input:checked[type="checkbox"] {
@@ -255,9 +240,9 @@ font-size: 16px;
 #mint_config-menu input[type="checkbox"]:before {
   content: '';
   position: absolute;
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
   top: 0;
   left: 0;
   background: #ffffff;
@@ -267,5 +252,28 @@ font-size: 16px;
 }
 
 #mint_config-menu input:checked[type="checkbox"]:before {
-  left: 40px;
+  left: 20px;
+}
+
+.emoji-button {
+  font-size: 1.5rem;
+  line-height: 0px;
+  vertical-align: middle;
+    background: transparent;
+    border: none;
+    border: 1px solid #303030;
+    padding: 0px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 2rem;
+  height:30px !important;
+  verticle-align:center;
+    display: inline;
+    font-family: 'Segoe UI Emoji', 'Segoe UI Symbol', 'Segoe UI', 'Apple Color Emoji', 'Twemoji Mozilla', 'Noto Color Emoji', 'EmojiOne Color', 'Android Emoji';
+}
+#filterBox .styleOptions summary{
+  display: flex;
+}
+#filterTemplate{
+  display: none;
 }
