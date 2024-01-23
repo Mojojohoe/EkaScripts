@@ -306,7 +306,7 @@ min-width:60%;
 
 .pickerContainer {
     display: inline;
-  position: absolute;
+  position: fixed;
 }
 
 .emoji-button {
