@@ -189,3 +189,83 @@ button.anchor:active {
     box-shadow: unset;
     transition: unset;
 }
+
+#mint_config-menu {
+    color: #90d5c6;
+  border: 0px;
+}
+#mint_config-menu_wrapper{
+  background: #040404; 
+  border-radius: 20px;
+}
+#mint_config-menu .field_label {
+font-size: 16px;
+  
+}
+#mint_config-menu .section_header_holder {
+    margin-top: 24px;
+      display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+#mint_config-menu .reset, #mint_config-menu .reset a, #mint_config-menu_buttons_holder {
+    color: #000;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+#mint_config-menu .saveclose_buttons {
+    margin: 16px 10px 10px;
+    padding: 2px 12px;
+    color: #97ffd0;
+}
+#mint_config-menu .center {
+    text-align: center;
+    padding: 20px;
+}
+#mint_config-menu [type="checkbox"] {
+  display: inline-block;
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+#mint_config-menu input[type="checkbox"] {
+    position: relative;
+    width: 80px;
+    height: 40px;
+    -webkit-appearance: none;
+    background: #ff7066;
+    outline: none;
+    border-radius: 20px;
+    box-shadow: inset 0 0 5px rgba(255, 0, 0, 0.2);
+    transition: 0.7s;
+}
+
+#mint_config-menu input:checked[type="checkbox"] {
+  background: #66ff96;
+}
+
+#mint_config-menu input[type="checkbox"]:before {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  top: 0;
+  left: 0;
+  background: #ffffff;
+  transform: scale(1.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: .5s;
+}
+
+#mint_config-menu input:checked[type="checkbox"]:before {
+  left: 40px;
+}
