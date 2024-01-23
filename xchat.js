@@ -6556,21 +6556,6 @@ function renderChatMessage(msg) {
     var rendered = Mustache.render(template, msg);
     var $msg = $($.parseHTML(rendered)).data("msg", msg);
 
-$msg.find('.body, .body *').contents().filter(function() {
-  return (this.nodeType === 3 || (this.nodeType === 1 && this.tagName !== 'B')) && $(this).closest('a').length === 0;
-}).each(function() {
-  // Apply the text conversion to each element's text content
-  if (this.nodeType === 3) {
-    // Text node
-    const words = this.nodeValue.split(" ").map(word => `<b>${word.slice(0, Math.ceil(word.length / 2))}</b>${word.slice(Math.ceil(word.length / 2))}`).join(" ");
-    $(this).replaceWith(words);
-  } else {
-    // Element node
-    const words = $(this).text().split(" ").map(word => `<b>${word.slice(0, Math.ceil(word.length / 2))}</b>${word.slice(Math.ceil(word.length / 2))}`).join(" ");
-    $(this).html(words);
-  }
-});
-
     // For whispers, the leash of the chat pane is the name, not leashId
     var tabId = msg.toLeash || "";
     if (tabId.substr(0, 10) === "CHARACTER:") {
