@@ -285,7 +285,7 @@ button.anchor:active {
 em-emoji-picker{
   display: none;
 }
-#showEmoji.active + em-emoji-picker{
+#showEmoji.active + #emojiMart em-emoji-picker{
   display: inline-block;
 }
 #showEmoji.active {
