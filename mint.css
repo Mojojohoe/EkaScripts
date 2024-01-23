@@ -199,7 +199,7 @@ button.anchor:active {
   color:#54f0be;
   padding:10px;
   text-align:center;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  display: none;
 }
 #mint_config-menu h2{
   width:100%;
