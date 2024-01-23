@@ -230,7 +230,19 @@ button.anchor:active {
 #mint_config-menu .styleOptions summary {
     margin-bottom: 25px;
 }
-
+#mint_config-menu h1{
+width:100%;
+}
+#mint_config-menu details{
+  margin: 20px 30px;
+}
+#mint_config-menu.styleOptions{
+width:33%;
+}
+#mint_config-menu.styleOptions{
+min-width:60%;
+  width:auto;
+}
 #mint_config-menu .behaviorDropdown,
 #mint_config-menu button,
 #mint_config-menu input,
@@ -327,4 +339,7 @@ em-emoji-picker {
 input:-internal-autofill-selected {
     background-color: rgb(26, 31, 29) !important;
     color: #69dba8 !important;
+}
+#root{
+height:100%;
 }
