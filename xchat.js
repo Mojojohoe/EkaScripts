@@ -15,10 +15,10 @@ var mint_version = "v0.0.3"
     emojiSupport.src = "https://cdnjs.cloudflare.com/ajax/libs/emoji-js/3.8.0/emoji.min.js";
     document.head.appendChild(emojiSupport);
 
- let bionicSupport = document.createElement("script");
-            bionicSupport.type = "text/javascript";
-            bionicSupport.src = "https://cdn.jsdelivr.net/npm/text-vide/dist/index.iife.js";
-            document.head.appendChild(bionicSupport);
+    let pickerSupport = document.createElement("script");
+    pickerSupport.type = "text/javascript";
+    pickerSupport.src = "https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js";
+    document.head.appendChild(bionicSupport);
 /*!
  * Bootstrap v3.1.1 (http://getbootstrap.com)
  * Copyright 2011-2014 Twitter, Inc.
