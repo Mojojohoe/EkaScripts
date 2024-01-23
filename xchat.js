@@ -7,15 +7,7 @@ var mint_version = "v0.0.3"
 \*╚════════════════════════════════════════════════════════════════════════════════════════════════*/
 /*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
 ░ ║ Mint-specific comments look like this. 
-░ ║ Functions for loading and storing mint settings.
 \*╚════════════════════════════════════════════════════════════════════════════════════════════════*/
-    function mint_localStore(key, value) {
-      localStorage.setItem(key, JSON.stringify(value));
-    }
-    function mint_localLoad(key) {
-      const value = localStorage.getItem(key);
-      return value ? JSON.parse(value) : null;
-    }
 /*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
 ░ ║ Let's load in emoji support.
 \*╚════════════════════════════════════════════════════════════════════════════════════════════════*/
