@@ -279,11 +279,6 @@ button.anchor:active {
 #filterTemplate{
   display: none;
 }
-.pickerContainer{
-  position: absolute;
-  left: 34px;
-  top: 0px
-}
 #emojiContainer{
   position: relative;
 }
