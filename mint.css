@@ -343,3 +343,15 @@ input:-internal-autofill-selected {
 #root{
 height:100%;
 }
+#mint_config-close{
+  position: absolute;
+  font-size: 40px;
+  right:10px;
+  top:0px;
+  cursor: pointer;
+  transition: 0.5s all;
+}
+#mint_config-close:hover{
+  transform: scale(1.2);
+  color:white;
+}
