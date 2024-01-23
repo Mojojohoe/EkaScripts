@@ -287,10 +287,10 @@ button.anchor:active {
 #emojiContainer{
   position: relative;
 }
-.pickerContainer{
+em-emoji-picker{
   display: none;
 }
-#showEmoji.active + .pickerContainer{
+#showEmoji.active + em-emoji-picker{
   display: inline-block;
 }
 #showEmoji.active {
