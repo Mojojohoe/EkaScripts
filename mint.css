@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Sintony:wght@400;700&display=swap');
+;@import url('https://fonts.googleapis.com/css2?family=Sintony:wght@400;700&display=swap');
 body{
   overflow: hidden;
 }
@@ -305,7 +305,7 @@ min-width:60%;
 }
 
 .pickerContainer {
-    display: inline;
+  display: none;
   position: fixed;
 }
 
@@ -326,29 +326,26 @@ min-width:60%;
     font-family: 'Segoe UI Emoji', 'Segoe UI Symbol', 'Segoe UI', 'Apple Color Emoji', 'Twemoji Mozilla', 'Noto Color Emoji', 'EmojiOne Color', 'Android Emoji';
     color: #fff;
 }
-
 #filterBox .styleOptions summary {
     display: flex;
 }
-
 #filterTemplate {
     display: none;
 }
-
 #emojiContainer {
     position: relative;
 }
-
  em-emoji-picker {
         height: 40vh;
         min-height: 300px;
         max-height: 40vh;
-      }
-
-#showEmoji.active + #emojiMart em-emoji-picker {
-    display: inline-block;
 }
-
+#emojiMart{
+  display:none;
+}
+#showEmoji.active +#emojiMart {
+    display: inline;
+}
 #showEmoji.active {
     outline: 1px solid white;
 }
