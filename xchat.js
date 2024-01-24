@@ -7572,6 +7572,7 @@ function userlistFontShrink() {
 ░ ║ Highlight and Ignore have been updated to apply styles to the usertlist entry.
 \*╚════════════════════════════════════════════════════════════════════════════════════════════════*/
 function onClickHighlight(event) {
+	console.log(event)
     var ele = $(this).parents("tr");
     var ule = ele.data("ule");
     var cid = ule.charId;
