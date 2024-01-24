@@ -6637,9 +6637,8 @@ function handleUserlistUpdate(msg) {
   userlistFontShrink.apply($ule);
 
   // Get mint_filters from local storage
-  var mint_filters = localStorage.getItem('mint_filters');
-	console.log(mint_filters);
-  mint_filters = mint_filters ? JSON.parse(mint_filters) : [];
+  var mint_filters_str = localStorage.getItem('mint_filters');
+  var mint_filters = mint_filters_str ? JSON.parse(mint_filters_str) : [];
         console.log(mint_filters);
   // Iterate through each filter in mint_filters
   mint_filters.forEach(function(filter) {
