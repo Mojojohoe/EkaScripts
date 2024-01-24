@@ -6661,11 +6661,11 @@ function handleUserlistUpdate(msg) {
           sounds.highlighted.play();
         }
 
-        if (behave1 === 3 || behave2 === 3  && !$ule.is('.highlighted')) {
+        if (behave1 === 3 || behave2 === 3  && !ule.highlighted) {
           $ule.find('.highlight').trigger('click');	
         }
 
-        if (behave1 === 4 || behave2 === 4 && !$ule.is('.ignored')) {
+        if (behave1 === 4 || behave2 === 4 && !ule.ignored) {
           $ule.find('.ignore').trigger('click');	 
         }
       }
@@ -6681,12 +6681,12 @@ function handleUserlistUpdate(msg) {
             sounds.highlighted.play();
           }
 
-          if (behave1 === 3 && !$ule.is('.highlighted')) {
+          if (behave1 === 3 && !ule.highlighted) {
 	   $ule.find('.highlight').trigger('click');	  
 
           }
 
-          if (behave1 === 4 && !$ule.is('.ignored')) {
+          if (behave1 === 4 && !ule.ignored) {
             $ule.find('.ignore').trigger('click');	  
           }
         }
@@ -6703,11 +6703,11 @@ function handleUserlistUpdate(msg) {
             sounds.highlighted.play();
           }
 
-          if (behave1 === 3 && !$ule.is('.highlighted')) {
+          if (behave1 === 3 && !ule.highlighted) {
             $ule.find('.highlight').trigger('click');	 
           }
 
-          if (behave1 === 4 && !$ule.is('.ignored')) {
+          if (behave1 === 4 && !ule.ignored) {
             $ule.find('.ignore').trigger('click');	
           }
         }
@@ -6722,11 +6722,11 @@ function handleUserlistUpdate(msg) {
           sounds.highlighted.play();
         }
 
-        if (behave1 === 3 && !$ule.is('.highlighted')) {
+        if (behave1 === 3 && !ule.highlighted) {
           ule.find('.highlight').trigger('click');	
         }
 
-        if (behave1 === 4 && !$ule.is('.ignored')) {
+        if (behave1 === 4 && !ule.ignored) {
           $ule.find('.ignore').trigger('click');	
         }
       }
