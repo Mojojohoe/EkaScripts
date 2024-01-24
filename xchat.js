@@ -6632,6 +6632,7 @@ function handleUserlistUpdate(msg) {
     // Currently expecting just one at a time
     var ule = msg.add;
     var $ule = renderUserListEntry(ule);
+	console.log(msg)
 
     var oldUle = $("#ule" + ule.sessionId).replaceWith($ule);
     if (oldUle.length === 0) $("#ulist-itself").append($ule);
