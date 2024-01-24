@@ -6635,7 +6635,7 @@ function handleUserlistUpdate(msg) {
   var oldUle = $("#ule" + ule.sessionId).replaceWith($ule);
   if (oldUle.length === 0) $("#ulist-itself").append($ule);
   userlistFontShrink.apply($ule);
-	console.log($ule)
+	console.log(msg)
   var mint_filters_str = localStorage.getItem('mint_filters');
   var mint_filters = mint_filters_str ? JSON.parse(mint_filters_str) : null;
     mint_filters = mint_filters ? JSON.parse(mint_filters) : [];
