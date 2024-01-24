@@ -1,6 +1,6 @@
 /*! JChat - v1.0.0 - 2022-07-01 */
-var mint_version = "v0.0.3"
-/*╔═════════ Mint Injection - v0.0.2 - 2023-01-17 ════════════════════════════════════════════════*\
+var mint_version = "v0.0.4"
+/*╔═════════ Mint Injection - v0.0.4 - 2023-01-17 ════════════════════════════════════════════════*\
 ░ ║ This file is specifically used for the Mint Eta extension.
 ░ ║ It is a copy of the original with some modifications.
 ░ ║ (This is cleaner than force-redefining every function after it has executed at least once)
@@ -6635,7 +6635,7 @@ function handleUserlistUpdate(msg) {
   var oldUle = $("#ule" + ule.sessionId).replaceWith($ule);
   if (oldUle.length === 0) $("#ulist-itself").append($ule);
   userlistFontShrink.apply($ule);
-	
+	console.log($ule)
   var mint_filters_str = localStorage.getItem('mint_filters');
   var mint_filters = mint_filters_str ? JSON.parse(mint_filters_str) : null;
     mint_filters = mint_filters ? JSON.parse(mint_filters) : [];
