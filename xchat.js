@@ -6629,15 +6629,109 @@ function handleChangeRoom(msg) {
 }
 
 function handleUserlistUpdate(msg) {
-    // Currently expecting just one at a time
-    var ule = msg.add;
-    var $ule = renderUserListEntry(ule);
-    var oldUle = $("#ule" + ule.sessionId).replaceWith($ule);
-    if (oldUle.length === 0) $("#ulist-itself").append($ule);
-    userlistFontShrink.apply($ule);
+  // Currently expecting just one at a time
+  var ule = msg.add;
+  var $ule = renderUserListEntry(ule);
+  var oldUle = $("#ule" + ule.sessionId).replaceWith($ule);
+  if (oldUle.length === 0) $("#ulist-itself").append($ule);
+  userlistFontShrink.apply($ule);
 
-    handleMinimapPinUpdate(ule);
+  // Get mint_filters from local storage
+  var mint_filters = mint_localLoad('mint_filters');
+  mint_filters = mint_filters ? JSON.parse(mint_filters) : [];
+
+  // Iterate through each filter in mint_filters
+  mint_filters.forEach(function(filter) {
+    // Check if ule.sessionId exists in the names prop array
+    if (filter.names && filter.names.includes(ule.sessionId)) {
+      // Variables for reference
+      var behave1 = filter.behave;
+      var behave2 = filter.behave2;
+      var caseValue = filter.case;
+      var trigger = filter.trigger;
+
+      // Process behavior based on conditions
+      if (caseValue === 0) {
+        if (behave1 === 1 || behave2 === 1) {
+          $ule.find('.pmclick').addClass('greyout');
+        }
+
+        if (behave1 === 2 || behave2 === 2) {
+          sounds.highlighted.play();
+        }
+
+        if (behave1 === 3 || behave2 === 3) {
+          onClickHighlight(event, $ule.find('.pmclick'));
+        }
+
+        if (behave1 === 4 || behave2 === 4) {
+          onClickIgnore(event, $ule.find('.pmclick'));
+        }
+      }
+
+      if (caseValue === 1 && trigger === 1) {
+        var iconSpan = $ule.find('.icon.status-online');
+        if (!iconSpan.length || iconSpan.hasClass('status-online')) {
+          if (behave1 === 1) {
+            $ule.find('.pmclick').addClass('greyout');
+          }
+
+          if (behave1 === 2) {
+            sounds.highlighted.play();
+          }
+
+          if (behave1 === 3) {
+            onClickHighlight(event, $ule.find('.pmclick'));
+          }
+
+          if (behave1 === 4) {
+            onClickIgnore(event, $ule.find('.pmclick'));
+          }
+        }
+      }
+
+      if (caseValue === 1 && trigger === 2) {
+        var iconSpan = $ule.find('.icon.status-lfrp, .icon.status-open, .icon.status-pred, .icon.status-prey');
+        if (iconSpan.length) {
+          if (behave1 === 1) {
+            $ule.find('.pmclick').addClass('greyout');
+          }
+
+          if (behave1 === 2) {
+            sounds.highlighted.play();
+          }
+
+          if (behave1 === 3) {
+            onClickHighlight(event, $ule.find('.pmclick'));
+          }
+
+          if (behave1 === 4) {
+            onClickIgnore(event, $ule.find('.pmclick'));
+          }
+        }
+      }
+
+      if (caseValue === 1 && trigger === 3 && oldUle.length === 0) {
+        if (behave1 === 1) {
+          $ule.find('.pmclick').addClass('greyout');
+        }
+
+        if (behave1 === 2) {
+          sounds.highlighted.play();
+        }
+
+        if (behave1 === 3) {
+          onClickHighlight(event, $ule.find('.pmclick'));
+        }
+
+        if (behave1 === 4) {
+          onClickIgnore(event, $ule.find('.pmclick'));
+        }
+      }
+    }
+  });
 }
+
 
 function handleMinimapPinUpdate(pin) {
     if (typeof pin === "string") {
@@ -7452,7 +7546,6 @@ function tempUserListThing() {
         $("#ulist-itself").empty();
         $.each(result, function(i, ule) {
             var $ule = renderUserListEntry(ule);
-	console.log($ule);	
             $ule.appendTo("#ulist-itself");
             userlistFontShrink.apply($ule);
             if (ses.props['usingMinimap']) {
@@ -7924,7 +8017,6 @@ function attachEventHandlers() {
 
     // Highlight row on hover, and submit on click of button.
     $(document).on("click", ".msg-delete", function() {
-	console.log("Delete Pressed");    
         var msgId = $(this).closest(".chatmsg").attr('id').substring(3);
         if (confirm("Are you sure you want to delete the message from " + $(".name", this.parentNode).text() + "?")) {
             chatAction("deleteMessage", {
