@@ -6643,8 +6643,8 @@ function handleUserlistUpdate(msg) {
   // Iterate through each filter in mint_filters
   mint_filters.forEach(function(filter) {
     // Check if ule.sessionId exists in the names prop array
-	  console.log(ule.sessionId)
-	  console.log(filter.names)
+	  console.log(ule)
+
     if (filter.names && filter.names.includes(ule.sessionId)) {
       // Variables for reference
       var behave1 = filter.behave;
