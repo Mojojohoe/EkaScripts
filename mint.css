@@ -308,7 +308,8 @@ min-width:60%;
 
 .pickerContainer {
   display: none;
-  position: fixed;
+  position: absolute;
+  z-index: 99999;
 }
 
 .emoji-button {
