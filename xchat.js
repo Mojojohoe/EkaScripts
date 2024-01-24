@@ -6662,11 +6662,11 @@ function handleUserlistUpdate(msg) {
         }
 
         if (behave1 === 3 || behave2 === 3) {
-          onClickHighlight(event, $ule.find('.pmclick'));
+          $ule.find('.highlight').trigger('click');	
         }
 
         if (behave1 === 4 || behave2 === 4) {
-          onClickIgnore(event, $ule.find('.pmclick'));
+          $ule.find('.ignore').trigger('click');	 
         }
       }
 
@@ -6682,11 +6682,12 @@ function handleUserlistUpdate(msg) {
           }
 
           if (behave1 === 3) {
-            onClickHighlight(event, $ule.find('.pmclick'));
+	   $ule.find('.highlight').trigger('click');	  
+
           }
 
           if (behave1 === 4) {
-            onClickIgnore(event, $ule.find('.pmclick'));
+            $ule.find('.ignore').trigger('click');	  
           }
         }
       }
@@ -6703,11 +6704,11 @@ function handleUserlistUpdate(msg) {
           }
 
           if (behave1 === 3) {
-            onClickHighlight(event, $ule.find('.pmclick'));
+            $ule.find('.highlight').trigger('click');	 
           }
 
           if (behave1 === 4) {
-            onClickIgnore(event, $ule.find('.pmclick'));
+            $ule.find('.ignore').trigger('click');	
           }
         }
       }
@@ -6722,11 +6723,11 @@ function handleUserlistUpdate(msg) {
         }
 
         if (behave1 === 3) {
-          onClickHighlight(event, $ule.find('.pmclick'));
+          ule.find('.highlight').trigger('click');	
         }
 
         if (behave1 === 4) {
-          onClickIgnore(event, $ule.find('.pmclick'));
+          $ule.find('.ignore').trigger('click');	
         }
       }
     }
