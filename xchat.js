@@ -6488,7 +6488,6 @@ function handleChatMessage(msg) {
 ░ ║ along with replies, reply button rendering, and the moving of the delete button. 
 \*╚════════════════════════════════════════════════════════════════════════════════════════════════*/
 function renderChatMessage(msg) {
-	console.log(msg.body)
     msg.fromMe = msg.from.id === me.charId;
     msg.toMe = msg.to.id === me.charId;
     msg.classes = msg.classes || [];
@@ -6561,7 +6560,6 @@ function renderChatMessage(msg) {
         "msg-" + msg.type + (msg.fromMe ? "-from-me" : "-to-me");
     var template = $("#" + tmplName).html();
     var rendered = Mustache.render(template, msg);
-	console.log(msg.body)
     var $msg = $($.parseHTML(rendered)).data("msg", msg);
 
     // For whispers, the leash of the chat pane is the name, not leashId
