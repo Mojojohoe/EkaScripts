@@ -215,6 +215,7 @@ button.anchor:active {
   overflow-y:scroll;
   width:100%;
   display: flex;
+  flex-wrap: wrap;
 }
 .styleOptions {
     width: 25%;
