@@ -9,6 +9,7 @@
 // @grant        GM_addStyle
 // @grant        GM_registerMenuCommand
 // @run-at       document-start
+// @updateURL    https://mojojohoe.github.io/EkaScripts/mint-TamperMonkey.js
 // ==/UserScript==
 
 (function () {
