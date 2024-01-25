@@ -221,7 +221,7 @@ button.anchor:active {
     color: #9bdec0;
     padding: 10px;
     transform: translate(-50%, -50%);
-    width: 90%;
+    width: calc(90% - 200px);
     height: 90%;
     position: absolute;
     z-index: 9999;
