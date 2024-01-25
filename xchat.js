@@ -7556,30 +7556,13 @@ function handleChangeRoom(msg) {
   });
 }
 function applyMiniHighlight($ule) {
-  $ule.addClass("mini-highlight");
-
+sounds.highlighted.play();	
   setTimeout(function () {
     $ule.removeClass("mini-highlight");
   }, 5000);
 }
-function mint_filterCharacterQuery(ule){
-  var mint_filters_str = localStorage.getItem("mint_filters");
-  var mint_filters = mint_filters_str ? JSON.parse(mint_filters_str) : null;
-  mint_filters = mint_filters ? JSON.parse(mint_filters) : [];
 
-  // Iterate through each filter in mint_filters
-  mint_filters.forEach(function (filter) {
-    if (filter.names && filter.names.includes(ule.charName)) {
-	    if(ule.icons){
-	    ule.icons = ule.icons + filter.icon
-	    } else {
-	    ule.icons = filter.icon    
-	    }
-
-    }
-  });
-}
-function mint_processFilters(ule, $ule){
+function mint_processFilters(ule){
   var oldUle = $("#ule" + ule.sessionId)
   var mint_filters_str = localStorage.getItem("mint_filters");
   var mint_filters = mint_filters_str ? JSON.parse(mint_filters_str) : null;
@@ -7596,18 +7579,22 @@ function mint_processFilters(ule, $ule){
       var behave2 = filter.behave2;
       var caseValue = filter.case;
       var trigger = filter.trigger;
-
-      // Process behavior based on conditions
+      ule.greyout = "";
+      ule.flash = "";
+     if(ule.icons){
+	    ule.icons = ule.icons + filter.icon
+	    } else {
+	    ule.icons = filter.icon    
+	    }
 
       switch (caseValue) {
         case 0:
           if ((behave1 === 1 || behave2 === 1)) {
-            $ule.find(".pmclick").addClass("greyout");
+            ule.greyout = 'greyout';
           }
 
           if ((behave1 === 2 || behave2 === 2) && oldUle.length === 0) {
-            applyMiniHighlight($ule);
-            sounds.highlighted.play();
+            ule.flash = 'mini-highlight';
           }
 
           if ((behave1 === 3 || behave2 === 3) && !ule.highlighted) {
@@ -7620,7 +7607,7 @@ function mint_processFilters(ule, $ule){
           break;
 
         case 1:
-        case 2:
+        
           if (
             (trigger === 1 && (!ule.status || ule.status === "online")) ||
             (trigger === 2 &&
@@ -7631,12 +7618,39 @@ function mint_processFilters(ule, $ule){
             (trigger === 3 && oldUle.length === 0)
           ) {
             if (behave1 === 1 && !ule.highlighted) {
-              $ule.find(".pmclick").addClass("greyout");
+              ule.greyout = 'greyout';
             }
 
             if (behave1 === 2) {
-              applyMiniHighlight($ule);
-              sounds.highlighted.play();
+              ule.flash = 'mini-highlight';
+            }
+
+            if (behave1 === 3 && !ule.highlighted) {
+              ule.highlighted = true;
+            }
+
+            if (behave1 === 4 && !ule.ignored) {
+              ule.ignored = true;
+            }
+          }
+          break;
+		      case 2:
+        
+          if (
+            (trigger === 1 && (ule.status || !ule.status === "online")) ||
+            (trigger === 2 &&
+              (!ule.status === "lfrp" ||
+                !ule.status === "open" ||
+                !ule.status === "pred" ||
+                !ule.status === "prey")) ||
+            (trigger === 3 && !oldUle.length === 0)
+          ) {
+            if (behave1 === 1 && !ule.highlighted) {
+              ule.greyout = 'greyout';
+            }
+
+            if (behave1 === 2) {
+              ule.flash = 'mini-highlight';
             }
 
             if (behave1 === 3 && !ule.highlighted) {
@@ -8560,7 +8574,7 @@ fakeUserTest()
 function tempUserListThing() {
   var template = $("#ulist-template").html().trim();
   window.renderUserListEntry = function renderUserListEntry(ule) {
-mint_filterCharacterQuery(ule)	  
+ mint_processFilters(ule)	  
   ule.highlighted = ses.highlighted[ule.charId] ? true : false;
     ule.ignored = ses.ignored[ule.charId] ? true : false;
     var rendered = Mustache.render(template, ule);
@@ -8576,7 +8590,7 @@ mint_filterCharacterQuery(ule)
   } else {
     $ule.addClass("ignored");
   }
-    mint_processFilters(ule, $ule)	  
+    
     return $ule;
   };
 
