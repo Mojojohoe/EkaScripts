@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.0.11
+// @version      0.0.12
 // @description  mods in new things
 // @author       Jobix
 // @match        https://rp.aryion.com/*
@@ -1202,7 +1202,6 @@ opacity:0.5
     #characterBin {
       position: relative;
     }
-    
     #characterBin::before {
       content: "⮞";
       position: absolute;
@@ -1211,10 +1210,8 @@ opacity:0.5
       font-size: 20px;
       left: 5px;
     }
-    
     #characterBin[open]::before {
-      content: "⮟";
-    }`);
+      content: "⮟";}`);
 
     window.onload = function () {
 
@@ -1233,40 +1230,35 @@ opacity:0.5
       
       appendLoc.appendChild(mint_characterBin);
       
-      var allCharacterEditMenus = document.getElementsByClassName("dropdown-menu-right");
-      
-      for (var i = 0; i < allCharacterEditMenus.length; i++) {
+      var allInputGroups = document.getElementsByClassName("input-group");
+
+      for (var i = 0; i < allInputGroups; i++) {
+        allInputGroups[i].id = "charDiv_" + i;
         const mint_sendToBin = document.createElement('li');
+        const mint_removeFromBin = document.createElement('li');
         mint_sendToBin.innerHTML = `<a href="#" class="send-to-bin"><i class="glyphicon-trash glyphicon"></i> Send to Bin</a>`;
-      
-        var currentElement = allCharacterEditMenus[i];
-        currentElement.appendChild(mint_sendToBin);
-      
-        mint_sendToBin.addEventListener('click', function(event) {
-          event.preventDefault();
-      
-          var characterName = currentElement.closest('div').querySelector('button').getAttribute('value');
-      
-          var ancestorDiv = findAncestorWithClass(currentElement, 'input-group');
-      
-          if (ancestorDiv) {
-            // Remove mint_sendToBin
-            currentElement.removeChild(mint_sendToBin);
-      
-            // Add mint_removeFromBin
-            const mint_removeFromBin = document.createElement('li');
-            mint_removeFromBin.innerHTML = `<a href="#" class="remove-from-bin"><i class="glyphicon-trash glyphicon"></i> Remove from Bin</a>`;
-            ancestorDiv.appendChild(mint_removeFromBin);
-      
-            var characterBin = document.getElementById('characterBin');
-            characterBin.appendChild(ancestorDiv);
-      
-            mint_binnedChars.push(characterName);
-            localStorage.setItem('mint_binnedChars', JSON.stringify(mint_binnedChars));
-          }
-        });
+        mint_removeFromBin.innerHTML = `<a href="#" class="remove-from-bin"><i class="glyphicon-export glyphicon"></i> Remove from Bin</a>`;
+        mint_sendToBin.id = "charBinAdd_" + i;
+        mint_removeFromBin.id = "charBinRemove_" + i;
+
+        var editList = currentElement.closest('ul')
+        editList.appendChild(mint_sendToBin);
+        editList.appendChild(mint_removeFromBin);
+
+        mint_removeFromBin.style.display("none");
+
+        
+          mint_binnedChars.forEach(function(characterName) {
+            var buttons = document.querySelectorAll('button[value="' + characterName + '"]');
+        
+            buttons.forEach(function(button) {
+              var characterBin = document.getElementById('characterBin');
+              characterBin.appendChild(button.closest('div'));
+            });
+          });
+        
       }
-      
+    
       window.addEventListener('load', function() {
         mint_binnedChars.forEach(function(characterName) {
           var buttons = document.querySelectorAll('button[value="' + characterName + '"]');
@@ -1277,44 +1269,25 @@ opacity:0.5
           });
         });
       });
-      
       document.addEventListener('click', function(event) {
         var clickedElement = event.target;
-      
+        var idREF = parseInt(clickedElement.id.split('_')[1]);
         if (clickedElement.classList.contains('remove-from-bin')) {
-          event.preventDefault();
-      
-          var characterName = clickedElement.closest('div').querySelector('button').getAttribute('value');
-          var ancestorDiv = findAncestorWithClass(clickedElement, 'input-group');
-      
-          if (ancestorDiv) {
-            // Remove mint_removeFromBin
-            ancestorDiv.removeChild(clickedElement);
-      
-            // Add mint_sendToBin
-            const mint_sendToBin = document.createElement('li');
-            mint_sendToBin.innerHTML = `<a href="#" class="send-to-bin"><i class="glyphicon-export glyphicon"></i> Send to Bin</a>`;
-            currentElement.appendChild(mint_sendToBin);
-      
-            // Remove from #characterBin and move back to the top of appendLoc
-            var characterBin = document.getElementById('characterBin');
-            characterBin.removeChild(ancestorDiv);
-            appendLoc.insertBefore(ancestorDiv, appendLoc.firstChild);
-      
-            // Remove characterName from mint_binnedChars
-            mint_binnedChars = mint_binnedChars.filter(name => name !== characterName);
-            localStorage.setItem('mint_binnedChars', JSON.stringify(mint_binnedChars));
-          }
+          clickedElement.style.display("none");
+          document.getElementById("charBinAdd_" + idREF).style.display("list-item");
+          appendLoc.prepend(document.getElementById("charDiv_" + idREF));
+          mint_binnedChars = mint_binnedChars.filter(name => name !== characterName);
+          localStorage.setItem('mint_binnedChars', JSON.stringify(mint_binnedChars));          
+        } 
+        else if (clickedElement.classList.contains('send-from-bin')){
+          clickedElement.style.display("none");
+          document.getElementById("charBinRemove_" + idREF).style.display("list-item");
+          characterBin.appendChild(document.getElementById("charDiv_" + idREF));
+          mint_binnedChars.push(characterName);
+          localStorage.setItem('mint_binnedChars', JSON.stringify(mint_binnedChars));
         }
-      });
-      
-      function findAncestorWithClass(element, className) {
-        while ((element = element.parentElement) && !element.classList.contains(className));
-        return element;
+         
       }
-
- 
- 
 
 
 
