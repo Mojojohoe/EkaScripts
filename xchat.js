@@ -8578,7 +8578,9 @@ function tempUserListThing() {
   } else {
     $ule.addClass("ignored");
   }
-    
+   if(ule.flash){
+ applyMiniHighlight($ule);
+   }
     return $ule;
   };
 
