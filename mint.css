@@ -394,17 +394,3 @@ height:100%;
   transform: scale(1.2);
   color:white;
 }
-#characterBin {
-  position: relative;
-}
-
-#characterBin::before {
-  content: "⮞";
-  position: absolute;
-  width: 20px;
-  height: 20px;
-}
-
-#characterBin[open]::before {
-  content: "⮟";
-}
