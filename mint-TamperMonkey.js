@@ -81,7 +81,7 @@ if (scriptElement.type === ('x-tmpl-mustache')) {
     // Modify the content of the script element as needed
     scriptElement.textContent = scriptElement.textContent.replaceAll(
         'data-pmtarget="{{from.name}}">',
-        'data-pmtarget="{{from.name}}"><span class="info">{{info}}</span>'
+        'data-pmtarget="{{from.name}}"><span class="info {{infoClass}}">{{info}}</span>'
     );
     scriptElement.textContent = scriptElement.textContent.replaceAll(
         'data-pmtarget="{{to.name}}">',
