@@ -6657,7 +6657,7 @@ function handleUserlistUpdate(msg) {
           $ule.find('.pmclick').addClass('greyout');
         }
 
-        if (behave1 === 2 || behave2 === 2) {
+        if (behave1 === 2 || behave2 === 2  && oldUle.length === 0) {
           sounds.highlighted.play();
         }
 
@@ -6670,9 +6670,7 @@ function handleUserlistUpdate(msg) {
         }
       }
 
-      if (caseValue === 1 && trigger === 1) {
-        var iconSpan = $ule.find('.icon.status-online');
-        if (!iconSpan.length || iconSpan.hasClass('status-online')) {
+      if (caseValue === 1 && trigger === 1 && (!ule.status || ule.status === "online")) {
           if (behave1 === 1) {
             $ule.find('.pmclick').addClass('greyout');
           }
@@ -6690,7 +6688,7 @@ function handleUserlistUpdate(msg) {
             $ule.find('.ignore').trigger('click');	  
           }
         }
-      }
+      
 
       if (caseValue === 1 && trigger === 2) {
         var iconSpan = $ule.find('.icon.status-lfrp, .icon.status-open, .icon.status-pred, .icon.status-prey');
