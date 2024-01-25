@@ -7584,7 +7584,7 @@ function mint_processFilters(ule, $ule){
 
       switch (caseValue) {
         case 0:
-          if ((behave1 === 1 || behave2 === 1) && !ule.highlighted) {
+          if ((behave1 === 1 || behave2 === 1)) {
             $ule.find(".pmclick").addClass("greyout");
           }
 
