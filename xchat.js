@@ -7517,7 +7517,26 @@ if (msg.body.split(/\s+/).length >= minWordCount) {
 
   return $msg;
 }
+function mint_goReply(id) {
+  var targetBox;
+  var $targetMessage = $('#' + id);
 
+  if ($targetMessage.closest('.hb-chat-pane').length > 0) {
+    targetBox = $targetMessage.closest('.hb-chat-pane');
+  } else {
+    targetBox = $('#chat-pane');
+  }
+
+  $targetMessage.addClass('flash');
+  targetBox.animate({
+    scrollTop: $targetMessage.offset().top
+  }, 500);
+
+  // Remove 'flash' class after 3 seconds
+  setTimeout(function() {
+    $targetMessage.removeClass('flash');
+  }, 3000);
+};
 /** Appends the rendered message to the chat pane
  * @param $pane The chat pane to append to
  * @param $msg Rendered message jQuery object.
