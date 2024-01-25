@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.0.6
+// @version      0.0.7
 // @description  mods in new things
 // @author       Jobix
 // @match        https://rp.aryion.com/*
@@ -1199,26 +1199,36 @@ opacity:0.5
     window.location.href.endsWith("account.srv#")
   ) {
     window.onload = function () {
-
-
  const mint_characterBin = document.createElement('details');
+ mint_characterBin.id = "characterBin"
  var appendLoc = document.getElementsByClassName("form-group")[2];
- 
  // Set the inner HTML content
  mint_characterBin.innerHTML = `
- <details class="input-group" open="">
  <summary><div class="btn btn-default btn-block" style="border-top-right-radius:0;border-bottom-right-radius: 0;">
- <b>Character Bin</b></div></summary>                                 
- </details>
- `;
- 
- // Append the div to the document body
+ <b>Character Bin</b></div></summary>`;
  appendLoc.appendChild(mint_characterBin);
+
+ var allCharacterEditMenus = document.getElementsByClassName("dropdown-menu-right");
+
+ for (var i = 0; i < allCharacterEditMenus.length; i++) {
+  const mint_sendToBin = document.createElement('li');
+  mint_sendToBin.innerHTML = `<a href="#" class="send-to-bin"><i class="glyphicon-trash glyphicon"></i> Send to Bin</a>`;
+
+  var currentElement = allCharacterEditMenus[i];
+  currentElement.appendChild(mint_sendToBin);
+
+  mint_sendToBin.addEventListener('click', function(event) {
+      event.preventDefault();
+      var characterBin = document.getElementById('characterBin');
+      characterBin.appendChild(currentElement);
+  });
+}
+ 
  
 
+
+
+
   }
   }
-
-
-
 })();
