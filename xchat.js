@@ -7433,6 +7433,7 @@ function renderChatMessage(msg) {
 ░ ║ This is how we can pass data across instances within the chat functionality.
 ░ ║ Knowing a user is using Mint is useful as users can decide whether to use a mint-rendered feature.
 \*╚════════════════════════════════════════════════════════════════════════════════════════════════*/
+console.log(msg.body)
   if (msg.body.includes("\u200B")) {
     msg.infoClass = "mint";
   }
