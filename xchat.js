@@ -7570,8 +7570,12 @@ function mint_filterCharacterQuery(ule){
   // Iterate through each filter in mint_filters
   mint_filters.forEach(function (filter) {
     if (filter.names && filter.names.includes(ule.charName)) {
+	    if(ule.icons){
 	    ule.icons = ule.icons + filter.icon
-	    console.log(ule.icons + " | " + filter.icon)
+	    } else {
+	    ule.icons = filter.icon    
+	    }
+
     }
   });
 }
