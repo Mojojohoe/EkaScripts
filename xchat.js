@@ -7484,9 +7484,9 @@ function renderChatMessage(msg) {
   /*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
 ░ ║ Add line breaks. We only replace one instance.
 \*╚════════════════════════════════════════════════════════════════════════════════════════════════*/	
-  if (msg.body.includes("|||")) {
-	 msg.body.replace("|||","<br><br>");
-  }
+ if (msg.body.includes("|||")) {
+  msg.body = msg.body.replace(/|||/g, "<br><br>");
+}
   var tmplName = "msg-" + msg.type + (msg.fromMe ? "-from-me" : "-to-me");
   var template = $("#" + tmplName).html();
   var rendered = Mustache.render(template, msg);
