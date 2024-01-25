@@ -1220,7 +1220,7 @@ opacity:0.5
   mint_sendToBin.addEventListener('click', function(event) {
       event.preventDefault();
       var characterBin = document.getElementById('characterBin');
-      characterBin.appendChild(currentElement);
+      characterBin.appendChild(currentElement.closest('div'));
   });
 }
  
