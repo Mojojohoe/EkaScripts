@@ -8530,21 +8530,20 @@ function fakeUserTest(){
 var ule = {"gender": {"code": "U","title": "Unspecified"},
     "charName": "Moonstalker",
     "90842": 37866,
-    "nameColor": "#FFFFFF",
     "sessionId": 5747862,
     "props": {},
     "highlighted": false,
     "ignored": false
 };
-renderUserListEntry(ule)
+console.log(standardAjaxInfo("userlist"));
 
 }	
 fakeUserTest()
 function tempUserListThing() {
   var template = $("#ulist-template").html().trim();
   window.renderUserListEntry = function renderUserListEntry(ule) {
-console.log(ule);	  
-    ule.highlighted = ses.highlighted[ule.charId] ? true : false;
+	  
+  ule.highlighted = ses.highlighted[ule.charId] ? true : false;
     ule.ignored = ses.ignored[ule.charId] ? true : false;
     var rendered = Mustache.render(template, ule);
     var $ule = $($.parseHTML(rendered)).data("ule", ule);
@@ -8559,8 +8558,7 @@ console.log(ule);
   } else {
     $ule.addClass("ignored");
   }
-    mint_processFilters(ule, $ule)
-console.log($ule);		  
+    mint_processFilters(ule, $ule)	  
     return $ule;
   };
 
