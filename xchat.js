@@ -7485,7 +7485,7 @@ function renderChatMessage(msg) {
 ░ ║ Add line breaks. We only replace one instance.
 \*╚════════════════════════════════════════════════════════════════════════════════════════════════*/	
   if (msg.body.includes("|||")) {
-	 msg.body.replace("|||","<br><br>);
+	 msg.body.replace("|||","<br><br>");
   }
   var tmplName = "msg-" + msg.type + (msg.fromMe ? "-from-me" : "-to-me");
   var template = $("#" + tmplName).html();
