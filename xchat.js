@@ -8535,7 +8535,7 @@ var ule = {"gender": {"code": "U","title": "Unspecified"},
     "highlighted": false,
     "ignored": false
 };
-console.log(standardAjaxInfo("userlist"));
+
 
 }	
 fakeUserTest()
