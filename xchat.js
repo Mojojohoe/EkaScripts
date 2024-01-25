@@ -8532,18 +8532,18 @@ var ule = {"gender": {"code": "U","title": "Unspecified"},
     "90842": 37866,
     "nameColor": "#FFFFFF",
     "sessionId": 5747862,
-    "charName": "Happy_Place",
     "props": {},
     "highlighted": false,
     "ignored": false
 };
-renderUserListEntry(ule)	
+renderUserListEntry(ule)
+
 }	
 fakeUserTest()
 function tempUserListThing() {
   var template = $("#ulist-template").html().trim();
   window.renderUserListEntry = function renderUserListEntry(ule) {
-	  
+console.log(ule);	  
     ule.highlighted = ses.highlighted[ule.charId] ? true : false;
     ule.ignored = ses.ignored[ule.charId] ? true : false;
     var rendered = Mustache.render(template, ule);
@@ -8560,7 +8560,7 @@ function tempUserListThing() {
     $ule.addClass("ignored");
   }
     mint_processFilters(ule, $ule)
-	  
+console.log($ule);		  
     return $ule;
   };
 
