@@ -104,16 +104,16 @@ opacity:0.3;
 .pmclick:hover > .icon{
 opacity:1;
 }
-.chatmsg > .pmclick > .info, .chatmsg > .body > .pmclick > .info{
-  display:none;
-  height:25px;
-    border-radius:5px;
-  background-color:#222222;
+.chatmsg > .pmclick > .info, .chatmsg > .body > .pmclick > .info {
+  display: none;
+  border-radius: 5px;
+  background-color: #222222;
   border: 1px solid #2b2828;
-  margin-right: 5px;
   margin-left: -5px;
   vertical-align: middle;
   padding: 3px;
+  position: absolute;
+  z-index: 200;
 }
 .eyecon:hover + span > .info, .eyecon:hover + span > span > .info, .info:hover{
   display:inline-block !important;
