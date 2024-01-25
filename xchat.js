@@ -1147,8 +1147,7 @@ if (typeof jQuery === "undefined") {
     animation: true,
     placement: "top",
     selector: false,
-    :
-      '<div class="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',
+    template: '<div class="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',
     trigger: "hover focus",
     title: "",
     delay: 0,
