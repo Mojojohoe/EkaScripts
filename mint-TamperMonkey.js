@@ -1199,18 +1199,26 @@ opacity:0.5
     window.location.href.endsWith("account.srv#")
   ) {
     window.onload = function () {
- const mint_characterBin = document.createElement('details');
- mint_characterBin.id = "characterBin"
- var appendLoc = document.getElementsByClassName("form-group")[2];
- // Set the inner HTML content
- mint_characterBin.innerHTML = `
- <summary><div class="btn btn-default btn-block" style="border-top-right-radius:0;border-bottom-right-radius: 0;">
- <b>Character Bin</b></div></summary>`;
- appendLoc.appendChild(mint_characterBin);
+// Create or load mint_binnedChars from local storage
+var mint_binnedChars = JSON.parse(localStorage.getItem('mint_binnedChars')) || {};
 
- var allCharacterEditMenus = document.getElementsByClassName("dropdown-menu-right");
+const mint_characterBin = document.createElement('details');
+mint_characterBin.id = "characterBin";
+var appendLoc = document.getElementsByClassName("form-group")[2];
 
- for (var i = 0; i < allCharacterEditMenus.length; i++) {
+// Set the inner HTML content
+mint_characterBin.innerHTML = `
+  <summary>
+    <div class="btn btn-default btn-block" style="border-top-right-radius:0;border-bottom-right-radius: 0;">
+      <b>Character Bin</b>
+    </div>
+  </summary>`;
+
+appendLoc.appendChild(mint_characterBin);
+
+var allCharacterEditMenus = document.getElementsByClassName("dropdown-menu-right");
+
+for (var i = 0; i < allCharacterEditMenus.length; i++) {
   const mint_sendToBin = document.createElement('li');
   mint_sendToBin.innerHTML = `<a href="#" class="send-to-bin"><i class="glyphicon-trash glyphicon"></i> Send to Bin</a>`;
 
@@ -1218,11 +1226,37 @@ opacity:0.5
   currentElement.appendChild(mint_sendToBin);
 
   mint_sendToBin.addEventListener('click', function(event) {
-      event.preventDefault();
-      var characterBin = document.getElementById('characterBin');
-      characterBin.appendChild(currentElement.closest('div'));
+    event.preventDefault();
+
+    // Get the character name from the value attribute in the button element
+    var characterName = currentElement.closest('div').querySelector('button').getAttribute('value');
+
+    // Move the entire element to #characterBin
+    var characterBin = document.getElementById('characterBin');
+    characterBin.appendChild(currentElement.closest('div'));
+
+    // Save the binned character information to local storage
+    mint_binnedChars[characterName] = true;
+    localStorage.setItem('mint_binnedChars', JSON.stringify(mint_binnedChars));
   });
 }
+
+// Load and apply binned characters upon page load
+window.addEventListener('load', function() {
+  for (var characterName in mint_binnedChars) {
+    if (mint_binnedChars.hasOwnProperty(characterName)) {
+      // Search for all button elements with the specified value attribute
+      var buttons = document.querySelectorAll('button[value="' + characterName + '"]');
+
+      // Move each matched element to #characterBin
+      buttons.forEach(function(button) {
+        var characterBin = document.getElementById('characterBin');
+        characterBin.appendChild(button.closest('div'));
+      });
+    }
+  }
+});
+
  
  
 
