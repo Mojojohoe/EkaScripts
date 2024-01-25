@@ -7586,7 +7586,7 @@ function mint_processFilters(ule){
 	    } else {
 	    ule.icons = filter.icon    
 	    }
-
+console.log(ule)
       switch (caseValue) {
         case 0:
           if ((behave1 === 1 || behave2 === 1)) {
