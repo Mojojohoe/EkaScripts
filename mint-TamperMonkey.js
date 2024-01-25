@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.0.10
+// @version      0.0.11
 // @description  mods in new things
 // @author       Jobix
 // @match        https://rp.aryion.com/*
@@ -1214,8 +1214,7 @@ opacity:0.5
     
     #characterBin[open]::before {
       content: "⮟";
-    }
-    `);
+    }`);
 
     window.onload = function () {
 
@@ -1248,7 +1247,7 @@ opacity:0.5
       
           var characterName = currentElement.closest('div').querySelector('button').getAttribute('value');
       
-          var ancestorDiv = findAncestorWithClass(currentElement, 'your-desired-class');
+          var ancestorDiv = findAncestorWithClass(currentElement, 'input-group');
       
           if (ancestorDiv) {
             // Remove mint_sendToBin
@@ -1286,7 +1285,7 @@ opacity:0.5
           event.preventDefault();
       
           var characterName = clickedElement.closest('div').querySelector('button').getAttribute('value');
-          var ancestorDiv = findAncestorWithClass(clickedElement, 'your-desired-class');
+          var ancestorDiv = findAncestorWithClass(clickedElement, 'input-group');
       
           if (ancestorDiv) {
             // Remove mint_removeFromBin
