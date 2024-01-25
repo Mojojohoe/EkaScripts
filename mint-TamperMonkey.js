@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.0.13
+// @version      0.0.14
 // @description  mods in new things
 // @author       Jobix
 // @match        https://rp.aryion.com/*
@@ -1233,17 +1233,18 @@ opacity:0.5
       var allInputGroups = document.getElementsByClassName("input-group");
 
       for (var i = 0; i < allInputGroups; i++) {
+        var editList = currentElement.closest('ul'); 
+
         allInputGroups[i].id = "charDiv_" + i;
         const mint_sendToBin = document.createElement('li');
-        const mint_removeFromBin = document.createElement('li');
         mint_sendToBin.innerHTML = `<a href="#" class="send-to-bin"><i class="glyphicon-trash glyphicon"></i> Send to Bin</a>`;
-        mint_removeFromBin.innerHTML = `<a href="#" class="remove-from-bin"><i class="glyphicon-export glyphicon"></i> Remove from Bin</a>`;
         mint_sendToBin.id = "charBinAdd_" + i;
-        mint_removeFromBin.id = "charBinRemove_" + i;
-
-        var editList = currentElement.closest('ul')
         editList.appendChild(mint_sendToBin);
-        editList.appendChild(mint_removeFromBin);
+
+        const mint_removeFromBin = document.createElement('li');
+        mint_removeFromBin.innerHTML = `<a href="#" class="remove-from-bin"><i class="glyphicon-export glyphicon"></i> Remove from Bin</a>`;
+        mint_removeFromBin.id = "charBinRemove_" + i;
+        editList.appendChild(mint_removeFromBin);       
 
         mint_removeFromBin.style.display("none");
 
