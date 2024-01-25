@@ -7586,7 +7586,7 @@ function mint_processFilters(ule){
 	    } else {
 	    ule.icons = filter.icon    
 	    }
-console.log(ule)
+
       switch (caseValue) {
         case 0:
           if ((behave1 === 1 || behave2 === 1)) {
@@ -8562,9 +8562,11 @@ function setUnreadPubCount(unreadPubs) {
 function tempUserListThing() {
   var template = $("#ulist-template").html().trim();
   window.renderUserListEntry = function renderUserListEntry(ule) {
- mint_processFilters(ule)	  
+ 
   ule.highlighted = ses.highlighted[ule.charId] ? true : false;
     ule.ignored = ses.ignored[ule.charId] ? true : false;
+
+	mint_processFilters(ule)  
     var rendered = Mustache.render(template, ule);
     var $ule = $($.parseHTML(rendered)).data("ule", ule);
 	   
