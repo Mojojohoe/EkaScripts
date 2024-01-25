@@ -112,171 +112,6 @@ if (scriptElement.type === ('x-tmpl-mustache')) {
 }
     });
 });
-
-
-    // Intercepting the function that bakes-in font shrinking to all user elements in the user pane. This allows names to be all the same size.
-
-    // Intercepting the function to add our highlight styling.
-    /*function overrideOnClickHighlight() {
-      if (typeof onClickHighlight === "function") {
-        var originalOnClickHighlight = onClickHighlight;
-
-        onClickHighlight = function (event) {
-          var ele = $(this).parents("tr");
-          var ule = ele.data("ule");
-          var cid = ule.charId;
-
-          if (ses.highlighted[cid]) {
-            ses.highlighted[cid] = false;
-            $(this).removeClass("highlighted");
-            ele.removeClass("highlighted");
-          } else {
-            ses.highlighted[cid] = true;
-            $(this).addClass("highlighted");
-            ele.addClass("highlighted");
-          }
-
-          chatAction("highlightCharacter", {
-            charId: cid,
-            newVal: ses.highlighted[cid]
-          });
-          event.preventDefault();
-        };
-
-        // Rebind the event listener
-        $("#ulist-itself").off("click", ".highlight", originalOnClickHighlight);
-        $("#ulist-itself").on("click", ".highlight", onClickHighlight);
-      } else {
-        setTimeout(overrideOnClickHighlight, 100);
-      }
-    }
-    overrideOnClickHighlight();
-     Intercepting the function to add our ignore styling.
-    function overrideOnClickIgnore() {
-      if (typeof onClickIgnore === "function") {
-        var originalOnClickIgnore = onClickIgnore;
-
-        onClickIgnore = function (event) {
-          var ele = $(this).parents("tr");
-          var ule = ele.data("ule");
-          var cid = ule.charId;
-
-          if (ses.ignored[cid]) {
-            ses.ignored[cid] = false;
-            $(this).removeClass("ignored");
-            ele.removeClass("ignored");
-          } else {
-            ses.ignored[cid] = true;
-            $(this).addClass("ignored");
-            ele.addClass("ignored");
-          }
-
-          chatAction("ignoreCharacter", {
-            charId: cid,
-            newVal: ses.ignored[cid]
-          });
-          event.preventDefault();
-        };
-
-        // Rebind the event listener
-        $("#ulist-itself").off("click", ".ignore", originalOnClickIgnore);
-        $("#ulist-itself").on("click", ".ignore", onClickIgnore);
-      } else {
-        setTimeout(overrideOnClickIgnore, 100);
-      }
-    }
-    overrideOnClickIgnore();
-*/
-
-  /*  function overrideRenderChatMessage() {
-      if (typeof renderChatMessage === "function") {
-        var originalRenderChatMessage = renderChatMessage;
-        // Setup emoji support for :colons:
-        var emoji = new EmojiConvertor();
-        emoji.replace_mode = "unified";
-
-
-        renderChatMessage = function (msg) {
-          // Pre-process!
-          msg.fromMe = msg.from.id === me.charId;
-          msg.toMe = msg.to.id === me.charId;
-          msg.classes = msg.classes || [];
-          var msgUserStatus = document.querySelector('#ulist-itself > tbody > tr[data-cid="' + msg.from.id + '"] > td:first-child > span' );
-          msgUserStatus = msgUserStatus ? msgUserStatus.outerHTML : '<span class="icon status-online" title></span>';
-          var msgReply = '<span class="reply" title="Reply">⟲</span>'
-          var msgDelete = '<span class="msg-delete" title="Delete">✕</span>'
-          if (ses.ignored[msg.from.id]) {
-            return $(); // Ignore mesages from ignored people.
-          }
-          if (ses.highlighted[msg.from.id]) {
-            msg.classes.push("highlight");
-          }
-          // Name highlighting / ding
-          if (msg.fromMe === false && msg.body.match(me.nameRegex)) {
-            msg.body = msg.body.replace(me.nameRegex, "<b>$&</b>");
-            msg.classes.push("nameding");
-          }
-          if(msg.body.includes("\u200B")){
-             msg.infoClass = "mint";
-          }
-          msg.info = "◙S⟲R";
-          if(msg.classes.includes("deletable")){
-          msg.info += "𝕏x";
-          }
-          // Determine template name
-          // TODO - Temp Hack to keep the POSE templates working until we get rid of them.
-          msg.body = emoji.replace_colons(msg.body);
-
-           if (msg.body.includes("⟲")) {
-  var regex = /⟲\s*([^:]+)\s*:(msg\d+)║/;
-  var match = msg.body.match(regex);
-
-  if (match) {
-    var name = match[1];
-    var messageId = match[2];
-
-    // Create a reply button
-    var replyButton = '<button type="button" class="btn btn-default anchor" data-go="' + messageId + '" title="Replying to ' + name + '">⤼ ' + name + '</button>';
-
-    // Insert the button into the message
-    msg.body = replyButton + msg.body;
-
-    // Remove the original text string from the message
-    msg.body = msg.body.replace(new RegExp('⟲\\s*' + name + '\\s*:' + messageId + '║'), '');
-
-  }
-}
-
-          var tmplName =
-            "msg-" + msg.type + (msg.fromMe ? "-from-me" : "-to-me");
-          var template = $("#" + tmplName).html();
-          var rendered = Mustache.render(template, msg);
-          var $msg = $($.parseHTML(rendered)).data("msg", msg);
-
-          // For whispers, the leash of the chat pane is the name, not leashId
-          var tabId = msg.toLeash || "";
-          if (tabId.substr(0, 10) === "CHARACTER:") {
-            tabId = msg.fromMe ? msg.to.name : msg.from.name; // Handle whisper special case
-          }
-          $msg.attr("leash", tabId);
-
-            $msg.html($msg.html().replace('◙S', msgUserStatus));
-            $msg.html($msg.html().replace('⟲R', msgReply));
-            $msg.html($msg.html().replace('𝕏x', msgDelete));
-
-     $(document).off('click', '.anchor');
-    $(document).on('click', '.anchor', function() {
-      mint_goReply($(this).data('go'));
-    });
-
-
-          return $msg;
-        };
-      } else {
-        setTimeout(overrideRenderChatMessage, 100);
-      }
-    }
-    overrideRenderChatMessage();*/
     // Here we manage the local storage of the last 10 chat messages.
     var mint_msgCycle = mint_localLoad("mint_chatBackupMsgNumber");
     var mint_chatMsgTemp = "";
@@ -288,7 +123,7 @@ if (scriptElement.type === ('x-tmpl-mustache')) {
           if (event.key === "Enter") {
             // Get the text content of the textarea
             var inputValue = event.target.value;
-                        // Clear the local storage when Enter is pressed
+ // Clear the local storage when Enter is pressed
 if(event.target.id === "main-sender-body"){
         mint_localStore("mint_chatInputBackupChat", "");
       } else{
@@ -864,10 +699,6 @@ document.addEventListener('keyup', function(event) {
       layoutEntirePage();
     };
 
-    /**=============================================================================================================================================<
-     * Interactive Behaviour
-     */
-
     // Function to store settings in local storage
     function mint_localStore(key, value) {
       localStorage.setItem(key, JSON.stringify(value));
@@ -1358,4 +1189,35 @@ opacity:0.5
 
 
   }
+ /*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
+░   ║ If Character Select
+  \*╚════════════════════════════════════════════════════════════════════════════════════════════════*/
+  if (
+    window.location.href.endsWith("account.srv") ||
+    window.location.href.endsWith("account.srv#")
+  ) {
+    window.onload = function () {
+
+
+ const mint_characterBin = document.createElement('details');
+ var appendLoc = document.getElementsByClassName("form-group")[2];
+ 
+ // Set the inner HTML content
+ mint_characterBin.innerHTML = `
+ <details class="input-group" open="">
+ <summary><div class="btn btn-default btn-block" style="border-top-right-radius:0;border-bottom-right-radius: 0;">
+ <b>Character Bin</b></div></summary>                                 
+ </details>
+ `;
+ 
+ // Append the div to the document body
+ appendLoc.appendChild(mint_characterBin);
+ 
+
+  }
+
+
+
+
 })();
+ 
