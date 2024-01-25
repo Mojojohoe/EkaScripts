@@ -8575,7 +8575,18 @@ function tempUserListThing() {
 ░ ║ Edited to only do this if it's disabled in settings.
 \*╚════════════════════════════════════════════════════════════════════════════════════════════════*/
 function userlistFontShrink() {
-  checkUserlistFontShrink();
+var mint_theme = localStorage.getItem("mint_theme");	
+	if(mint_theme === 0){
+        return this.each(function() {
+            var $name = $(this).find(".name");
+            while ($name.length === 1 && $name.width() > 83) {
+                if (parseFloat($name.css('font-size') <= 3)) break;
+                $name.css('font-size', (parseInt($name.css('font-size')) - 1) + 'px');
+            }
+        });
+		
+	}
+
 }
 /*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
 ░ ║ Highlight and Ignore have been updated to apply styles to the usertlist entry.
