@@ -8526,10 +8526,24 @@ function setUnreadPubCount(unreadPubs) {
 //
 
 //<editor-fold defaultstate="collapsed" desc="The User List!">
-
+function fakeUserTest(){
+var ule = {"gender": {"code": "U","title": "Unspecified"},
+    "charName": "Moonstalker",
+    "90842": 37866,
+    "nameColor": "#FFFFFF",
+    "sessionId": 5747862,
+    "charName": "Happy_Place",
+    "props": {},
+    "highlighted": false,
+    "ignored": false
+};
+renderUserListEntry(ule)	
+}	
+fakeUserTest()
 function tempUserListThing() {
   var template = $("#ulist-template").html().trim();
   window.renderUserListEntry = function renderUserListEntry(ule) {
+	  
     ule.highlighted = ses.highlighted[ule.charId] ? true : false;
     ule.ignored = ses.ignored[ule.charId] ? true : false;
     var rendered = Mustache.render(template, ule);
@@ -8545,7 +8559,6 @@ function tempUserListThing() {
   } else {
     $ule.addClass("ignored");
   }
-console.log(ule)
     mint_processFilters(ule, $ule)
 	  
     return $ule;
