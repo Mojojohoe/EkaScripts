@@ -1287,7 +1287,7 @@ opacity:0.5
           localStorage.setItem('mint_binnedChars', JSON.stringify(mint_binnedChars));
         }
          
-      }
+      })
 
 
 
