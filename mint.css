@@ -394,3 +394,13 @@ height:100%;
   transform: scale(1.2);
   color:white;
 }
+#characterBin::before{
+  position:absolute;
+  position:absolute;
+  width:20px;
+  height:20px;
+  content: "⮞";
+}
+#characterBin[open]::before{
+  content: "⮟";
+}
