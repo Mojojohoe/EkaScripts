@@ -8547,7 +8547,7 @@ function tempUserListThing() {
     $ule.addClass("ignored");
   }
 
-    mint_processFilters(ule)
+    mint_processFilters(ule, $ule)
 	  
     return $ule;
   };
