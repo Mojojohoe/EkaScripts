@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.0.9
+// @version      0.0.10
 // @description  mods in new things
 // @author       Jobix
 // @match        https://rp.aryion.com/*
@@ -1294,7 +1294,7 @@ opacity:0.5
       
             // Add mint_sendToBin
             const mint_sendToBin = document.createElement('li');
-            mint_sendToBin.innerHTML = `<a href="#" class="send-to-bin"><i class="glyphicon-trash glyphicon"></i> Send to Bin</a>`;
+            mint_sendToBin.innerHTML = `<a href="#" class="send-to-bin"><i class="glyphicon-export glyphicon"></i> Send to Bin</a>`;
             currentElement.appendChild(mint_sendToBin);
       
             // Remove from #characterBin and move back to the top of appendLoc
