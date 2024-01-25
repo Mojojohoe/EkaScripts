@@ -1228,33 +1228,25 @@ for (var i = 0; i < allCharacterEditMenus.length; i++) {
   mint_sendToBin.addEventListener('click', function(event) {
     event.preventDefault();
 
-    // Get the character name from the value attribute in the button element
     var characterName = currentElement.closest('div').querySelector('button').getAttribute('value');
 
-    // Move the entire element to #characterBin
     var characterBin = document.getElementById('characterBin');
     characterBin.appendChild(currentElement.closest('div'));
 
-    // Save the binned character information to local storage
-    mint_binnedChars[characterName] = true;
+    mint_binnedChars.push(characterName);
     localStorage.setItem('mint_binnedChars', JSON.stringify(mint_binnedChars));
   });
 }
 
 // Load and apply binned characters upon page load
 window.addEventListener('load', function() {
-  for (var characterName in mint_binnedChars) {
-    if (mint_binnedChars.hasOwnProperty(characterName)) {
-      // Search for all button elements with the specified value attribute
-      var buttons = document.querySelectorAll('button[value="' + characterName + '"]');
-
-      // Move each matched element to #characterBin
-      buttons.forEach(function(button) {
-        var characterBin = document.getElementById('characterBin');
-        characterBin.appendChild(button.closest('div'));
-      });
-    }
-  }
+  mint_binnedChars.forEach(function(characterName) {
+    var buttons = document.querySelectorAll('button[value="' + characterName + '"]');
+    buttons.forEach(function(button) {
+      var characterBin = document.getElementById('characterBin');
+      characterBin.appendChild(button.closest('div'));
+    });
+  });
 });
 
  
