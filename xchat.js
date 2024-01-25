@@ -7562,6 +7562,18 @@ function applyMiniHighlight($ule) {
     $ule.removeClass("mini-highlight");
   }, 5000);
 }
+function mint_filterCharacterQuery(ule){
+  var mint_filters_str = localStorage.getItem("mint_filters");
+  var mint_filters = mint_filters_str ? JSON.parse(mint_filters_str) : null;
+  mint_filters = mint_filters ? JSON.parse(mint_filters) : [];
+
+  // Iterate through each filter in mint_filters
+  mint_filters.forEach(function (filter) {
+    if (filter.names && filter.names.includes(ule.charName)) {
+	    ule.icons = ule.icons + filter.icon
+    }
+  });
+}
 function mint_processFilters(ule, $ule){
   var oldUle = $("#ule" + ule.sessionId)
   var mint_filters_str = localStorage.getItem("mint_filters");
@@ -7573,6 +7585,7 @@ function mint_processFilters(ule, $ule){
     // Check if ule.sessionId exists in the names prop array
 
     if (filter.names && filter.names.includes(ule.charName)) {
+	    
       // Variables for reference
       var behave1 = filter.behave;
       var behave2 = filter.behave2;
@@ -7593,11 +7606,11 @@ function mint_processFilters(ule, $ule){
           }
 
           if ((behave1 === 3 || behave2 === 3) && !ule.highlighted) {
-            $ule.find(".highlight").trigger("click");
+            ule.highlighted = true;
           }
 
           if ((behave1 === 4 || behave2 === 4) && !ule.ignored) {
-            $ule.find(".ignore").trigger("click");
+            ule.ignored = true;
           }
           break;
 
@@ -7622,11 +7635,11 @@ function mint_processFilters(ule, $ule){
             }
 
             if (behave1 === 3 && !ule.highlighted) {
-              $ule.find(".highlight").trigger("click");
+              ule.highlighted = true;
             }
 
             if (behave1 === 4 && !ule.ignored) {
-              $ule.find(".ignore").trigger("click");
+              ule.ignored = true;
             }
           }
           break;
@@ -8542,12 +8555,12 @@ fakeUserTest()
 function tempUserListThing() {
   var template = $("#ulist-template").html().trim();
   window.renderUserListEntry = function renderUserListEntry(ule) {
-	  
+mint_filterCharacterQuery(ule)	  
   ule.highlighted = ses.highlighted[ule.charId] ? true : false;
     ule.ignored = ses.ignored[ule.charId] ? true : false;
     var rendered = Mustache.render(template, ule);
     var $ule = $($.parseHTML(rendered)).data("ule", ule);
-
+	   
   if (!ule.highlighted ) {
     $ule.removeClass("highlighted");
   } else {
