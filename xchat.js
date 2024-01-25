@@ -6652,82 +6652,145 @@ function handleUserlistUpdate(msg) {
       var trigger = filter.trigger;
 
       // Process behavior based on conditions
-      if (caseValue === 0) {
-        if (behave1 === 1 || behave2 === 1) {
-          $ule.find('.pmclick').addClass('greyout');
-        }
 
-        if (behave1 === 2 || behave2 === 2  && oldUle.length === 0) {
-          sounds.highlighted.play();
-        }
+switch (caseValue) {
+  case 0:
+    if ((behave1 === 1 || behave2 === 1) && !ule.highlighted) {
+      $ule.find('.pmclick').addClass('greyout');
+    }
 
-        if (behave1 === 3 || behave2 === 3  && !ule.highlighted) {
-          $ule.find('.highlight').trigger('click');	
-        }
+    if ((behave1 === 2 || behave2 === 2) && oldUle.length === 0) {
+      sounds.highlighted.play();
+    }
 
-        if (behave1 === 4 || behave2 === 4 && !ule.ignored) {
-          $ule.find('.ignore').trigger('click');	 
-        }
+    if ((behave1 === 3 || behave2 === 3) && !ule.highlighted) {
+      $ule.find('.highlight').trigger('click');
+    }
+
+    if ((behave1 === 4 || behave2 === 4) && !ule.ignored) {
+      $ule.find('.ignore').trigger('click');
+    }
+    break;
+
+  case 1:
+    if (trigger === 1 && (!ule.status || ule.status === "online")) {
+      if (behave1 === 1 && !ule.highlighted) {
+        $ule.find('.pmclick').addClass('greyout');
       }
 
-      if (caseValue === 1 && trigger === 1 && (!ule.status || ule.status === "online")) {
-          if (behave1 === 1) {
-            $ule.find('.pmclick').addClass('greyout');
-          }
+      if (behave1 === 2) {
+        sounds.highlighted.play();
+      }
 
-          if (behave1 === 2) {
-            sounds.highlighted.play();
-          }
+      if (behave1 === 3 && !ule.highlighted) {
+        $ule.find('.highlight').trigger('click');
+      }
 
-          if (behave1 === 3 && !ule.highlighted) {
-	   $ule.find('.highlight').trigger('click');	  
+      if (behave1 === 4 && !ule.ignored) {
+        $ule.find('.ignore').trigger('click');
+      }
+    }
 
-          }
+    if (trigger === 2 && (ule.status === "lfrp" || ule.status === "open" || ule.status === "pred" || ule.status === "prey")) {
+      if (behave1 === 1 && !ule.highlighted) {
+        $ule.find('.pmclick').addClass('greyout');
+      }
 
-          if (behave1 === 4 && !ule.ignored) {
-            $ule.find('.ignore').trigger('click');	  
-          }
-        }
+      if (behave1 === 2) {
+        sounds.highlighted.play();
+      }
+
+      if (behave1 === 3 && !ule.highlighted) {
+        $ule.find('.highlight').trigger('click');
+      }
+
+      if (behave1 === 4 && !ule.ignored) {
+        $ule.find('.ignore').trigger('click');
+      }
+    }
+
+    if (trigger === 3 && oldUle.length === 0) {
+      if (behave1 === 1 && !ule.highlighted) {
+        $ule.find('.pmclick').addClass('greyout');
+      }
+
+      if (behave1 === 2) {
+        sounds.highlighted.play();
+      }
+
+      if (behave1 === 3 && !ule.highlighted) {
+        $ule.find('.highlight').trigger('click');
+      }
+
+      if (behave1 === 4 && !ule.ignored) {
+        $ule.find('.ignore').trigger('click');
+      }
+    }
+    break;
+
+  case 2:
+        if (trigger === 1 && (ule.status || !ule.status === "online")) {
+      if (behave1 === 1 && !ule.highlighted) {
+        $ule.find('.pmclick').addClass('greyout');
+      }
+
+      if (behave1 === 2) {
+        sounds.highlighted.play();
+      }
+
+      if (behave1 === 3 && !ule.highlighted) {
+        $ule.find('.highlight').trigger('click');
+      }
+
+      if (behave1 === 4 && !ule.ignored) {
+        $ule.find('.ignore').trigger('click');
+      }
+    }
+
+    if (trigger === 2 && (!ule.status === "lfrp" || !ule.status === "open" || !ule.status === "pred" || !ule.status === "prey")) {
+      if (behave1 === 1 && !ule.highlighted) {
+        $ule.find('.pmclick').addClass('greyout');
+      }
+
+      if (behave1 === 2) {
+        sounds.highlighted.play();
+      }
+
+      if (behave1 === 3 && !ule.highlighted) {
+        $ule.find('.highlight').trigger('click');
+      }
+
+      if (behave1 === 4 && !ule.ignored) {
+        $ule.find('.ignore').trigger('click');
+      }
+    }
+
+    if (trigger === 3 && !oldUle.length === 0) {
+      if (behave1 === 1 && !ule.highlighted) {
+        $ule.find('.pmclick').addClass('greyout');
+      }
+
+      if (behave1 === 2) {
+        sounds.highlighted.play();
+      }
+
+      if (behave1 === 3 && !ule.highlighted) {
+        $ule.find('.highlight').trigger('click');
+      }
+
+      if (behave1 === 4 && !ule.ignored) {
+        $ule.find('.ignore').trigger('click');
+      }
+    }
+    break;
+}
+
+
+
+
       
 
-      if (caseValue === 1 && trigger === 2) {
-        var iconSpan = $ule.find('.icon.status-lfrp, .icon.status-open, .icon.status-pred, .icon.status-prey');
-        if (iconSpan.length) {
-          if (behave1 === 1) {
-            $ule.find('.pmclick').addClass('greyout');
-          }
 
-          if (behave1 === 2) {
-            sounds.highlighted.play();
-          }
-
-          if (behave1 === 3 && !ule.highlighted) {
-            $ule.find('.highlight').trigger('click');	 
-          }
-
-          if (behave1 === 4 && !ule.ignored) {
-            $ule.find('.ignore').trigger('click');	
-          }
-        }
-      }
-
-      if (caseValue === 1 && trigger === 3 && oldUle.length === 0) {
-        if (behave1 === 1) {
-          $ule.find('.pmclick').addClass('greyout');
-        }
-
-        if (behave1 === 2) {
-          sounds.highlighted.play();
-        }
-
-        if (behave1 === 3 && !ule.highlighted) {
-          ule.find('.highlight').trigger('click');	
-        }
-
-        if (behave1 === 4 && !ule.ignored) {
-          $ule.find('.ignore').trigger('click');	
-        }
-      }
     }
   });
 }
