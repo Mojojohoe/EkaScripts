@@ -1208,6 +1208,8 @@ opacity:0.5
       position: absolute;
       width: 20px;
       height: 20px;
+      font-size: 20px;
+      left: 5px;
     }
     
     #characterBin[open]::before {
@@ -1216,55 +1218,101 @@ opacity:0.5
     `);
 
     window.onload = function () {
-// Create or load mint_binnedChars from local storage
-var mint_binnedChars = JSON.parse(localStorage.getItem('mint_binnedChars')) || {};
 
-const mint_characterBin = document.createElement('details');
-mint_characterBin.id = "characterBin";
-var appendLoc = document.getElementsByClassName("form-group")[2];
+      var mint_binnedChars = JSON.parse(localStorage.getItem('mint_binnedChars')) || [];
 
-// Set the inner HTML content
-mint_characterBin.innerHTML = `
-  <summary>
-    <div class="btn btn-default btn-block" style="border-top-right-radius:0;border-bottom-right-radius: 0;">
-      <b>Character Bin</b>
-    </div>
-  </summary>`;
-
-appendLoc.appendChild(mint_characterBin);
-
-var allCharacterEditMenus = document.getElementsByClassName("dropdown-menu-right");
-
-for (var i = 0; i < allCharacterEditMenus.length; i++) {
-  const mint_sendToBin = document.createElement('li');
-  mint_sendToBin.innerHTML = `<a href="#" class="send-to-bin"><i class="glyphicon-trash glyphicon"></i> Send to Bin</a>`;
-
-  var currentElement = allCharacterEditMenus[i];
-  currentElement.appendChild(mint_sendToBin);
-
-  mint_sendToBin.addEventListener('click', function(event) {
-    event.preventDefault();
-
-    var characterName = currentElement.closest('div').querySelector('button').getAttribute('value');
-
-    var characterBin = document.getElementById('characterBin');
-    characterBin.appendChild(currentElement.closest('div'));
-
-    mint_binnedChars.push(characterName);
-    localStorage.setItem('mint_binnedChars', JSON.stringify(mint_binnedChars));
-  });
-}
-
-// Load and apply binned characters upon page load
-window.addEventListener('load', function() {
-  mint_binnedChars.forEach(function(characterName) {
-    var buttons = document.querySelectorAll('button[value="' + characterName + '"]');
-    buttons.forEach(function(button) {
-      var characterBin = document.getElementById('characterBin');
-      characterBin.appendChild(button.closest('div'));
-    });
-  });
-});
+      const mint_characterBin = document.createElement('details');
+      mint_characterBin.id = "characterBin";
+      var appendLoc = document.getElementsByClassName("form-group")[2];
+      
+      mint_characterBin.innerHTML = `
+        <summary>
+          <div class="btn btn-default btn-block" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
+            <b>Character Bin</b>
+          </div>
+        </summary>`;
+      
+      appendLoc.appendChild(mint_characterBin);
+      
+      var allCharacterEditMenus = document.getElementsByClassName("dropdown-menu-right");
+      
+      for (var i = 0; i < allCharacterEditMenus.length; i++) {
+        const mint_sendToBin = document.createElement('li');
+        mint_sendToBin.innerHTML = `<a href="#" class="send-to-bin"><i class="glyphicon-trash glyphicon"></i> Send to Bin</a>`;
+      
+        var currentElement = allCharacterEditMenus[i];
+        currentElement.appendChild(mint_sendToBin);
+      
+        mint_sendToBin.addEventListener('click', function(event) {
+          event.preventDefault();
+      
+          var characterName = currentElement.closest('div').querySelector('button').getAttribute('value');
+      
+          var ancestorDiv = findAncestorWithClass(currentElement, 'your-desired-class');
+      
+          if (ancestorDiv) {
+            // Remove mint_sendToBin
+            currentElement.removeChild(mint_sendToBin);
+      
+            // Add mint_removeFromBin
+            const mint_removeFromBin = document.createElement('li');
+            mint_removeFromBin.innerHTML = `<a href="#" class="remove-from-bin"><i class="glyphicon-trash glyphicon"></i> Remove from Bin</a>`;
+            ancestorDiv.appendChild(mint_removeFromBin);
+      
+            var characterBin = document.getElementById('characterBin');
+            characterBin.appendChild(ancestorDiv);
+      
+            mint_binnedChars.push(characterName);
+            localStorage.setItem('mint_binnedChars', JSON.stringify(mint_binnedChars));
+          }
+        });
+      }
+      
+      window.addEventListener('load', function() {
+        mint_binnedChars.forEach(function(characterName) {
+          var buttons = document.querySelectorAll('button[value="' + characterName + '"]');
+      
+          buttons.forEach(function(button) {
+            var characterBin = document.getElementById('characterBin');
+            characterBin.appendChild(button.closest('div'));
+          });
+        });
+      });
+      
+      document.addEventListener('click', function(event) {
+        var clickedElement = event.target;
+      
+        if (clickedElement.classList.contains('remove-from-bin')) {
+          event.preventDefault();
+      
+          var characterName = clickedElement.closest('div').querySelector('button').getAttribute('value');
+          var ancestorDiv = findAncestorWithClass(clickedElement, 'your-desired-class');
+      
+          if (ancestorDiv) {
+            // Remove mint_removeFromBin
+            ancestorDiv.removeChild(clickedElement);
+      
+            // Add mint_sendToBin
+            const mint_sendToBin = document.createElement('li');
+            mint_sendToBin.innerHTML = `<a href="#" class="send-to-bin"><i class="glyphicon-trash glyphicon"></i> Send to Bin</a>`;
+            currentElement.appendChild(mint_sendToBin);
+      
+            // Remove from #characterBin and move back to the top of appendLoc
+            var characterBin = document.getElementById('characterBin');
+            characterBin.removeChild(ancestorDiv);
+            appendLoc.insertBefore(ancestorDiv, appendLoc.firstChild);
+      
+            // Remove characterName from mint_binnedChars
+            mint_binnedChars = mint_binnedChars.filter(name => name !== characterName);
+            localStorage.setItem('mint_binnedChars', JSON.stringify(mint_binnedChars));
+          }
+        }
+      });
+      
+      function findAncestorWithClass(element, className) {
+        while ((element = element.parentElement) && !element.classList.contains(className));
+        return element;
+      }
 
  
  
