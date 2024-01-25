@@ -7484,8 +7484,11 @@ function renderChatMessage(msg) {
   /*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
 ░ ║ Add line breaks. We only replace one instance.
 \*╚════════════════════════════════════════════════════════════════════════════════════════════════*/	
- if (msg.body.includes("|||")) {
+ const minWordCount = 10; // Adjust this value based on your requirement
+if (msg.body.split(/\s+/).length >= minWordCount) {
   msg.body = msg.body.replace(/\|\|\|/, "<br><br>").replace(/\|\|\|/, "<br><br>").replace(/\|\|\|/, "<br><br>");
+} else {
+  msg.body = msg.body.replace(/\|\|\|/, " ").replace(/\|\|\|/, " ").replace(/\|\|\|/, " ");
 }
   var tmplName = "msg-" + msg.type + (msg.fromMe ? "-from-me" : "-to-me");
   var template = $("#" + tmplName).html();
