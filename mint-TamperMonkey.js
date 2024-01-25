@@ -1198,6 +1198,23 @@ opacity:0.5
     window.location.href.endsWith("account.srv") ||
     window.location.href.endsWith("account.srv#")
   ) {
+    GM_addStyle(`
+    #characterBin {
+      position: relative;
+    }
+    
+    #characterBin::before {
+      content: "⮞";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+    }
+    
+    #characterBin[open]::before {
+      content: "⮟";
+    }
+    `);
+
     window.onload = function () {
 // Create or load mint_binnedChars from local storage
 var mint_binnedChars = JSON.parse(localStorage.getItem('mint_binnedChars')) || {};
