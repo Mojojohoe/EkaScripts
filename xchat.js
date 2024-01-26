@@ -7619,6 +7619,8 @@ function mint_processFilters(ule){
         case 0:
           if ((behave1 === 1 || behave2 === 1)) {
             ule.greyout = 'greyout';
+          } else {
+            ule.greyout = '';
           }
 
           if ((behave1 === 2 || behave2 === 2) && oldUle.length === 0) {
@@ -7647,6 +7649,8 @@ function mint_processFilters(ule){
           ) {
             if (behave1 === 1 && !ule.highlighted) {
               ule.greyout = 'greyout';
+            } else {
+              ule.greyout = '';
             }
 
             if (behave1 === 2) {
@@ -7675,6 +7679,8 @@ function mint_processFilters(ule){
           ) {
             if (behave1 === 1 && !ule.highlighted) {
               ule.greyout = 'greyout';
+            } else {
+              ule.greyout = '';
             }
 
             if (behave1 === 2) {
@@ -7701,8 +7707,6 @@ function handleUserlistUpdate(msg) {
   var oldUle = $("#ule" + ule.sessionId).replaceWith($ule);
   if (oldUle.length === 0) $("#ulist-itself").append($ule);
   userlistFontShrink.apply($ule);
-
-
 }
 
 function handleMinimapPinUpdate(pin) {

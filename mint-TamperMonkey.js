@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.0.14
+// @version      0.0.15
 // @description  mods in new things
 // @author       Jobix
 // @match        https://rp.aryion.com/*
@@ -48,14 +48,6 @@ if (typeof GM_registerMenuCommand !== "undefined") {
             newScript.type = "text/javascript";
             newScript.src = "https://mojojohoe.github.io/EkaScripts/xchat.js";
             document.head.appendChild(newScript);
-            if (mint_localLoad("mint_theme")) {
-              let newStylesheet = document.createElement("link");
-              newStylesheet.rel = "stylesheet";
-              newStylesheet.href =
-                "https://mojojohoe.github.io/EkaScripts/mint.css";
-              document.head.appendChild(newStylesheet);
-            }
-
             }
             //break; // Exit the loop after the first matching script is found
           }
@@ -65,11 +57,6 @@ if (typeof GM_registerMenuCommand !== "undefined") {
       subtree: true
     });
 
- function checkUserlistFontShrink(){
-    if (mint_localLoad("mint_theme") === 1) {
-
-    }
- }
 document.addEventListener("DOMContentLoaded", function() {
     // Find all script elements with type "x-tmpl-mustache"
     var mustacheScripts = document.querySelectorAll('script[type="x-tmpl-mustache"]');
@@ -117,7 +104,7 @@ if (scriptElement.type === ('x-tmpl-mustache')) {
     // Here we manage the local storage of the last 10 chat messages.
     var mint_msgCycle = mint_localLoad("mint_chatBackupMsgNumber");
     var mint_chatMsgTemp = "";
-      var mint_savePositionLatch = 0;
+    var mint_savePositionLatch = 0;
     function overrideOnEnterPressedInTextarea() {
       if (typeof onEnterPressedInTextarea === "function") {
         var originalOnEnterPressedInTextarea = onEnterPressedInTextarea;
@@ -180,10 +167,10 @@ mintConfigMenu.innerHTML = `
  <div class="settingsContent">
 <details class="styleOptions" open>
   <summary><h2>Styling Options</h2></summary>
-  <div>Hide Timestamp  <span><input type="checkbox" data="mint_clock-hide"/></div>
-  <div>Enable Font<span><input type="checkbox" data="mint_font"/></div>
-  <div>Enable Chat Theme<span><input type="checkbox" data="mint_theme"/></div>
-  <div>Enable Mint Statuses<span><input type="checkbox" data="mint_statuses"/></div>
+  <div>Hide Timestamp  <span><input id="mint_toggleTime" type="checkbox" data="mint_clock-hide" checked/></div>
+  <div>Enable Font<span><input id="mint_toggleFont" type="checkbox" data="mint_font" checked/></div>
+  <div>Enable Chat Theme<span><input id="mint_toggleTheme" type="checkbox" data="mint_theme" checked/></div>
+  <div>Enable Mint Statuses<span><input id="mint_toggleStatuses" type="checkbox" data="mint_statuses" checked/></div>
   <br><br>
   </span>
 </details>
@@ -243,8 +230,26 @@ mintConfigMenu.innerHTML = `
 </div>
 `;
 
-// Append the div to the document body
 document.body.appendChild(mintConfigMenu);
+
+document.getElementById("mint_toggleTime").addEventListener("change", function() {
+  
+});
+
+document.getElementById("mint_toggleFont").addEventListener("change", function() {
+  mint_toggleTheme_Font();
+});
+
+document.getElementById("mint_toggleTheme").addEventListener("change", function() {
+
+});
+
+document.getElementById("mint_toggleStatuses").addEventListener("change", function() {
+  
+});
+
+
+
 
 var mint_filters = []
 
@@ -545,16 +550,12 @@ document.addEventListener('click', function (event) {
   document.getElementById('mint_config-menu').style.display = 'none';
   }
 });
-
-      // Check if the URL ends with '.srv' before executing the changes
-      // Create Mint menu
       mint_createMenu();
-      // Unbind the click action on userlist name click, so we can add a double-click event.
       $("#ulist-pane").off("click", "[data-pmtarget]", onClickPmtarget);
 $(document).on("click", ".pmclick", function (event) {
-  // Check if the click occurred on elements you want to exclude
+
   if ($(event.target).closest('.info, .icon, .reply').length > 0) {
-    // Click occurred on elements to be excluded, do nothing
+
     return;
   }
         var $this = $(this);
@@ -575,28 +576,24 @@ $(document).on("click", ".pmclick", function (event) {
         }
 });
 $(document).on('click', '.reply', function(event) {
-  // Get the message ID from the parent chat message (p element)
+
   var messageId = $(this).closest('p').attr('id');
   var characterId = $(this).closest('[data-pmtarget]').attr('data-pmtarget');
    var inputField;
 
-  // Check if the chat message is a child of .hb-chat-pane
+
   if ($(this).closest('.hb-chat-pane').length > 0) {
     var formElement = $(this).closest('.tab-pane').find('.sender-form');
     inputField = formElement.find('textarea[name="body"]');
   } else {
-    // Chat message is not a child of .hb-chat-pane
-    // Find the input text element within #chat-pane
+
     inputField = $('#main-sender-body');
   }
 
-  // Check if the input field is found
   if (inputField.length > 0) {
-    // Update the input field with the message ID at the front
     inputField.val('⟲ ' + characterId + " :" + messageId + '║ ' + inputField.val());
   }
 
-  // Prevent the default behavior of the click event
   event.preventDefault();
 });
 
@@ -712,13 +709,35 @@ document.addEventListener('keyup', function(event) {
       return value ? JSON.parse(value) : null;
     }
 
-    function mint_applyTheme_Basic() {
-      GM_addStyle(`
+    var styleToggleFont;
 
-`);
+    function mint_toggleTheme_Font() {
+      if (!styleToggleFont) {
+        styleToggleFont = GM_addStyle(`
+        @import url('https://fonts.googleapis.com/css2?family=Sintony:wght@400;700&display=swap');
+        body{
+          overflow: hidden;
+        }
+        #chat-pane,#ulist-pane  {
+          font-family: "Sintony", sans-serif !important;
+          font-weight: 300;
+          font-style: normal;
+        }
+        time{
+        font-family: Verdana, Arial, sans-serif !important;
+        }
+  `)
+      } else {
+        styleToggleFont.parentNode.removeChild(styleToggleFont);
+        styleToggleFont = false;
+      }
     }
+
+    var styleToggleTheme;
     function mint_applyTheme_Chat() {
-      GM_addStyle(`
+      if (!styleToggleTheme) {
+        styleToggleTheme = GM_addStyle(`
+@import url("https://mojojohoe.github.io/EkaScripts/mint.css");     
 ::-webkit-scrollbar {
   width: 10px;
  }
@@ -843,10 +862,12 @@ display:inline-block;
 color:#67bbe0 !important;
 }
 `);
-      layoutEntirePage();
+}   
+      
     }
+    var styleToggleStatuses;
     function mint_applyTheme_Status() {
-      GM_addStyle(`
+      styleToggleStatuses = GM_addStyle(`
 #chat-pane .chatmsg.private .pmclick .name:last-child:before {
 content:" ➔ " !important;
 opacity:0.5
@@ -984,7 +1005,9 @@ opacity:0.5
       orderAndUpdateStatusList();
       layoutEntirePage();
     }
-    // Now we reorder the list items based on data-code attribute.
+
+    layoutEntirePage();
+        // Now we reorder the list items based on data-code attribute.
     function orderAndUpdateStatusList() {
       const statusList = document.getElementById("status-list");
       setTimeout(function () {
