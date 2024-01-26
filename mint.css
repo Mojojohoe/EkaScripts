@@ -40,7 +40,7 @@ color:#a1eda4;
 #input-pane {
     position: relative;
     background: black;
-    top: 1px;
+    top: 2px;
 }
 #chat-pane > div:has[class]:not(.chatmsg) {
     border-radius: 6px;
