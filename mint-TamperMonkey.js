@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.0.17
+// @version      0.0.18
 // @description  mods in new things
 // @author       Jobix
 // @match        https://rp.aryion.com/*
@@ -893,7 +893,7 @@ color:white;
       var styleToggleTime;
 
       function mint_toggleTheme_Time() {
-          if (!sstyleToggleTime) {
+          if (!styleToggleTime) {
               styleToggleTime = GM_addStyle(`.chatmsg time {display: none;} .chatmsg {margin : 2px 0px 2px 6px;}
 `)
           } else {
