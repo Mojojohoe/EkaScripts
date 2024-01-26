@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.0.22
+// @version      0.0.23
 // @description  mods in new things
 // @author       Jobix
 // @match        https://rp.aryion.com/*
@@ -202,15 +202,15 @@ transform: scale(1.2);
 color:white;
 }
 `);
-  /*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
-░   ║ If Chat
+/*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
+░ ║ If Chat
 \*╚════════════════════════════════════════════════════════════════════════════════════════════════*/
   if (
       window.location.href.endsWith("chat.srv") ||
       window.location.href.endsWith("chat.srv#")
   ) {
-      /*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
-░   ║ Wait for original xchat.js to be loaded in, then replace it with the mint version.
+/*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
+░ ║ Wait for original xchat.js to be loaded in, then replace it with the mint version.
 \*╚════════════════════════════════════════════════════════════════════════════════════════════════*/
       new MutationObserver(async (mutations, observer) => {
           for (const mutation of mutations) {
@@ -1219,34 +1219,42 @@ font-size: 14px;
     if (clockVisibility === null) {
       mint_localStore("mint_settingTheme-Time", 1);
       mint_toggleTheme_Time(1);
+      document.getElementById("mint_toggleTime").checked = 1;
     } else {
       mint_toggleTheme_Time(clockVisibility);
+      document.getElementById("mint_toggleTime").checked = clockVisibility;
     }
     
     const themeVisibility = mint_localLoad("mint_settingTheme-Chat");
     if (themeVisibility === null) {
       mint_localStore("mint_settingTheme-Chat", 1);
+      document.getElementById("mint_toggleChat").checked = 1;
       mint_toggleTheme_Chat(1);
     } else {
       mint_toggleTheme_Chat(themeVisibility);
+      document.getElementById("mint_toggleChat").checked = themeVisibility;
     }
     
     const statusVisibility = mint_localLoad("mint_settingTheme-Statuses");
     if (statusVisibility === null) {
       mint_localStore("mint_settingTheme-Statuses", 1);
+      document.getElementById("mint_toggleStatuses").checked = 1;
       mint_toggleTheme_Statuses(1);
     } else {
       mint_toggleTheme_Statuses(statusVisibility);
+      document.getElementById("mint_toggleStatuses").checked = statusVisibility;
     }
     
     const fontVisibility = mint_localLoad("mint_settingTheme-Font");
     if (fontVisibility === null) {
       mint_localStore("mint_settingTheme-Font", 1);
+      document.getElementById("mint_toggleFont").checked = 1;
       mint_toggleTheme_Font(1);
     } else {
       mint_toggleTheme_Font(fontVisibility);
+      document.getElementById("mint_toggleFont").checked = fontVisibility;
     }
-
+    
       layoutEntirePage();
       // Now we reorder the list items based on data-code attribute.
       function orderAndUpdateStatusList() {
@@ -1363,7 +1371,7 @@ font-size: 14px;
 
   }
 /*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
-░   ║ If Character Select
+░ ║ If Character Select
 \*╚════════════════════════════════════════════════════════════════════════════════════════════════*/
   if (
       window.location.href.endsWith("account.srv") ||
