@@ -428,7 +428,7 @@ if (typeof GM_registerMenuCommand !== "undefined") {
               mint_toggleTheme_Font();
           });
 
-          document.getElementById("mint_toggleTheme").addEventListener("change", function() {
+          document.getElementById("mint_toggleChat").addEventListener("change", function() {
               mint_toggleTheme_Chat();
           });
 
