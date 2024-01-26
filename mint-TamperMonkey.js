@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.1.33
+// @version      0.1.34
 // @description  mods in new things
 // @author       Jobix
 // @match        https://rp.aryion.com/*
@@ -279,23 +279,11 @@ mintConfigMenu.innerHTML = `
 `;
 document.body.appendChild(mintConfigMenu);
 
-const pickerOptions = {
-    onEmojiSelect: (emoji) => {
-        const showEmojiElement = document.getElementById("showEmoji");
-        if (showEmojiElement) {
-            showEmojiElement.innerHTML = emoji.native;
-        }
-    }
-};
-const picker = new EmojiMart.Picker(pickerOptions);
-document.getElementById('emojiMart').appendChild(picker);
-
 if (typeof GM_registerMenuCommand !== "undefined") {
   GM_registerMenuCommand('Configuration', function() {
       document.getElementById('mint_config-menu').style.display = 'flex';
   });
 }
-
 });
 
 /*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
@@ -509,6 +497,18 @@ document.head.appendChild(pickerSupport);
           var mint_filters = []
 
           var templateEntry = document.querySelector('.template');
+
+         /* const pickerOptions = {
+              onEmojiSelect: (emoji) => {
+                  const showEmojiElement = document.getElementById("showEmoji");
+                  if (showEmojiElement) {
+                      showEmojiElement.innerHTML = emoji.native;
+                  }
+              }
+          };
+          const picker = new EmojiMart.Picker(pickerOptions);
+          document.getElementById('emojiMart').appendChild(picker);
+*/
 
           document.getElementById('addNewBtn').addEventListener('click', function() {
               var newCategoryNameInput = document.getElementById('newCategoryName');
