@@ -15,8 +15,9 @@
 
 (function() {
   "use strict";
-
-
+/*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
+░ ║ If Anywhere 
+\*╚════════════════════════════════════════════════════════════════════════════════════════════════*/
   if (typeof GM_registerMenuCommand !== "undefined") {
       GM_registerMenuCommand('Configuration', function() {
           document.getElementById('mint_config-menu').style.display = 'flex';
@@ -208,6 +209,81 @@ if (!link) {
     link.rel = 'icon';
     document.head.appendChild(link);
 }
+window.onload = function() {
+const mintConfigMenu = document.createElement('div');
+mintConfigMenu.innerHTML = `
+<div id="mint_config-menu">
+<div id="mint_config-close">×</div>
+<h1>Mint Settings</h1>
+<div class="settingsContent">
+<details class="styleOptions" open>
+<summary><h2>Styling Options</h2></summary>
+<div>Hide Timestamp  <span><input id="mint_toggleTime" type="checkbox" data="mint_clock-hide" checked/></div>
+<div>Enable Font<span><input id="mint_toggleFont" type="checkbox" data="mint_font" checked/></div>
+<div>Enable Chat Theme<span><input id="mint_toggleTheme" type="checkbox" data="mint_theme" checked/></div>
+<div>Enable Mint Statuses<span><input id="mint_toggleStatuses" type="checkbox" data="mint_statuses" checked/></div>
+<br><br>
+</span>
+</details>
+<details class="charFilters" open>
+<details id="filterTemplate" open>
+<summary><span class="icon">👑</span><span class="name">Example Name</span>
+<button class="removeBtn">Remove</button>
+| Behaviour:
+<select class="behaviorDropdown" prop="behave">
+<option value="0">Nothing</option>
+<option value="1">Dull Name</option>
+<option value="2">Ping on Entering Room</option>
+<option value="3">Highlight Messages</option>
+<option value="4">Ignore Messages</option>
+</select>
+<select class="andDropdown" prop="case">
+<option value="0">and</option>
+<option value="1">if</option>
+<option value="2">if not</option>
+</select>
+<select class="behaviorDropdown2" prop="behave2">
+<option value="0">Nothing</option>
+<option value="1">Dull Name</option>
+<option value="2">Ping</option>
+<option value="3">Highlight Messages</option>
+<option value="4">Ignore Messages</option>
+</select>
+<select class="caseDropdown" prop="trigger">#
+<option value="0">Nothing</option>
+<option value="1">Status is Online</option>
+<option value="2">Status is LFRP</option>
+<option value="3">Enters the Room</option>
+</select>
+</summary>
+<input type="text" class="newCharName" placeholder="Add Character Name">
+<button class="addNewCharBtn">Add New</button>
+<div class="charNameContainer"></div>
+</details>
+
+<summary><h2>Character Filters</h2></summary>
+<span id="emojiContainer">
+<button id="showEmoji" type="button" class="emoji-button">
+👑
+</button>
+<div class="pickerContainer" id="emojiMart"></div>
+</span>
+<input type="text" id="newCategoryName" placeholder="Category Name">
+
+<button id="addNewBtn">Add New</button>
+<div id="filterBox">
+
+</div>
+<br><br>
+</span>
+</details>
+</div>
+</div>
+`;
+document.body.appendChild(mintConfigMenu);
+}
+
+
 link.href = 'https://rp.aryion.com/img/profile/184938_f0842d7490194c2b9574ba049f3dda06.png';
 
 /*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
@@ -343,82 +419,6 @@ link.href = 'https://rp.aryion.com/img/profile/184938_f0842d7490194c2b9574ba049f
       overrideOnEnterPressedInTextarea();
 
       window.onload = function() {
-
-
-          const mintConfigMenu = document.createElement('div');
-
-          // Set the inner HTML content
-          mintConfigMenu.innerHTML = `
-<div id="mint_config-menu">
-<div id="mint_config-close">×</div>
-<h1>Mint Settings</h1>
-<div class="settingsContent">
-<details class="styleOptions" open>
-<summary><h2>Styling Options</h2></summary>
-<div>Hide Timestamp  <span><input id="mint_toggleTime" type="checkbox" data="mint_clock-hide" checked/></div>
-<div>Enable Font<span><input id="mint_toggleFont" type="checkbox" data="mint_font" checked/></div>
-<div>Enable Chat Theme<span><input id="mint_toggleTheme" type="checkbox" data="mint_theme" checked/></div>
-<div>Enable Mint Statuses<span><input id="mint_toggleStatuses" type="checkbox" data="mint_statuses" checked/></div>
-<br><br>
-</span>
-</details>
-<details class="charFilters" open>
-  <details id="filterTemplate" open>
-    <summary><span class="icon">👑</span><span class="name">Example Name</span>
-      <button class="removeBtn">Remove</button>
-      | Behaviour:
-      <select class="behaviorDropdown" prop="behave">
-        <option value="0">Nothing</option>
-        <option value="1">Dull Name</option>
-        <option value="2">Ping on Entering Room</option>
-        <option value="3">Highlight Messages</option>
-        <option value="4">Ignore Messages</option>
-        </select>
-       <select class="andDropdown" prop="case">
-        <option value="0">and</option>
-        <option value="1">if</option>
-        <option value="2">if not</option>
-         </select>
-        <select class="behaviorDropdown2" prop="behave2">
-        <option value="0">Nothing</option>
-        <option value="1">Dull Name</option>
-        <option value="2">Ping</option>
-        <option value="3">Highlight Messages</option>
-        <option value="4">Ignore Messages</option>
-        </select>
-      <select class="caseDropdown" prop="trigger">#
-        <option value="0">Nothing</option>
-        <option value="1">Status is Online</option>
-        <option value="2">Status is LFRP</option>
-        <option value="3">Enters the Room</option>
-        </select>
-        </summary>
-    <input type="text" class="newCharName" placeholder="Add Character Name">
-<button class="addNewCharBtn">Add New</button>
-<div class="charNameContainer"></div>
-  </details>
-
-<summary><h2>Character Filters</h2></summary>
-<span id="emojiContainer">
-<button id="showEmoji" type="button" class="emoji-button">
-👑
-</button>
-<div class="pickerContainer" id="emojiMart"></div>
-  </span>
-  <input type="text" id="newCategoryName" placeholder="Category Name">
-
-  <button id="addNewBtn">Add New</button>
-<div id="filterBox">
-
-</div>
-<br><br>
-</span>
-</details>
-</div>
-</div>
-`;
-
-          document.body.appendChild(mintConfigMenu);
 
           document.getElementById("mint_toggleTime").addEventListener("change", function() {
               mint_toggleTheme_Time();
@@ -891,8 +891,7 @@ link.href = 'https://rp.aryion.com/img/profile/184938_f0842d7490194c2b9574ba049f
 
       function mint_toggleTheme_Time(n) {
           if (!styleToggleTime || n === 1) {
-              styleToggleTime = GM_addStyle(`.chatmsg time {display: none;} .chatmsg {margin : 2px 0px 2px 6px;}
-`)
+              styleToggleTime = GM_addStyle(`.chatmsg time {display: none;} .chatmsg {margin : 2px 0px 2px 6px;}`)
 mint_localStore("mint_settingTheme-Time", 1)
           } else {
               styleToggleTime.parentNode.removeChild(styleToggleTime);
