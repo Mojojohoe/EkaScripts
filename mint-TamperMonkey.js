@@ -1406,10 +1406,10 @@ font-size: 14px;
           appendLoc.appendChild(mint_characterBin);
 
           var allInputGroups = document.getElementsByClassName("input-group");
-console.log(allInputGroups);
+
           for (var i = 0; i < allInputGroups; i++) {
               var editList = currentElement.closest('ul');
-
+console.log(editList)
               allInputGroups[i].id = "charDiv_" + i;
               const mint_sendToBin = document.createElement('li');
               mint_sendToBin.innerHTML = `<a href="#" class="send-to-bin"><i class="glyphicon-trash glyphicon"></i> Send to Bin</a>`;

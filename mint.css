@@ -204,3 +204,9 @@ button.anchor:active {
     box-shadow: unset;
     transition: unset;
 }
+.dropdown-menu .divider {
+  background-color: #292424;
+}
+#topnav .navbar-brand {
+  display: none;
+}
