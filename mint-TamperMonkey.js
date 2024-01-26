@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.0.26
+// @version      0.0.27
 // @description  mods in new things
 // @author       Jobix
 // @match        https://rp.aryion.com/*
