@@ -8602,6 +8602,9 @@ function tempUserListThing() {
   } else {
     $ule.addClass("ignored");
   }
+  if (!ule.greyout) {
+    $ule.closest(".pmclick").removeClass("greyout");
+  } 
    if(ule.flash){
  applyMiniHighlight($ule);
    }
