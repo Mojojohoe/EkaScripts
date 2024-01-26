@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.0.27
+// @version      0.0.28
 // @description  mods in new things
 // @author       Jobix
 // @match        https://rp.aryion.com/*
@@ -436,7 +436,45 @@ if (typeof GM_registerMenuCommand !== "undefined") {
               mint_toggleTheme_Statuses();
           });
 
-
+          const clockVisibility = mint_localLoad("mint_settingTheme-Time");
+          if (clockVisibility === null) {
+            mint_localStore("mint_settingTheme-Time", 1);
+            mint_toggleTheme_Time(1);
+            document.getElementById("mint_toggleTime").checked = true;
+          } else {
+            mint_toggleTheme_Time(clockVisibility);
+            document.getElementById("mint_toggleTime").checked = clockVisibility === 1;
+          }
+          
+          const themeVisibility = mint_localLoad("mint_settingTheme-Chat");
+          if (themeVisibility === null) {
+            mint_localStore("mint_settingTheme-Chat", 1);
+            document.getElementById("mint_toggleChat").checked = true;
+            mint_toggleTheme_Chat(1);
+          } else {
+            mint_toggleTheme_Chat(themeVisibility);
+            document.getElementById("mint_toggleChat").checked = themeVisibility === 1;
+          }
+          
+          const statusVisibility = mint_localLoad("mint_settingTheme-Statuses");
+          if (statusVisibility === null) {
+            mint_localStore("mint_settingTheme-Statuses", 1);
+            document.getElementById("mint_toggleStatuses").checked = true;
+            mint_toggleTheme_Statuses(1);
+          } else {
+            mint_toggleTheme_Statuses(statusVisibility);
+            document.getElementById("mint_toggleStatuses").checked = statusVisibility === 1
+          }
+          
+          const fontVisibility = mint_localLoad("mint_settingTheme-Font");
+          if (fontVisibility === null) {
+            mint_localStore("mint_settingTheme-Font", 1);
+            document.getElementById("mint_toggleFont").checked = true;
+            mint_toggleTheme_Font(1);
+          } else {
+            mint_toggleTheme_Font(fontVisibility);
+            document.getElementById("mint_toggleFont").checked = fontVisibility === 1;
+          }
 
 
           var mint_filters = []
@@ -1211,45 +1249,6 @@ font-size: 14px;
       
     }
 
-    const clockVisibility = mint_localLoad("mint_settingTheme-Time");
-    if (clockVisibility === null) {
-      mint_localStore("mint_settingTheme-Time", 1);
-      mint_toggleTheme_Time(1);
-      document.getElementById("mint_toggleTime").checked = true;
-    } else {
-      mint_toggleTheme_Time(clockVisibility);
-      document.getElementById("mint_toggleTime").checked = clockVisibility === 1;
-    }
-    
-    const themeVisibility = mint_localLoad("mint_settingTheme-Chat");
-    if (themeVisibility === null) {
-      mint_localStore("mint_settingTheme-Chat", 1);
-      document.getElementById("mint_toggleChat").checked = true;
-      mint_toggleTheme_Chat(1);
-    } else {
-      mint_toggleTheme_Chat(themeVisibility);
-      document.getElementById("mint_toggleChat").checked = themeVisibility === 1;
-    }
-    
-    const statusVisibility = mint_localLoad("mint_settingTheme-Statuses");
-    if (statusVisibility === null) {
-      mint_localStore("mint_settingTheme-Statuses", 1);
-      document.getElementById("mint_toggleStatuses").checked = true;
-      mint_toggleTheme_Statuses(1);
-    } else {
-      mint_toggleTheme_Statuses(statusVisibility);
-      document.getElementById("mint_toggleStatuses").checked = statusVisibility === 1
-    }
-    
-    const fontVisibility = mint_localLoad("mint_settingTheme-Font");
-    if (fontVisibility === null) {
-      mint_localStore("mint_settingTheme-Font", 1);
-      document.getElementById("mint_toggleFont").checked = true;
-      mint_toggleTheme_Font(1);
-    } else {
-      mint_toggleTheme_Font(fontVisibility);
-      document.getElementById("mint_toggleFont").checked = fontVisibility === 1;
-    }
     
       layoutEntirePage();
       // Now we reorder the list items based on data-code attribute.
