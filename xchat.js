@@ -1,6 +1,6 @@
 /*! JChat - v1.0.0 - 2022-07-01 */
-var mint_version = "v1.0.31";
-/*╔═════════ Mint Injection - v1.0.31 - 2023-01-26 ════════════════════════════════════════════════*\
+var mint_version = "v0.1.31";
+/*╔═════════ Mint Injection - v0.1.31 - 2023-01-26 ════════════════════════════════════════════════*\
 ░ ║ This file is specifically used for the Mint Eta extension.
 ░ ║ It is a copy of the original with some modifications.
 ░ ║ (This is cleaner than force-redefining every function after it has executed at least once)
