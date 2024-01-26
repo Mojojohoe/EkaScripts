@@ -1,6 +1,6 @@
 /*! JChat - v1.0.0 - 2022-07-01 */
-var mint_version = "v0.1.32";
-/*╔═════════ Mint Injection - v0.1.32 - 2023-01-26 ════════════════════════════════════════════════*\
+var mint_version = "v0.1.33";
+/*╔═════════ Mint Injection - v0.1.33 - 2023-01-26 ════════════════════════════════════════════════*\
 ░ ║ This file is specifically used for the Mint Eta extension.
 ░ ║ It is a copy of the original with some modifications.
 ░ ║ (This is cleaner than force-redefining every function after it has executed at least once)
@@ -7607,21 +7607,21 @@ function mint_processFilters(ule){
 
       switch (caseValue) {
         case 0:
-          if ((behave1 === 1 || behave2 === 1)) {
+          if ((behave1 === 1 || behave2 === 1 && !caseValue === 2)) {
             ule.greyout = 'greyout';
           } else {
             ule.greyout = '';
           }
 
-          if ((behave1 === 2 || behave2 === 2) && oldUle.length === 0) {
+          if ((behave1 === 2 || behave2 === 2) && oldUle.length === 0 && !caseValue === 2) {
             ule.flash = 'mini-highlight';
           }
 
-          if ((behave1 === 3 || behave2 === 3) && !ule.highlighted) {
+          if ((behave1 === 3 || behave2 === 3) && !ule.highlighted && !caseValue === 2) {
             ule.highlighted = true;
           }
 
-          if ((behave1 === 4 || behave2 === 4) && !ule.ignored) {
+          if ((behave1 === 4 || behave2 === 4) && !ule.ignored && !caseValue === 2) {
             ule.ignored = true;
           }
           break;
@@ -8602,9 +8602,7 @@ function tempUserListThing() {
   } else {
     $ule.addClass("ignored");
   }
-  if (ule.greyout === "") {
-    $ule.closest(".pmclick").removeClass("greyout");
-  } 
+
    if(ule.flash){
  applyMiniHighlight($ule);
    }
