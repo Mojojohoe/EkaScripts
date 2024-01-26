@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.0.31
+// @version      0.1.32
 // @description  mods in new things
 // @author       Jobix
 // @match        https://rp.aryion.com/*
@@ -285,6 +285,23 @@ if (typeof GM_registerMenuCommand !== "undefined") {
   });
 }
 });
+
+/*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
+░ ║ Emoji support because we were young and reckless and decide to use it in the config menu
+\*╚════════════════════════════════════════════════════════════════════════════════════════════════*/
+
+let emojiSupport = document.createElement("script");
+emojiSupport.type = "text/javascript";
+emojiSupport.src =
+  "https://cdnjs.cloudflare.com/ajax/libs/emoji-js/3.8.0/emoji.min.js";
+document.head.appendChild(emojiSupport);
+
+let pickerSupport = document.createElement("script");
+pickerSupport.type = "text/javascript";
+pickerSupport.src =
+  "https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js";
+document.head.appendChild(pickerSupport);
+
 
 /*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
 ░ ║ If Chat
