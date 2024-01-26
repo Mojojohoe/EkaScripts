@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.0.21
+// @version      0.0.22
 // @description  mods in new things
 // @author       Jobix
 // @match        https://rp.aryion.com/*
@@ -1069,7 +1069,7 @@ color:#67bbe0 !important;
       }
       var styleToggleStatuses;
 
-      function mint_toggleTheme_Status(n) {
+      function mint_toggleTheme_Statuses(n) {
         if (!styleToggleStatuses || n === 1) {
           styleToggleStatuses = GM_addStyle(`
 #chat-pane .chatmsg.private .pmclick .name:last-child:before {
@@ -1330,28 +1330,6 @@ font-size: 14px;
           }
       }
 
-      function mint_applyTheme(value) {
-          if (value === 1) {
-              mint_applyTheme_Basic();
-              mint_applyTheme_Chat();
-              mint_applyTheme_Status();
-              document
-                  .getElementById("mint_toggleTheme-result")
-                  .classList.remove("glyphicon-eye-open");
-              document
-                  .getElementById("mint_toggleTheme-result")
-                  .classList.add("glyphicon-eye-close");
-              mint_localStore("mint_theme", 1);
-          } else {
-              document
-                  .getElementById("mint_toggleTheme-result")
-                  .classList.remove("glyphicon-eye-close");
-              document
-                  .getElementById("mint_toggleTheme-result")
-                  .classList.add("glyphicon-eye-open");
-              mint_localStore("mint_theme", 0);
-          }
-      }
       document.addEventListener("keydown", function(event) {
           // Check if Num Lock key is pressed
           if (event.key === "NumLock" || event.code === "NumLock") {
