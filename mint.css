@@ -210,3 +210,11 @@ button.anchor:active {
 #topnav .navbar-brand {
   display: none;
 }
+.deleteCharEntry{
+  color:#e32941;
+  margin-left: 5px;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  line-height: 5px;
+}
