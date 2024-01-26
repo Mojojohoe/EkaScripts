@@ -157,6 +157,7 @@ opacity:1;
 .info > .reply:hover, .msg-delete:hover{
     color: #d5fbd6;
     transform: translate(0px, -1px) scale(1.2);
+    position: static;
 }
 .msg-delete {
   position: inherit !important;
