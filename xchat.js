@@ -8,19 +8,9 @@ var mint_version = "v1.0.31";
 
 /*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
 ░ ║ Mint-specific comments look like this. 
-░ ║ Let's load in emoji support.
+░ ║ We try to keep core chat changes here, and stuff that needs to load before the chat in tamper
 \*╚════════════════════════════════════════════════════════════════════════════════════════════════*/
-let emojiSupport = document.createElement("script");
-emojiSupport.type = "text/javascript";
-emojiSupport.src =
-  "https://cdnjs.cloudflare.com/ajax/libs/emoji-js/3.8.0/emoji.min.js";
-document.head.appendChild(emojiSupport);
 
-let pickerSupport = document.createElement("script");
-pickerSupport.type = "text/javascript";
-pickerSupport.src =
-  "https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js";
-document.head.appendChild(pickerSupport);
 /*!
  * Bootstrap v3.1.1 (http://getbootstrap.com)
  * Copyright 2011-2014 Twitter, Inc.
