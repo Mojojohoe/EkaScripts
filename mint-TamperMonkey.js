@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.0.24
+// @version      0.0.25
 // @description  mods in new things
 // @author       Jobix
 // @match        https://rp.aryion.com/*
@@ -218,10 +218,10 @@ mintConfigMenu.innerHTML = `
 <div class="settingsContent">
 <details class="styleOptions" open>
 <summary><h2>Styling Options</h2></summary>
-<div>Hide Timestamp  <span><input id="mint_toggleTime" type="checkbox" data="mint_clock-hide" checked/></div>
-<div>Enable Font<span><input id="mint_toggleFont" type="checkbox" data="mint_font" checked/></div>
-<div>Enable Chat Theme<span><input id="mint_toggleTheme" type="checkbox" data="mint_theme" checked/></div>
-<div>Enable Mint Statuses<span><input id="mint_toggleStatuses" type="checkbox" data="mint_statuses" checked/></div>
+<div>Hide Timestamp  <span><input id="mint_toggleTime" type="checkbox" data="mint_clock-hide" checked="true"/></div>
+<div>Enable Font<span><input id="mint_toggleFont" type="checkbox" data="mint_font" checked="true"/></div>
+<div>Enable Chat Theme<span><input id="mint_toggleTheme" type="checkbox" data="mint_theme" checked="true"/></div>
+<div>Enable Mint Statuses<span><input id="mint_toggleStatuses" type="checkbox" data="mint_statuses" checked="true"/></div>
 <br><br>
 </span>
 </details>
