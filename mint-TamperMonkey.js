@@ -1323,7 +1323,60 @@ font-size: 14px;
               layoutEntirePage();
           }
       });
-
+      function mint_createMenu() {
+        const navBar = document.querySelector(".nav.navbar-nav");
+  
+        if (navBar) {
+          const mintMenu = document.createElement("li");
+          mintMenu.className = "dropdown";
+  
+          mintMenu.innerHTML = `
+                  <a href="#" class="dropdown-toggle minty" data-toggle="dropdown">
+                      <i class="glyphicon-adjust glyphicon"></i> Mint <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu minty" role="menu">
+                      <li id="mint_toggle-time"><a href="#"><i class="glyphicon-time glyphicon"></i> Toggle Time &nbsp; &nbsp; &nbsp;<i id="mint_toggleTime-result" class="glyphicon-eye-open glyphicon"></i></a></li>
+                      <li id="mint_toggle-theme"><a href="#"><i class="glyphicon-tint glyphicon"></i> Toggle Theme &ensp;<i id="mint_toggleTheme-result" class="glyphicon-eye-close glyphicon"></i></a></li>
+                      <li id="mint_toggle-bionic"><a href="#"><i class="glyphicon-text-size glyphicon"></i> Toggle Bionic Text &ensp;<i id="mint_toggleBionic-result" class="glyphicon-eye-close glyphicon"></i></a></li>
+                      <li><a href="privlog.srv" target="_blank"><i class="glyphicon-sunglasses glyphicon"></i> Watch List</a></li>
+                  </ul>`;
+          GM_addStyle(
+            `.minty {color: #898f83 !important;} .minty:hover {color: #a7b897 !important;} .minty a {color: #98eb96 !important;} .minty a:hover {color: #333 !important;}`
+          );
+          navBar.appendChild(mintMenu);
+  
+          // Check local storage for user's current settings
+          const clockVisibility = mint_localLoad("mint_clock-hide");
+          mint_clockHide(clockVisibility);
+          const themeVisibility = mint_localLoad("mint_theme");
+          mint_applyTheme(themeVisibility);
+  
+          // Add click event listener to "Toggle Time" menu item
+          const toggleTimeBtn = document.getElementById("mint_toggle-time");
+          if (toggleTimeBtn) {
+            toggleTimeBtn.addEventListener("click", function () {
+              // Get the current clock visibility setting from local storage
+              const currentVisibility = mint_localLoad("mint_clock-hide");
+  
+              // Toggle the clock visibility setting
+              const newVisibility = currentVisibility === 1 ? 0 : 1;
+              mint_clockHide(newVisibility);
+              location.reload();
+            });
+          }
+          const toggleThemeBtn = document.getElementById("mint_toggle-theme");
+          if (toggleThemeBtn) {
+            toggleThemeBtn.addEventListener("click", function () {
+              // Get the theme on/off state from local storage
+              const currentVisibility = mint_localLoad("mint_theme");
+              // Toggle the theme setting
+              const newVisibility = currentVisibility === 1 ? 0 : 1;
+              mint_applyTheme(newVisibility);
+              location.reload();
+            });
+          }
+        }
+      }
       // Settings WIP
 
   }
