@@ -202,6 +202,14 @@ transform: scale(1.2);
 color:white;
 }
 `);
+var link = document.querySelector("link[rel~='icon']");
+if (!link) {
+    link = document.createElement('link');
+    link.rel = 'icon';
+    document.head.appendChild(link);
+}
+link.href = 'https://rp.aryion.com/img/profile/184938_f0842d7490194c2b9574ba049f3dda06.png';
+
 /*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
 ░ ║ If Chat
 \*╚════════════════════════════════════════════════════════════════════════════════════════════════*/
@@ -836,17 +844,6 @@ color:white;
           if (savedInputValueHover) {
               $(".flan-control.sender-body").value = savedInputValueHover;
           }
-
-
-          var link = document.querySelector("link[rel~='icon']");
-          if (!link) {
-              link = document.createElement('link');
-              link.rel = 'icon';
-              document.head.appendChild(link);
-          }
-          link.href = 'https://rp.aryion.com/img/profile/184938_f0842d7490194c2b9574ba049f3dda06.png';
-
-
           var styleTag;
 
           document.addEventListener('keydown', function(event) {
@@ -1377,8 +1374,7 @@ font-size: 14px;
       window.location.href.endsWith("account.srv") ||
       window.location.href.endsWith("account.srv#")
   ) {
-      GM_addStyle(`
-  #characterBin {
+      GM_addStyle(`#characterBin {
     position: relative;
   }
   #characterBin::before {
@@ -1410,7 +1406,7 @@ font-size: 14px;
           appendLoc.appendChild(mint_characterBin);
 
           var allInputGroups = document.getElementsByClassName("input-group");
-
+console.log(allInputGroups);
           for (var i = 0; i < allInputGroups; i++) {
               var editList = currentElement.closest('ul');
 
