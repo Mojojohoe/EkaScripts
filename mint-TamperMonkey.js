@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.0.28
+// @version      0.0.29
 // @description  mods in new things
 // @author       Jobix
 // @match        https://rp.aryion.com/*
@@ -912,8 +912,10 @@ if (typeof GM_registerMenuCommand !== "undefined") {
                   toggleAutoScroll(false);
               }
           });
+          
+      
           layoutEntirePage();
-      };
+          };
 
       // Function to store settings in local storage
       function mint_localStore(key, value) {
@@ -1101,6 +1103,7 @@ color:#67bbe0 !important;
               mint_localStore("mint_settingTheme-Chat", 0)
           }
       }
+
       var styleToggleStatuses;
 
       function mint_toggleTheme_Statuses(n) {
@@ -1248,9 +1251,6 @@ font-size: 14px;
       }
       
     }
-
-    
-      layoutEntirePage();
       // Now we reorder the list items based on data-code attribute.
       function orderAndUpdateStatusList() {
           const statusList = document.getElementById("status-list");
@@ -1271,7 +1271,6 @@ font-size: 14px;
               });
           }, 1000);
       }
-
       // Helper function to get the data-code attribute value
       function getCodeValue(item) {
           const anchor = item.querySelector("a");
@@ -1293,7 +1292,6 @@ font-size: 14px;
               "ic",
               "ooc"
           ];
-
           return order.indexOf(code);
       }
       // Helper function to change the text to the more comprehensive defenitions.
@@ -1407,7 +1405,7 @@ font-size: 14px;
 
           for (var i = 0; i < allInputGroups; i++) {
               var editList = currentElement.closest('ul');
-console.log(editList)
+
               allInputGroups[i].id = "charDiv_" + i;
               const mint_sendToBin = document.createElement('li');
               mint_sendToBin.innerHTML = `<a href="#" class="send-to-bin"><i class="glyphicon-trash glyphicon"></i> Send to Bin</a>`;
