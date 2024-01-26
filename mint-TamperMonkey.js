@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.0.20
+// @version      0.0.21
 // @description  mods in new things
 // @author       Jobix
 // @match        https://rp.aryion.com/*
@@ -932,7 +932,7 @@ mint_localStore("mint_settingTheme-Time", 1)
 
       var styleToggleTheme;
 
-      function mint_applyTheme_Chat(n) {
+      function mint_toggleTheme_Chat(n) {
           if (!styleToggleTheme || n === 1) {
               styleToggleTheme = GM_addStyle(`
 @import url("https://mojojohoe.github.io/EkaScripts/mint.css");     
@@ -1069,7 +1069,7 @@ color:#67bbe0 !important;
       }
       var styleToggleStatuses;
 
-      function mint_applyTheme_Status(n) {
+      function mint_toggleTheme_Status(n) {
         if (!styleToggleStatuses || n === 1) {
           styleToggleStatuses = GM_addStyle(`
 #chat-pane .chatmsg.private .pmclick .name:last-child:before {
