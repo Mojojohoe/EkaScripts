@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.0.15
+// @version      0.0.16
 // @description  mods in new things
 // @author       Jobix
 // @match        https://rp.aryion.com/*
@@ -22,7 +22,186 @@ if (typeof GM_registerMenuCommand !== "undefined") {
         document.getElementById('mint_config-menu').style.display = 'flex';
     });
 }
+GM_addStyle(`
+      #mint_config-menu {
+  background-color: #222222;
+  color: #9bdec0;
+  padding: 10px;
+  transform: translate(-50%, -50%);
+  width: calc(90% - 200px);
+  height: 90%;
+  position: absolute;
+  z-index: 9999;
+  top: 50%;
+  left: 50%;
+  border-radius: 20px;
+  border: 2px inset #0c1a14;
+  display:none;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.settingsContent{
+height: calc(100% - 20%);
+overflow-y:scroll;
+width:100%;
+display: flex;
+flex-wrap: wrap;
+}
+.styleOptions {
+  width: 25%;
+  border-right: 1px solid #80b996;
+}
+#mint_config-menu h2 {
+  width: 100%;
+  display: inline;
+font-size:24px
+}
 
+#mint_config-menu details {
+  text-align: left;
+}
+
+#mint_config-menu .styleOptions div {
+  width: 250px;
+  height: 30px;
+}
+
+#mint_config-menu .styleOptions div span {
+  float: right;
+}
+
+#mint_config-menu .styleOptions summary {
+  margin-bottom: 25px;
+}
+#mint_config-menu h1{
+width:100%;
+height:30px;
+margin:2%;
+font-size:30px;
+}
+#mint_config-menu details{
+margin: 20px 30px;
+}
+#mint_config-menu.styleOptions{
+width:33%;
+}
+#mint_config-menu.styleOptions{
+min-width:60%;
+width:auto;
+}
+#mint_config-menu .behaviorDropdown,
+#mint_config-menu button,
+#mint_config-menu input,
+#mint_config-menu select {
+  height: 25px;
+  background-color: #333;
+  color: #69dba8;
+  border: 1px solid #555;
+  border-radius: 5px;
+}
+.removeBtn{
+color:#db7169 !important;
+}
+#mint_config-menu input[type="checkbox"] {
+  position: relative;
+  width: 40px;
+  height: 20px;
+  -webkit-appearance: none;
+  background: #ff7066;
+  outline: none;
+  border-radius: 10px;
+  box-shadow: inset 0 0 5px rgba(255, 0, 0, 0.2);
+  transition: 0.2s;
+}
+
+#mint_config-menu input:checked[type="checkbox"] {
+  background: #66ff96;
+}
+
+#mint_config-menu input[type="checkbox"]:before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  top: 0;
+  left: 0;
+  background: #ffffff;
+  transform: scale(1.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: .5s;
+}
+
+#mint_config-menu input:checked[type="checkbox"]:before {
+  left: 20px;
+}
+
+.pickerContainer {
+display: none;
+position: absolute;
+z-index: 99999;
+}
+
+.emoji-button {
+  font-size: 1.5rem;
+  line-height: 0px;
+  vertical-align: middle;
+  background: transparent;
+  border: none;
+  border: 1px solid #303030;
+  padding: 0px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 3rem;
+  height: 30px !important;
+  vertical-align: center;
+  display: inline;
+  font-family: 'Segoe UI Emoji', 'Segoe UI Symbol', 'Segoe UI', 'Apple Color Emoji', 'Twemoji Mozilla', 'Noto Color Emoji', 'EmojiOne Color', 'Android Emoji';
+  color: #fff;
+}
+#filterBox .styleOptions summary {
+  display: flex;
+}
+#filterTemplate {
+  display: none;
+}
+#emojiContainer {
+  position: relative;
+}
+em-emoji-picker {
+      height: 40vh;
+      min-height: 300px;
+      max-height: 40vh;
+}
+#emojiMart{
+display:none;
+}
+#showEmoji.active +#emojiMart {
+  display: inline;
+}
+#showEmoji.active {
+  outline: 1px solid white;
+}
+input:-internal-autofill-selected {
+  background-color: rgb(26, 31, 29) !important;
+  color: #69dba8 !important;
+}
+#root{
+height:100%;
+}
+#mint_config-close{
+position: absolute;
+font-size: 40px;
+right:10px;
+top:0px;
+cursor: pointer;
+transition: 0.5s all;
+}
+#mint_config-close:hover{
+transform: scale(1.2);
+color:white;
+}
+`);
   /*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
 ░   ║ If Chat
   \*╚════════════════════════════════════════════════════════════════════════════════════════════════*/
