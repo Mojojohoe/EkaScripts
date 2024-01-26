@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.0.25
+// @version      0.0.26
 // @description  mods in new things
 // @author       Jobix
 // @match        https://rp.aryion.com/*
@@ -18,11 +18,6 @@
 /*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
 ░ ║ If Anywhere 
 \*╚════════════════════════════════════════════════════════════════════════════════════════════════*/
-  if (typeof GM_registerMenuCommand !== "undefined") {
-      GM_registerMenuCommand('Configuration', function() {
-          document.getElementById('mint_config-menu').style.display = 'flex';
-      });
-  }
   GM_addStyle(`
     #mint_config-menu {
 background-color: #222222;
@@ -282,7 +277,11 @@ mintConfigMenu.innerHTML = `
 `;
 document.body.appendChild(mintConfigMenu);
 }
-
+if (typeof GM_registerMenuCommand !== "undefined") {
+  GM_registerMenuCommand('Configuration', function() {
+      document.getElementById('mint_config-menu').style.display = 'flex';
+  });
+}
 
 link.href = 'https://rp.aryion.com/img/profile/184938_f0842d7490194c2b9574ba049f3dda06.png';
 
