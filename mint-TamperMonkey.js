@@ -217,7 +217,7 @@ mintConfigMenu.innerHTML = `
 <summary><h2>Styling Options</h2></summary>
 <div>Hide Timestamp  <span><input id="mint_toggleTime" type="checkbox" data="mint_clock-hide" checked="true"/></div>
 <div>Enable Font<span><input id="mint_toggleFont" type="checkbox" data="mint_font" checked="true"/></div>
-<div>Enable Chat Theme<span><input id="mint_toggleTheme" type="checkbox" data="mint_theme" checked="true"/></div>
+<div>Enable Chat Theme<span><input id="mint_toggleChat" type="checkbox" data="mint_theme" checked="true"/></div>
 <div>Enable Mint Statuses<span><input id="mint_toggleStatuses" type="checkbox" data="mint_statuses" checked="true"/></div>
 <br><br>
 </span>
