@@ -204,7 +204,9 @@ if (!link) {
     link.rel = 'icon';
     document.head.appendChild(link);
 }
-window.onload = function() {
+link.href = 'https://rp.aryion.com/img/profile/184938_f0842d7490194c2b9574ba049f3dda06.png';
+
+document.addEventListener("DOMContentLoaded", function() {
 const mintConfigMenu = document.createElement('div');
 mintConfigMenu.innerHTML = `
 <div id="mint_config-menu">
@@ -276,14 +278,13 @@ mintConfigMenu.innerHTML = `
 </div>
 `;
 document.body.appendChild(mintConfigMenu);
-}
+
 if (typeof GM_registerMenuCommand !== "undefined") {
   GM_registerMenuCommand('Configuration', function() {
       document.getElementById('mint_config-menu').style.display = 'flex';
   });
 }
-
-link.href = 'https://rp.aryion.com/img/profile/184938_f0842d7490194c2b9574ba049f3dda06.png';
+});
 
 /*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
 ░ ║ If Chat
