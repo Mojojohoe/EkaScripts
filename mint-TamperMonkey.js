@@ -498,7 +498,7 @@ document.head.appendChild(pickerSupport);
 
           var templateEntry = document.querySelector('.template');
 
-         /* const pickerOptions = {
+         const pickerOptions = {
               onEmojiSelect: (emoji) => {
                   const showEmojiElement = document.getElementById("showEmoji");
                   if (showEmojiElement) {
@@ -508,7 +508,7 @@ document.head.appendChild(pickerSupport);
           };
           const picker = new EmojiMart.Picker(pickerOptions);
           document.getElementById('emojiMart').appendChild(picker);
-*/
+
 
           document.getElementById('addNewBtn').addEventListener('click', function() {
               var newCategoryNameInput = document.getElementById('newCategoryName');
