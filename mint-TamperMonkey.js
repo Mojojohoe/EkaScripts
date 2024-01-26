@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.0.19
+// @version      0.0.20
 // @description  mods in new things
 // @author       Jobix
 // @match        https://rp.aryion.com/*
@@ -892,20 +892,22 @@ color:white;
       }
       var styleToggleTime;
 
-      function mint_toggleTheme_Time() {
-          if (!styleToggleTime) {
+      function mint_toggleTheme_Time(n) {
+          if (!styleToggleTime || n === 1) {
               styleToggleTime = GM_addStyle(`.chatmsg time {display: none;} .chatmsg {margin : 2px 0px 2px 6px;}
 `)
+mint_localStore("mint_settingTheme-Time", 1)
           } else {
               styleToggleTime.parentNode.removeChild(styleToggleTime);
               styleToggleTime = false;
+              mint_localStore("mint_settingTheme-Time", 0)
           }
       }
 
       var styleToggleFont;
 
-      function mint_toggleTheme_Font() {
-          if (!styleToggleFont) {
+      function mint_toggleTheme_Font(n) {
+          if (!styleToggleFont || n === 1) {
               styleToggleFont = GM_addStyle(`
       @import url('https://fonts.googleapis.com/css2?family=Sintony:wght@400;700&display=swap');
       body{
@@ -923,14 +925,15 @@ color:white;
           } else {
               styleToggleFont.parentNode.removeChild(styleToggleFont);
               styleToggleFont = false;
+              mint_localStore("mint_settingTheme-Font", 0)
           }
-          mint_localStore("mint_settingTheme-Font", 0)
+          
       }
 
       var styleToggleTheme;
 
-      function mint_applyTheme_Chat() {
-          if (!styleToggleTheme) {
+      function mint_applyTheme_Chat(n) {
+          if (!styleToggleTheme || n === 1) {
               styleToggleTheme = GM_addStyle(`
 @import url("https://mojojohoe.github.io/EkaScripts/mint.css");     
 ::-webkit-scrollbar {
@@ -1061,14 +1064,13 @@ color:#67bbe0 !important;
           } else {
               styleToggleTheme.parentNode.removeChild(styleToggleTheme);
               styleToggleTheme = false;
+              mint_localStore("mint_settingTheme-Chat", 0)
           }
-          mint_localStore("mint_settingTheme-Chat", 0)
-          ``
       }
       var styleToggleStatuses;
 
-      function mint_applyTheme_Status() {
-        if (!styleToggleStatuses) {
+      function mint_applyTheme_Status(n) {
+        if (!styleToggleStatuses || n === 1) {
           styleToggleStatuses = GM_addStyle(`
 #chat-pane .chatmsg.private .pmclick .name:last-child:before {
 content:" ➔ " !important;
@@ -1208,9 +1210,43 @@ font-size: 14px;
       } else {
           styleToggleStatuses.parentNode.removeChild(styleToggleStatuses);
           styleToggleStatuses = false;
+          mint_localStore("mint_settingTheme-Statuses", 0)
       }
-      mint_localStore("mint_settingTheme-Statuses", 0)
+      
     }
+
+    const clockVisibility = mint_localLoad("mint_settingTheme-Time");
+    if (clockVisibility === null) {
+      mint_localStore("mint_settingTheme-Time", 1);
+      mint_toggleTheme_Time(1);
+    } else {
+      mint_toggleTheme_Time(clockVisibility);
+    }
+    
+    const themeVisibility = mint_localLoad("mint_settingTheme-Chat");
+    if (themeVisibility === null) {
+      mint_localStore("mint_settingTheme-Chat", 1);
+      mint_toggleTheme_Chat(1);
+    } else {
+      mint_toggleTheme_Chat(themeVisibility);
+    }
+    
+    const statusVisibility = mint_localLoad("mint_settingTheme-Statuses");
+    if (statusVisibility === null) {
+      mint_localStore("mint_settingTheme-Statuses", 1);
+      mint_toggleTheme_Statuses(1);
+    } else {
+      mint_toggleTheme_Statuses(statusVisibility);
+    }
+    
+    const fontVisibility = mint_localLoad("mint_settingTheme-Font");
+    if (fontVisibility === null) {
+      mint_localStore("mint_settingTheme-Font", 1);
+      mint_toggleTheme_Font(1);
+    } else {
+      mint_toggleTheme_Font(fontVisibility);
+    }
+
       layoutEntirePage();
       // Now we reorder the list items based on data-code attribute.
       function orderAndUpdateStatusList() {
@@ -1335,46 +1371,14 @@ font-size: 14px;
                       <i class="glyphicon-adjust glyphicon"></i> Mint <span class="caret"></span>
                   </a>
                   <ul class="dropdown-menu minty" role="menu">
-                      <li id="mint_toggle-time"><a href="#"><i class="glyphicon-time glyphicon"></i> Toggle Time &nbsp; &nbsp; &nbsp;<i id="mint_toggleTime-result" class="glyphicon-eye-open glyphicon"></i></a></li>
-                      <li id="mint_toggle-theme"><a href="#"><i class="glyphicon-tint glyphicon"></i> Toggle Theme &ensp;<i id="mint_toggleTheme-result" class="glyphicon-eye-close glyphicon"></i></a></li>
-                      <li id="mint_toggle-bionic"><a href="#"><i class="glyphicon-text-size glyphicon"></i> Toggle Bionic Text &ensp;<i id="mint_toggleBionic-result" class="glyphicon-eye-close glyphicon"></i></a></li>
-                      <li><a href="privlog.srv" target="_blank"><i class="glyphicon-sunglasses glyphicon"></i> Watch List</a></li>
+                      <li id="mint_toggle-time"><a href="#"><i class="glyphicon-time glyphicon"></i> Settings Moved</a></li>
+                      <li><a href="privlog.srv" target="_blank"><i class="glyphicon-sunglasses glyphicon"></i> To Config</a></li>
                   </ul>`;
           GM_addStyle(
             `.minty {color: #898f83 !important;} .minty:hover {color: #a7b897 !important;} .minty a {color: #98eb96 !important;} .minty a:hover {color: #333 !important;}`
           );
           navBar.appendChild(mintMenu);
   
-          // Check local storage for user's current settings
-          const clockVisibility = mint_localLoad("mint_clock-hide");
-          mint_clockHide(clockVisibility);
-          const themeVisibility = mint_localLoad("mint_theme");
-          mint_applyTheme(themeVisibility);
-  
-          // Add click event listener to "Toggle Time" menu item
-          const toggleTimeBtn = document.getElementById("mint_toggle-time");
-          if (toggleTimeBtn) {
-            toggleTimeBtn.addEventListener("click", function () {
-              // Get the current clock visibility setting from local storage
-              const currentVisibility = mint_localLoad("mint_clock-hide");
-  
-              // Toggle the clock visibility setting
-              const newVisibility = currentVisibility === 1 ? 0 : 1;
-              mint_clockHide(newVisibility);
-              location.reload();
-            });
-          }
-          const toggleThemeBtn = document.getElementById("mint_toggle-theme");
-          if (toggleThemeBtn) {
-            toggleThemeBtn.addEventListener("click", function () {
-              // Get the theme on/off state from local storage
-              const currentVisibility = mint_localLoad("mint_theme");
-              // Toggle the theme setting
-              const newVisibility = currentVisibility === 1 ? 0 : 1;
-              mint_applyTheme(newVisibility);
-              location.reload();
-            });
-          }
         }
       }
       // Settings WIP
