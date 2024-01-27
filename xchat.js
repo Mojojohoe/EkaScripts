@@ -7614,21 +7614,21 @@ function mint_processFilters(ule){
 
       switch (caseValue) {
         case 0:
-          if (behave1 === 1 || behave2 === 1 && !(caseValue === 2)) {
+          if ((behave1 === 1 || behave2 === 1) && !(caseValue === 2)) {
             ule.greyout = 'greyout';
           } else {
             ule.greyout = '';
           }
 
-          if ((behave1 === 2 || behave2 === 2) && oldUle.length === 0 && !caseValue === 2) {
+          if ((behave1 === 2 || behave2 === 2) && oldUle.length === 0 && !(caseValue === 2)) {
             ule.flash = 'mini-highlight';
           }
 
-          if ((behave1 === 3 || behave2 === 3) && !ule.highlighted && !caseValue === 2) {
+          if ((behave1 === 3 || behave2 === 3) && !ule.highlighted && !(caseValue === 2)) {
             ule.highlighted = true;
           }
 
-          if ((behave1 === 4 || behave2 === 4) && !ule.ignored && !caseValue === 2) {
+          if ((behave1 === 4 || behave2 === 4) && !ule.ignored && !(caseValue === 2)) {
             ule.ignored = true;
           }
           break;
