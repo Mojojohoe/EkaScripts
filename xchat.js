@@ -7614,7 +7614,7 @@ function mint_processFilters(ule){
 
       switch (caseValue) {
         case 0:
-          if ((behave1 === 1 || behave2 === 1 && !caseValue === 2)) {
+          if (behave1 === 1 || behave2 === 1 && !(caseValue === 2)) {
             ule.greyout = 'greyout';
           } else {
             ule.greyout = '';
