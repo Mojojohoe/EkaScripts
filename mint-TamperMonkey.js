@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.1.36
+// @version      0.1.37
 // @description  mods in new things
 // @author       Jobix
 // @match        https://rp.aryion.com/*
@@ -464,7 +464,7 @@ document.head.appendChild(pickerSupport);
             document.getElementById("mint_toggleTime").checked = true;
           } else {
             mint_toggleTheme_Time(clockVisibility);
-            document.getElementById("mint_toggleTime").checked = clockVisibility === 1;
+            document.getElementById("mint_toggleTime").checked = false;
           }
           
           
@@ -474,7 +474,7 @@ document.head.appendChild(pickerSupport);
             mint_toggleTheme_Chat(1);
           } else {
             mint_toggleTheme_Chat(themeVisibility);
-            document.getElementById("mint_toggleChat").checked = themeVisibility === 1;
+            document.getElementById("mint_toggleChat").checked = false;
           }
           
           
@@ -484,7 +484,7 @@ document.head.appendChild(pickerSupport);
             mint_toggleTheme_Statuses(1);
           } else {
             mint_toggleTheme_Statuses(statusVisibility);
-            document.getElementById("mint_toggleStatuses").checked = statusVisibility === 1
+            document.getElementById("mint_toggleStatuses").checked = false;
           }
           
           
@@ -494,7 +494,7 @@ document.head.appendChild(pickerSupport);
             mint_toggleTheme_Font(1);
           } else {
             mint_toggleTheme_Font(fontVisibility);
-            document.getElementById("mint_toggleFont").checked = fontVisibility === 1;
+            document.getElementById("mint_toggleFont").checked = false;
           }
 
 
