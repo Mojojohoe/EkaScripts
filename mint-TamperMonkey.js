@@ -345,377 +345,6 @@ window.onload = function(){
       });
     
       
-      if (clockVisibility === null || clockVisibility === 1) {
-        mint_localStore("mint_settingTheme-Time", 1);
-        mint_toggleTheme_Time(1);
-        document.getElementById("mint_toggleTime").checked = true;
-      } else {
-        mint_toggleTheme_Time(clockVisibility);
-        document.getElementById("mint_toggleTime").checked = false;
-      }
-      
-      
-      if (themeVisibility === null || themeVisibility === 1) {
-        mint_localStore("mint_settingTheme-Chat", 1);
-        document.getElementById("mint_toggleChat").checked = true;
-        mint_toggleTheme_Chat(1);
-      } else {
-        mint_toggleTheme_Chat(themeVisibility);
-        document.getElementById("mint_toggleChat").checked = false;
-      }
-      
-      
-      if (statusVisibility === null || statusVisibility === 1) {
-        mint_localStore("mint_settingTheme-Statuses", 1);
-        document.getElementById("mint_toggleStatuses").checked = true;
-        mint_toggleTheme_Statuses(1);
-      } else {
-        mint_toggleTheme_Statuses(statusVisibility);
-        document.getElementById("mint_toggleStatuses").checked = false;
-      }
-      
-      
-      if (fontVisibility === null || fontVisibility === 1) {
-        mint_localStore("mint_settingTheme-Font", 1);
-        document.getElementById("mint_toggleFont").checked = true;
-        mint_toggleTheme_Font(1);
-      } else {
-        mint_toggleTheme_Font(fontVisibility);
-        document.getElementById("mint_toggleFont").checked = false;
-      }
-    
-      var styleToggleTime;
-
-      function mint_toggleTheme_Time(n) {
-          if (!styleToggleTime && n === 1 || (styleToggleTime && n === 1)) {
-              styleToggleTime = GM_addStyle(`.chatmsg time {display: none;} .chatmsg {margin : 2px 0px 2px 6px;}`)
-mint_localStore("mint_settingTheme-Time", 1)
-          } else if (!styleToggleTime) {
-            mint_localStore("mint_settingTheme-Time", 0)
-          } else {
-              styleToggleTime.parentNode.removeChild(styleToggleTime);
-              styleToggleTime = false;
-              mint_localStore("mint_settingTheme-Time", 0)
-          }
-      }
-
-      var styleToggleFont;
-
-      function mint_toggleTheme_Font(n) {
-          if (!styleToggleFont && n === 1 || (styleToggleFont && n === 1)) {
-              styleToggleFont = GM_addStyle(`
-      @import url('https://fonts.googleapis.com/css2?family=Sintony:wght@400;700&display=swap');
-      body{
-        overflow: hidden;
-      }
-      #chat-pane,#ulist-pane  {
-        font-family: "Sintony", sans-serif !important;
-        font-weight: 300;
-        font-style: normal;
-      }
-      time{
-      font-family: Verdana, Arial, sans-serif !important;
-      }`)
-              mint_localStore("mint_settingTheme-Font", 1)
-          } else if (!styleToggleTime) {
-            mint_localStore("mint_settingTheme-Font", 0)
-          } else {
-              styleToggleFont.parentNode.removeChild(styleToggleFont);
-              styleToggleFont = false;
-              mint_localStore("mint_settingTheme-Font", 0)
-          }
-          
-      }
-
-      var styleToggleTheme;
-
-      function mint_toggleTheme_Chat(n) {
-          if (!styleToggleTheme && n === 1 || (styleToggleTheme && n === 1)) {
-              styleToggleTheme = GM_addStyle(`
-@import url("https://mojojohoe.github.io/EkaScripts/mint.css");     
-::-webkit-scrollbar {
-width: 10px;
-}
-::-webkit-scrollbar-thumb {
-background-color: #4a4a4a;
-border-radius: 5px;
-}
-::-webkit-scrollbar {
-width: 8px;
-}
-::-webkit-scrollbar-thumb {
-background-color: #4a4a4a;
-border-radius: 4px;
-}
-#main-page #ulist-pane {
-width:200px !important;
-}
-#ulist-itself > tbody > tr{
-display:flex;
-}
-#tabs-pane:has(li:only-of-type){
-  display:none;
-  height:0px !important;
-}
-.ignore{
-margin-left:3px;
-}
-.eyecon{
-width:50px;
-height:25px;
-object-fit: contain;
-}
-p.chatmsg:not(:has(img)){
-  line-height:1.45 !important;
-}
-p.chatmsg:not(:has(img)) > .name, p.chatmsg:not(:has(img)) > .body > .name {
-  position: relative;
-  margin-left: 54px;
-}
-p.chatmsg > .default {
-  display: inline-block;
-  left: 12px;
-  top: 2px;
-  position: absolute;
-  width: 25px;
-  height: 21px;
-  background-color: inherit;
-  border-radius: 50%;
-  z-index: -1;
-}
-.sender-input-group .td, #textcolor-select-x {
-  border: 1px solid #2b2828 !important;
-  }
-#main-sender-body {
-  border: none;
-  outline: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  resize: auto;
-}
-.nav-tabs {
-  border-bottom: 1px solid #2b2828 !important;
-}
-.nav-tabs > li.active > a {
-border: 1px solid #2b2828 !important;
-border-bottom: none !important;
-}
-#ulist-itself a[href^="../../profile/"] {
-display:none !important;
-}
-#chat-pane > span.pmclick > span.name, .chatmsg.private{
-font-size:16px;
-}
-#ulist-itself .highlight {
-  font-size: inherit !important;
-  cursor: pointer;
-  text-decoration: none;
-  visibility: hidden;
-  position: relative;
-  display: inline-block;
-  width: 0px !important;
-  left: 4px;
-  z-index: 3;
-}
-tr[data-cid]:hover > td > .icon, tr[data-cid]:hover > td:after{
-opacity: 0.2;
-}
-tr.highlighted > td > .icon,tr.highlighted > td:after{
-opacity: 0.4;
-}
-tr[data-cid]{
-max-width:200px;
-}
-tr[data-cid]:hover > td > .pmclick,tr.ignored > td > .pmclick{
-display: flex;
-width: 150px;
-}
-tr[data-cid]:hover > td > .pmclick > span, tr.ignored  td > .pmclick > span{
-text-overflow: ellipsis;
-overflow: hidden;
-white-space: nowrap;
-}
-tr[data-cid]:hover > td {
-background-color:rgba(57, 49, 66, 0.2);
-}
-tr.highlighted{
-background-color:rgba(186, 129, 54, 0.2);
-}
-tr.ignored{
-background-color:rgba(255, 10, 35, 0.2);
-}
-#hover-box{
-  height: 100%;
-  width: 100%;
-  left: 0;
-  }
-[title="Jobix"] > span.name > span{
-display:inline-block;
-}
-[title="Jobix"] > span.name > span::first-letter{
-color:#67bbe0 !important;
-}
-`);
-              mint_localStore("mint_settingTheme-Chat", 1)
-          } else if (!styleToggleTime) {
-            mint_localStore("mint_settingTheme-Chat", 0)
-          } else {
-              styleToggleTheme.parentNode.removeChild(styleToggleTheme);
-              styleToggleTheme = false;
-              mint_localStore("mint_settingTheme-Chat", 0)
-          }
-      }
-
-      var styleToggleStatuses;
-
-      function mint_toggleTheme_Statuses(n) {
-        if (!styleToggleStatuses || n === 1 || (styleToggleStatuses && n === 1)) {
-          styleToggleStatuses = GM_addStyle(`
-#chat-pane .chatmsg.private .pmclick .name:last-child:before {
-content:" ➔ " !important;
-opacity:0.5
-}
-#chat-pane .chatmsg.group .pmclick:after, #chat-pane .chatmsg.private .pmclick:after {
-  content: "";
-}
-#chat-pane .chatmsg.group .pmclick:before, #chat-pane .chatmsg.private .pmclick:before {
-  content: " ";
-}
-.icon[title=""],i.icon{
-position: relative;
-top:-2px;
-left:-4px;
-width: 18px;
-height: 18px;
-font-size: 14px;
-overflow: hidden;
-background-image: none !important;
-font-style: normal !important;
-}
-.tab-pane .info > .icon{
-  top: -4px !important;
-  left: -2px !important;
-}
-.tab-pane .pmclick {
-  display: inline-block;
-  margin-left: 5px;
-}
-.info > .icon {
-top:-1px;
-left:-3px;
-}
-.icon[title=""]:before,i.icon:before,
-.icon[title=""]:after,i.icon:after{
-position: absolute;
-top: 0;
-width: 55%;
-height: 100%;
-overflow: hidden;
-font-size: inherit;
-opacity: 1;
-}
-
-.icon.status-online:before {
-width: 100%;
-content: "🟢";
-}
-.icon.status-away:before {
-width: 100%;
-content: "🟡";
-}
-.icon.status-distracted:before {
-width: 100%;
-content: "🟠";
-}
-.icon.status-dnd:before {
-width: 100%;
-content: "🔴";
-}
-.icon.status-pred:before {
-content: "🔵";
-}
-.icon.status-prey:before {
-content: "🔵";
-}
-.icon.status-lfrp:before {
-content: "🔵";
-}
-.icon.status-open:before {
-content: "🔵";
-}
-.icon.status-pred:after {
-content: "🐯";
-  left: 55%;
-transform: scale(-1, 1);
-}
-.icon.status-prey:after {
-content: "🐁";
-  left: 55%;
-transform: scale(-1, 1);
-}
-.icon.status-lfrp:after {
-content: "📩";
-  left: 55%;
-transform: scale(-1, 1);
-}
-.icon.status-open:after {
-content: "🌐";
-  left: 55%;
-transform: scale(-1, 1);
-}
-.icon.status-gm:before, .icon.status-long:before {
-content: "🌐";
-}
-.icon.status-gm:after {
-content: "⛔";
-left: 55%;
-transform: scale(-1, 1);
-}
-.icon.status-long:after {
-content: "🔓";
-left: 55%;
-transform: scale(-1, 1);
-}
-.icon.status-ooc:before,.icon.status-ic:before {
-left:-1.5px;
-content: "○";
-color:#fff !important;
-font-size: 34px;
-line-height:14px;
-width:60%;
-}
-.icon.status-ooc:after,.icon.status-ic:after {
-content: "👤";
-  left: 55%;
-transform: scale(-1, 1) ;
-filter: invert(1) brightness(2);
-}
-.icon.status-ic:before,.icon.status-ic:after {
-width:100%;
-}
-.icon.status-ic:after {
-left:0;
-}
-td:has(>.highlight:only-child):after {
-width: 100%;
-content: "🟢";
-position: relative;
-width: 18px;
-height: 18px;
-font-size: 14px;
-}
-`);
-          mint_localStore("mint_settingTheme-Statuses", 1)
-      } else if (!styleToggleTime) {
-        mint_localStore("mint_settingTheme-Statuses", 0)
-      } else {
-          styleToggleStatuses.parentNode.removeChild(styleToggleStatuses);
-          styleToggleStatuses = false;
-          mint_localStore("mint_settingTheme-Statuses", 0)
-      }
-      
-    }
       var mint_filters = []
     
       var templateEntry = document.querySelector('.template');
@@ -1160,6 +789,375 @@ if (
     }
       function mint_configLoadedChat(){  
     
+        if (clockVisibility === null || clockVisibility === 1) {
+            mint_localStore("mint_settingTheme-Time", 1);
+            mint_toggleTheme_Time(1);
+            document.getElementById("mint_toggleTime").checked = true;
+          } else {
+            mint_toggleTheme_Time(clockVisibility);
+            document.getElementById("mint_toggleTime").checked = false;
+          }
+          
+          
+          if (themeVisibility === null || themeVisibility === 1) {
+            mint_localStore("mint_settingTheme-Chat", 1);
+            document.getElementById("mint_toggleChat").checked = true;
+            mint_toggleTheme_Chat(1);
+          } else {
+            mint_toggleTheme_Chat(themeVisibility);
+            document.getElementById("mint_toggleChat").checked = false;
+          }
+          
+          
+          if (statusVisibility === null || statusVisibility === 1) {
+            mint_localStore("mint_settingTheme-Statuses", 1);
+            document.getElementById("mint_toggleStatuses").checked = true;
+            mint_toggleTheme_Statuses(1);
+          } else {
+            mint_toggleTheme_Statuses(statusVisibility);
+            document.getElementById("mint_toggleStatuses").checked = false;
+          }
+          
+          
+          if (fontVisibility === null || fontVisibility === 1) {
+            mint_localStore("mint_settingTheme-Font", 1);
+            document.getElementById("mint_toggleFont").checked = true;
+            mint_toggleTheme_Font(1);
+          } else {
+            mint_toggleTheme_Font(fontVisibility);
+            document.getElementById("mint_toggleFont").checked = false;
+          }
+        
+          var styleToggleTime;
+    
+          function mint_toggleTheme_Time(n) {
+              if (!styleToggleTime && n === 1 || (styleToggleTime && n === 1)) {
+                  styleToggleTime = GM_addStyle(`.chatmsg time {display: none;} .chatmsg {margin : 2px 0px 2px 6px;}`)
+    mint_localStore("mint_settingTheme-Time", 1)
+              } else if (!styleToggleTime) {
+                mint_localStore("mint_settingTheme-Time", 0)
+              } else {
+                  styleToggleTime.parentNode.removeChild(styleToggleTime);
+                  styleToggleTime = false;
+                  mint_localStore("mint_settingTheme-Time", 0)
+              }
+          }
+    
+          var styleToggleFont;
+    
+          function mint_toggleTheme_Font(n) {
+              if (!styleToggleFont && n === 1 || (styleToggleFont && n === 1)) {
+                  styleToggleFont = GM_addStyle(`
+          @import url('https://fonts.googleapis.com/css2?family=Sintony:wght@400;700&display=swap');
+          #chat-pane,#ulist-pane  {
+            font-family: "Sintony", sans-serif !important;
+            font-weight: 300;
+            font-style: normal;
+          }
+          time{
+          font-family: Verdana, Arial, sans-serif !important;
+          }`)
+                  mint_localStore("mint_settingTheme-Font", 1)
+              } else if (!styleToggleTime) {
+                mint_localStore("mint_settingTheme-Font", 0)
+              } else {
+                  styleToggleFont.parentNode.removeChild(styleToggleFont);
+                  styleToggleFont = false;
+                  mint_localStore("mint_settingTheme-Font", 0)
+              }
+              
+          }
+    
+          var styleToggleTheme;
+    
+          function mint_toggleTheme_Chat(n) {
+              if (!styleToggleTheme && n === 1 || (styleToggleTheme && n === 1)) {
+                  styleToggleTheme = GM_addStyle(`
+    @import url("https://mojojohoe.github.io/EkaScripts/mint.css");     
+    ::-webkit-scrollbar {
+    width: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+    background-color: #4a4a4a;
+    border-radius: 5px;
+    }
+    ::-webkit-scrollbar {
+    width: 8px;
+    }
+    ::-webkit-scrollbar-thumb {
+    background-color: #4a4a4a;
+    border-radius: 4px;
+    }
+    #main-page #ulist-pane {
+    width:200px !important;
+    }
+    #ulist-itself > tbody > tr{
+    display:flex;
+    }
+    #tabs-pane:has(li:only-of-type){
+      display:none;
+      height:0px !important;
+    }
+    .ignore{
+    margin-left:3px;
+    }
+    .eyecon{
+    width:50px;
+    height:25px;
+    object-fit: contain;
+    }
+    p.chatmsg:not(:has(img)){
+      line-height:1.45 !important;
+    }
+    p.chatmsg:not(:has(img)) > .name, p.chatmsg:not(:has(img)) > .body > .name {
+      position: relative;
+      margin-left: 54px;
+    }
+    p.chatmsg > .default {
+      display: inline-block;
+      left: 12px;
+      top: 2px;
+      position: absolute;
+      width: 25px;
+      height: 21px;
+      background-color: inherit;
+      border-radius: 50%;
+      z-index: -1;
+    }
+    .sender-input-group .td, #textcolor-select-x {
+      border: 1px solid #2b2828 !important;
+      }
+    #main-sender-body {
+      border: none;
+      outline: none;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+      resize: auto;
+    }
+    .nav-tabs {
+      border-bottom: 1px solid #2b2828 !important;
+    }
+    .nav-tabs > li.active > a {
+    border: 1px solid #2b2828 !important;
+    border-bottom: none !important;
+    }
+    #ulist-itself a[href^="../../profile/"] {
+    display:none !important;
+    }
+    #chat-pane > span.pmclick > span.name, .chatmsg.private{
+    font-size:16px;
+    }
+    #ulist-itself .highlight {
+      font-size: inherit !important;
+      cursor: pointer;
+      text-decoration: none;
+      visibility: hidden;
+      position: relative;
+      display: inline-block;
+      width: 0px !important;
+      left: 4px;
+      z-index: 3;
+    }
+    tr[data-cid]:hover > td > .icon, tr[data-cid]:hover > td:after{
+    opacity: 0.2;
+    }
+    tr.highlighted > td > .icon,tr.highlighted > td:after{
+    opacity: 0.4;
+    }
+    tr[data-cid]{
+    max-width:200px;
+    }
+    tr[data-cid]:hover > td > .pmclick,tr.ignored > td > .pmclick{
+    display: flex;
+    width: 150px;
+    }
+    tr[data-cid]:hover > td > .pmclick > span, tr.ignored  td > .pmclick > span{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    }
+    tr[data-cid]:hover > td {
+    background-color:rgba(57, 49, 66, 0.2);
+    }
+    tr.highlighted{
+    background-color:rgba(186, 129, 54, 0.2);
+    }
+    tr.ignored{
+    background-color:rgba(255, 10, 35, 0.2);
+    }
+    #hover-box{
+      height: 100%;
+      width: 100%;
+      left: 0;
+      }
+    [title="Jobix"] > span.name > span{
+    display:inline-block;
+    }
+    [title="Jobix"] > span.name > span::first-letter{
+    color:#67bbe0 !important;
+    }
+    `);
+                  mint_localStore("mint_settingTheme-Chat", 1)
+              } else if (!styleToggleTime) {
+                mint_localStore("mint_settingTheme-Chat", 0)
+              } else {
+                  styleToggleTheme.parentNode.removeChild(styleToggleTheme);
+                  styleToggleTheme = false;
+                  mint_localStore("mint_settingTheme-Chat", 0)
+              }
+          }
+    
+          var styleToggleStatuses;
+    
+          function mint_toggleTheme_Statuses(n) {
+            if (!styleToggleStatuses || n === 1 || (styleToggleStatuses && n === 1)) {
+              styleToggleStatuses = GM_addStyle(`
+    #chat-pane .chatmsg.private .pmclick .name:last-child:before {
+    content:" ➔ " !important;
+    opacity:0.5
+    }
+    #chat-pane .chatmsg.group .pmclick:after, #chat-pane .chatmsg.private .pmclick:after {
+      content: "";
+    }
+    #chat-pane .chatmsg.group .pmclick:before, #chat-pane .chatmsg.private .pmclick:before {
+      content: " ";
+    }
+    .icon[title=""],i.icon{
+    position: relative;
+    top:-2px;
+    left:-4px;
+    width: 18px;
+    height: 18px;
+    font-size: 14px;
+    overflow: hidden;
+    background-image: none !important;
+    font-style: normal !important;
+    }
+    .tab-pane .info > .icon{
+      top: -4px !important;
+      left: -2px !important;
+    }
+    .tab-pane .pmclick {
+      display: inline-block;
+      margin-left: 5px;
+    }
+    .info > .icon {
+    top:-1px;
+    left:-3px;
+    }
+    .icon[title=""]:before,i.icon:before,
+    .icon[title=""]:after,i.icon:after{
+    position: absolute;
+    top: 0;
+    width: 55%;
+    height: 100%;
+    overflow: hidden;
+    font-size: inherit;
+    opacity: 1;
+    }
+    
+    .icon.status-online:before {
+    width: 100%;
+    content: "🟢";
+    }
+    .icon.status-away:before {
+    width: 100%;
+    content: "🟡";
+    }
+    .icon.status-distracted:before {
+    width: 100%;
+    content: "🟠";
+    }
+    .icon.status-dnd:before {
+    width: 100%;
+    content: "🔴";
+    }
+    .icon.status-pred:before {
+    content: "🔵";
+    }
+    .icon.status-prey:before {
+    content: "🔵";
+    }
+    .icon.status-lfrp:before {
+    content: "🔵";
+    }
+    .icon.status-open:before {
+    content: "🔵";
+    }
+    .icon.status-pred:after {
+    content: "🐯";
+      left: 55%;
+    transform: scale(-1, 1);
+    }
+    .icon.status-prey:after {
+    content: "🐁";
+      left: 55%;
+    transform: scale(-1, 1);
+    }
+    .icon.status-lfrp:after {
+    content: "📩";
+      left: 55%;
+    transform: scale(-1, 1);
+    }
+    .icon.status-open:after {
+    content: "🌐";
+      left: 55%;
+    transform: scale(-1, 1);
+    }
+    .icon.status-gm:before, .icon.status-long:before {
+    content: "🌐";
+    }
+    .icon.status-gm:after {
+    content: "⛔";
+    left: 55%;
+    transform: scale(-1, 1);
+    }
+    .icon.status-long:after {
+    content: "🔓";
+    left: 55%;
+    transform: scale(-1, 1);
+    }
+    .icon.status-ooc:before,.icon.status-ic:before {
+    left:-1.5px;
+    content: "○";
+    color:#fff !important;
+    font-size: 34px;
+    line-height:14px;
+    width:60%;
+    }
+    .icon.status-ooc:after,.icon.status-ic:after {
+    content: "👤";
+      left: 55%;
+    transform: scale(-1, 1) ;
+    filter: invert(1) brightness(2);
+    }
+    .icon.status-ic:before,.icon.status-ic:after {
+    width:100%;
+    }
+    .icon.status-ic:after {
+    left:0;
+    }
+    td:has(>.highlight:only-child):after {
+    width: 100%;
+    content: "🟢";
+    position: relative;
+    width: 18px;
+    height: 18px;
+    font-size: 14px;
+    }
+    `);
+              mint_localStore("mint_settingTheme-Statuses", 1)
+          } else if (!styleToggleTime) {
+            mint_localStore("mint_settingTheme-Statuses", 0)
+          } else {
+              styleToggleStatuses.parentNode.removeChild(styleToggleStatuses);
+              styleToggleStatuses = false;
+              mint_localStore("mint_settingTheme-Statuses", 0)
+          }
+          
+        }
+
         mint_createMenu();
         
         $(document).on('click', '.reply', function(event) {
@@ -1419,7 +1417,8 @@ if (
           var allInputGroups = document.getElementsByClassName("input-group");
           console.log(allInputGroups)
           for (var i = 0; i < allInputGroups.length; i++) {
-              var editList = currentElement.closest('ul');
+    var currentElement = allInputGroups[i];
+    var editList = currentElement.closest('ul');
               console.log(editList)  
               allInputGroups[i].id = "charDiv_" + i;
               const mint_sendToBin = document.createElement('li');
