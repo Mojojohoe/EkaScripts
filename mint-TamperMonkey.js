@@ -1374,8 +1374,7 @@ if (
           var allInputGroups = document.getElementsByClassName("input-group");
           for (var i = 0; i < allInputGroups.length; i++) {
     var currentElement = allInputGroups[i];
-    var editList = currentElement.querySelector('ul');
-              console.log(editList)  
+    var editList = currentElement.querySelector('ul'); 
               allInputGroups[i].id = "charDiv_" + i;
               const mint_sendToBin = document.createElement('li');
               mint_sendToBin.innerHTML = `<a href="#" class="send-to-bin"><i class="glyphicon-trash glyphicon"></i> Send to Bin</a>`;
@@ -1414,6 +1413,7 @@ if (
           document.addEventListener('click', function(event) {
               var clickedElement = event.target;
               var idREF = parseInt(clickedElement.id.split('_')[1]);
+              console.log(clickedElement.id);
               if (clickedElement.classList.contains('remove-from-bin')) {
                   clickedElement.style.display("none");
                   document.getElementById("charBinAdd_" + idREF).style.display("list-item");
