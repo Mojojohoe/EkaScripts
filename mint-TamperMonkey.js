@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.1.38
+// @version      0.1.39
 // @description  mods in new things
 // @author       Jobix
 // @match        https://rp.aryion.com/*
@@ -951,9 +951,11 @@ document.head.appendChild(pickerSupport);
       var styleToggleTime;
 
       function mint_toggleTheme_Time(n) {
-          if ( n === 1 ) {
+          if (!styleToggleTime && n === 1 || (styleToggleTime && n === 1)) {
               styleToggleTime = GM_addStyle(`.chatmsg time {display: none;} .chatmsg {margin : 2px 0px 2px 6px;}`)
 mint_localStore("mint_settingTheme-Time", 1)
+          } else if (!styleToggleTime) {
+            mint_localStore("mint_settingTheme-Time", 0)
           } else {
               styleToggleTime.parentNode.removeChild(styleToggleTime);
               styleToggleTime = false;
@@ -964,7 +966,7 @@ mint_localStore("mint_settingTheme-Time", 1)
       var styleToggleFont;
 
       function mint_toggleTheme_Font(n) {
-          if (n === 1) {
+          if (!styleToggleFont && n === 1 || (styleToggleFont && n === 1)) {
               styleToggleFont = GM_addStyle(`
       @import url('https://fonts.googleapis.com/css2?family=Sintony:wght@400;700&display=swap');
       body{
@@ -979,6 +981,8 @@ mint_localStore("mint_settingTheme-Time", 1)
       font-family: Verdana, Arial, sans-serif !important;
       }`)
               mint_localStore("mint_settingTheme-Font", 1)
+          } else if (!styleToggleTime) {
+            mint_localStore("mint_settingTheme-Font", 0)
           } else {
               styleToggleFont.parentNode.removeChild(styleToggleFont);
               styleToggleFont = false;
@@ -990,7 +994,7 @@ mint_localStore("mint_settingTheme-Time", 1)
       var styleToggleTheme;
 
       function mint_toggleTheme_Chat(n) {
-          if (n === 1) {
+          if (!styleToggleTheme && n === 1 || (styleToggleTheme && n === 1)) {
               styleToggleTheme = GM_addStyle(`
 @import url("https://mojojohoe.github.io/EkaScripts/mint.css");     
 ::-webkit-scrollbar {
@@ -1118,6 +1122,8 @@ color:#67bbe0 !important;
 }
 `);
               mint_localStore("mint_settingTheme-Chat", 1)
+          } else if (!styleToggleTime) {
+            mint_localStore("mint_settingTheme-Chat", 0)
           } else {
               styleToggleTheme.parentNode.removeChild(styleToggleTheme);
               styleToggleTheme = false;
@@ -1128,7 +1134,7 @@ color:#67bbe0 !important;
       var styleToggleStatuses;
 
       function mint_toggleTheme_Statuses(n) {
-        if (n === 1) {
+        if (!styleToggleStatuses || n === 1 || (styleToggleStatuses && n === 1)) {
           styleToggleStatuses = GM_addStyle(`
 #chat-pane .chatmsg.private .pmclick .name:last-child:before {
 content:" ➔ " !important;
@@ -1265,6 +1271,8 @@ font-size: 14px;
 }
 `);
           mint_localStore("mint_settingTheme-Statuses", 1)
+      } else if (!styleToggleTime) {
+        mint_localStore("mint_settingTheme-Statuses", 0)
       } else {
           styleToggleStatuses.parentNode.removeChild(styleToggleStatuses);
           styleToggleStatuses = false;
