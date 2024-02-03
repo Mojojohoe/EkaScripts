@@ -312,9 +312,7 @@ window.onload = function(){
     var fontVisibility = mint_localLoad("mint_settingTheme-Font");
     
       document.getElementById("mint_toggleTime").addEventListener("change", function() {
-        console.log("Visibility is currently " + clockVisibility);
         clockVisibility = clockVisibility === 1 ? 0 : 1;
-        console.log("And we're setting it to " + clockVisibility);
           mint_toggleTheme_Time(clockVisibility);
       });
     
@@ -921,8 +919,6 @@ font-size: 14px;
           mint_localStore('mint_filters', JSON.stringify(mint_filters));
       });
     
-    
-    
       // Function to initialize the filter box with stored filters
       function initializeFilterBox() {
           var filterBox = document.getElementById('filterBox');
@@ -1278,7 +1274,6 @@ font-size: 14px;
               }
           });
           
-      
           layoutEntirePage();
           };
 
