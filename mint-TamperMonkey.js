@@ -649,7 +649,12 @@ window.onload = function(){
     ) {
         mint_configLoadedAccount();
     }
-      
+    if (
+        window.location.href.endsWith("chat.srv") ||
+        window.location.href.endsWith("chat.srv#")
+    ) {
+        mint_configLoadedChat();
+    }
 }
 
 /*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
@@ -737,51 +742,6 @@ if (
               }
           });
       });
-
-        if (typeof onEnterPressedInTextarea === "function") {
-            var originalOnEnterPressedInTextarea = onEnterPressedInTextarea;
-            onEnterPressedInTextarea = function(event) {
-                if (event.key === "Enter") {
-                    // Get the text content of the textarea
-                    var inputValue = event.target.value;
-                    // Clear the local storage when Enter is pressed
-                    if (event.target.id === "main-sender-body") {
-                        mint_localStore("mint_chatInputBackupChat", "");
-                    } else {
-                        mint_localStore("mint_chatInputBackupHover", "");
-                    }
-                    // Clear mint_chatMsgTemp
-                    mint_chatMsgTemp = "";
-
-                    // Get the recent history storage number
-                    var msgBackupNumber =
-                        mint_localLoad("mint_chatBackupMsgNumber") || 0;
-
-                    // Increment the number and use it to store the message
-                    var newMsgNumber = (msgBackupNumber + 1) % 10;
-                    mint_localStore("mint_chatMsgBackup_" + newMsgNumber, inputValue);
-
-                    // Increment and save the msgBackupNumber
-                    mint_localStore("mint_chatBackupMsgNumber", newMsgNumber);
-                    if (!event.ctrlKey && event.which === 13) {
-                        event.target.value = event.target.value + ' \u200B';
-                        $(this.form).trigger("submit");
-                        event.preventDefault();
-                    }
-                }
-            };
-            $("#main-sender-form, #hoverbox-pane").off(
-                "keydown",
-                "textarea",
-                originalOnEnterPressedInTextarea
-            );
-            $("#main-sender-form, #hoverbox-pane").on(
-                "keydown",
-                "textarea",
-                onEnterPressedInTextarea
-            );
-        } 
-    
 
     }
       function mint_configLoadedChat(){  
