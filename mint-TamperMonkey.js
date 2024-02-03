@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.1.66
+// @version      0.1.67
 // @icon         https://rp.aryion.com/img/profile/184938_f0842d7490194c2b9574ba049f3dda06.png
 // @description  Alpha version "Melting-mint-choc" (mods in new things)
 // @author       Jobix
@@ -1430,26 +1430,30 @@ if (
         
         function handleRemoveFromBin(editLi) {
             var idREF = parseInt(editLi.id.split('_')[1]);
+            var characterElement = document.getElementById("charDiv_" + idREF);
+            var characterName = characterElement.getAttribute("value");
         
             editLi.querySelector('.remove-from-bin').style.display = "none";
             document.getElementById("charBinAdd_" + idREF).style.display = "list-item";
-            appendLoc.prepend(document.getElementById("charDiv_" + idREF));
+            appendLoc.prepend(characterElement);
         
             mint_binnedChars = mint_binnedChars.filter(name => name !== characterName);
             localStorage.setItem('mint_binnedChars', JSON.stringify(mint_binnedChars));
-            console.log(mint_binnedChars)
+            console.log(mint_binnedChars);
         }
         
         function handleSendToBin(editLi) {
             var idREF = parseInt(editLi.id.split('_')[1]);
+            var characterElement = document.getElementById("charDiv_" + idREF);
+            var characterName = characterElement.getAttribute("value");
         
             editLi.querySelector('.send-to-bin').style.display = "none";
             document.getElementById("charBinRemove_" + idREF).style.display = "list-item";
-            characterBin.appendChild(document.getElementById("charDiv_" + idREF));
+            characterBin.appendChild(characterElement);
         
             mint_binnedChars.push(characterName);
             localStorage.setItem('mint_binnedChars', JSON.stringify(mint_binnedChars));
-            console.log(mint_binnedChars)
+            console.log(mint_binnedChars);
         }
 
       }
