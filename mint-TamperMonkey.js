@@ -1356,7 +1356,7 @@ if (
           #characterBin[open]::before {
             content: "⮟";}`);
 
-            var mint_binnedChars = JSON.parse(localStorage.getItem('mint_binnedChars')) || []];
+            var mint_binnedChars = JSON.parse(localStorage.getItem('mint_binnedChars')) || [];
 
             console.log(mint_binnedChars)
 
