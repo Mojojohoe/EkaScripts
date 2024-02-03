@@ -1384,7 +1384,7 @@ if (
               const mint_sendToBin = document.createElement('li');
               mint_sendToBin.innerHTML = `<a href="#" class="send-to-bin"><i class="glyphicon-trash glyphicon"></i> Send to Bin</a>`;
               mint_sendToBin.id = "charBinAdd_" + i;
-              labelElement.parentNode.insertBefore(characterElement, appendLoc);
+              editList.appendChild(mint_sendToBin);
 
               const mint_removeFromBin = document.createElement('li');
               mint_removeFromBin.innerHTML = `<a href="#" class="remove-from-bin"><i class="glyphicon-export glyphicon"></i> Remove from Bin</a>`;
@@ -1403,6 +1403,7 @@ if (
                 var characterEle = button.closest('div');
                 var idREF = parseInt(characterEle.id.split('_')[1]);
                 var charBinAddId = document.getElementById("charBinAdd_" + idREF);
+
                 var charBinRemoveId = document.getElementById("charBinRemove_" + idREF);
                 charBinAddId.style.display = "none";
                 charBinRemoveId.style.display = "block";
@@ -1428,12 +1429,14 @@ if (
         function handleRemoveFromBin(editLi) {
             var idREF = parseInt(editLi.id.split('_')[1]);
             var characterElement = document.getElementById("charDiv_" + idREF);
-            var characterBtn = characterElement.querySelector('button')
+            var characterBtn = characterElement.querySelector('button');
             var characterName = characterBtn.getAttribute("value");
         
             editLi.querySelector('.remove-from-bin').style.display = "none";
             document.getElementById("charBinAdd_" + idREF).style.display = "list-item";
-            appendLoc.appendChild(characterElement);
+        
+            // Get the parent node of labelElement and insert characterElement after it
+            labelElement.parentNode.insertBefore(characterElement, appendLoc);
         
             mint_binnedChars = mint_binnedChars.filter(name => name !== characterName);
             localStorage.setItem('mint_binnedChars', JSON.stringify(mint_binnedChars));
