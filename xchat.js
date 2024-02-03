@@ -9178,10 +9178,32 @@ function attachEventHandlers() {
     onClickPmtargetForGroupchat
   );
 
-  /* Clicking on names in the userlist, or main chat pane. */
-  $("#ulist-pane").on("click", "[data-pmtarget]", onClickPmtarget);
 
-  $(".name.pmclick").on("click", "[data-pmtarget]", onClickPmtarget);
+  $(document).on("click", ".pmclick, [data-pmtarget]", function(event) {
+    var $this = $(this);
+
+    // Check if the clicked element is a child of '.info', '.icon', or '.reply'
+    if ($this.closest('.info, .icon, .reply').length > 0) {
+        return;
+    }
+
+    if ($this.hasClass("clicked")) {
+        $this.removeClass("clicked");
+        event.preventDefault();
+        const pmtargetValue = $this.attr("data-pmtarget");
+        window.open(`../../profile/${pmtargetValue}`, "_blank");
+    } else {
+        $this.addClass("clicked");
+        setTimeout(function() {
+            if ($this.hasClass("clicked")) {
+                $this.removeClass("clicked");
+                if ($this.attr("data-pmtarget")) {
+                    onClickPmtarget.call($this[0], event);
+                }
+            }
+        }, 200);
+    }
+});
 
   /* Context Menu right clicking on names */
   $.contextMenu({
