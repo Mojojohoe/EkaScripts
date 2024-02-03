@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.1.37
+// @version      0.1.38
 // @description  mods in new things
 // @author       Jobix
 // @match        https://rp.aryion.com/*
@@ -951,7 +951,7 @@ document.head.appendChild(pickerSupport);
       var styleToggleTime;
 
       function mint_toggleTheme_Time(n) {
-          if (!styleToggleTime || n === 1) {
+          if ( n === 1 ) {
               styleToggleTime = GM_addStyle(`.chatmsg time {display: none;} .chatmsg {margin : 2px 0px 2px 6px;}`)
 mint_localStore("mint_settingTheme-Time", 1)
           } else {
@@ -964,7 +964,7 @@ mint_localStore("mint_settingTheme-Time", 1)
       var styleToggleFont;
 
       function mint_toggleTheme_Font(n) {
-          if (!styleToggleFont || n === 1) {
+          if (n === 1) {
               styleToggleFont = GM_addStyle(`
       @import url('https://fonts.googleapis.com/css2?family=Sintony:wght@400;700&display=swap');
       body{
@@ -990,7 +990,7 @@ mint_localStore("mint_settingTheme-Time", 1)
       var styleToggleTheme;
 
       function mint_toggleTheme_Chat(n) {
-          if (!styleToggleTheme || n === 1) {
+          if (n === 1) {
               styleToggleTheme = GM_addStyle(`
 @import url("https://mojojohoe.github.io/EkaScripts/mint.css");     
 ::-webkit-scrollbar {
@@ -1128,7 +1128,7 @@ color:#67bbe0 !important;
       var styleToggleStatuses;
 
       function mint_toggleTheme_Statuses(n) {
-        if (!styleToggleStatuses || n === 1) {
+        if (n === 1) {
           styleToggleStatuses = GM_addStyle(`
 #chat-pane .chatmsg.private .pmclick .name:last-child:before {
 content:" ➔ " !important;
