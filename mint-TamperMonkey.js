@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.1.46
+// @version      0.1.47
 // @description  mods in new things
 // @author       Jobix
 // @match        https://rp.aryion.com/*
@@ -1012,12 +1012,15 @@ font-size: 14px;
               document.getElementById('mint_config-menu').style.display = 'none';
           }
       });
+      // Finished processing all the config menu data, now we check for page-specific behaviour. 
+      mint_configLoaded();
 }
 
 /*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
 ░ ║ If Chat
 \*╚════════════════════════════════════════════════════════════════════════════════════════════════*/
-  if (
+function mint_configLoaded(){  
+if (
       window.location.href.endsWith("chat.srv") ||
       window.location.href.endsWith("chat.srv#")
   ) {
@@ -1503,4 +1506,5 @@ font-size: 14px;
 
       }
   }
+}
 })();
