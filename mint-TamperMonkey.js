@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.1.79
+// @version      0.1.81
 // @icon         https://rp.aryion.com/img/profile/184938_f0842d7490194c2b9574ba049f3dda06.png
 // @description  Alpha version "Melting-mint-choc" (mods in new things)
 // @author       Jobix
@@ -1384,7 +1384,7 @@ if (
               const mint_sendToBin = document.createElement('li');
               mint_sendToBin.innerHTML = `<a href="#" class="send-to-bin"><i class="glyphicon-trash glyphicon"></i> Send to Bin</a>`;
               mint_sendToBin.id = "charBinAdd_" + i;
-              editList.appendChild(mint_sendToBin);
+              labelElement.parentNode.insertBefore(characterElement, appendLoc);
 
               const mint_removeFromBin = document.createElement('li');
               mint_removeFromBin.innerHTML = `<a href="#" class="remove-from-bin"><i class="glyphicon-export glyphicon"></i> Remove from Bin</a>`;
@@ -1403,7 +1403,6 @@ if (
                 var characterEle = button.closest('div');
                 var idREF = parseInt(characterEle.id.split('_')[1]);
                 var charBinAddId = document.getElementById("charBinAdd_" + idREF);
-                console.log(charBinAddId)
                 var charBinRemoveId = document.getElementById("charBinRemove_" + idREF);
                 charBinAddId.style.display = "none";
                 charBinRemoveId.style.display = "block";
