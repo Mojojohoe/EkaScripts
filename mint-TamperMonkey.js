@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.1.71
+// @version      0.1.72
 // @icon         https://rp.aryion.com/img/profile/184938_f0842d7490194c2b9574ba049f3dda06.png
 // @description  Alpha version "Melting-mint-choc" (mods in new things)
 // @author       Jobix
@@ -1356,7 +1356,7 @@ if (
           #characterBin[open]::before {
             content: "⮟";}`);
 
-            var mint_binnedChars = JSON.parse(localStorage.getItem('mint_binnedChars')) || [];
+            var mint_binnedChars = JSON.parse(localStorage.getItem('mint_binnedChars'));
 
             console.log(mint_binnedChars)
 
@@ -1404,11 +1404,13 @@ if (
                             characterBin.appendChild(button.closest('div'));
                         });
                     });
+                } else {
+                    mint_binnedChars = [];
                 }
             
           }
 
-          window.addEventListener('load', function() {
+          if (!Array.isArray(mint_binnedChars)) {
               mint_binnedChars.forEach(function(characterName) {
                   var buttons = document.querySelectorAll('button[value="' + characterName + '"]');
 
@@ -1417,7 +1419,7 @@ if (
                       characterBin.appendChild(button.closest('div'));
                   });
               });
-          });
+          };
           document.addEventListener('click', function(event) {
             var clickedElement = event.target;
             var editLi = clickedElement.closest('li');
