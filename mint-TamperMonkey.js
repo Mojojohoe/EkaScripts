@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.1.72
+// @version      0.1.73
 // @icon         https://rp.aryion.com/img/profile/184938_f0842d7490194c2b9574ba049f3dda06.png
 // @description  Alpha version "Melting-mint-choc" (mods in new things)
 // @author       Jobix
@@ -1434,7 +1434,8 @@ if (
         function handleRemoveFromBin(editLi) {
             var idREF = parseInt(editLi.id.split('_')[1]);
             var characterElement = document.getElementById("charDiv_" + idREF);
-            var characterName = characterElement.getAttribute("value");
+            var characterBtn = characterElement.querySelector('button')
+            var characterName = characterBtn.getAttribute("value");
         
             editLi.querySelector('.remove-from-bin').style.display = "none";
             document.getElementById("charBinAdd_" + idREF).style.display = "list-item";
@@ -1448,7 +1449,8 @@ if (
         function handleSendToBin(editLi) {
             var idREF = parseInt(editLi.id.split('_')[1]);
             var characterElement = document.getElementById("charDiv_" + idREF);
-            var characterName = characterElement.getAttribute("value");
+            var characterBtn = characterElement.querySelector('button')
+            var characterName = characterBtn.getAttribute("value");
         
             editLi.querySelector('.send-to-bin').style.display = "none";
             document.getElementById("charBinRemove_" + idREF).style.display = "list-item";
