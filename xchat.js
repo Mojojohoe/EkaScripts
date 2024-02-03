@@ -1,6 +1,6 @@
 /*! JChat - v1.0.0 - 2022-07-01 */
-var mint_version = "v0.1.33";
-/*╔═════════ Mint Injection - v0.1.33 - 2023-01-26 ════════════════════════════════════════════════*\
+var mint_version = "v0.1.51";
+/*╔═════════ Mint Injection - v0.1.51 - 2023-01-26 ════════════════════════════════════════════════*\
 ░ ║ This file is specifically used for the Mint Eta extension.
 ░ ║ It is a copy of the original with some modifications.
 ░ ║ (This is cleaner than force-redefining every function after it has executed at least once)
@@ -8065,10 +8065,32 @@ function formattingReplace($thing, letter) {
  * @param {Event} event Keydown Event
  */
 function onEnterPressedInTextarea(event) {
-  if (!event.ctrlKey && event.which === 13) {
-    $(this.form).trigger("submit");
-    event.preventDefault();
-  }
+  if (event.key === "Enter") {
+    // Get the text content of the textarea
+    var inputValue = event.target.value;
+    // Clear the local storage when Enter is pressed
+    if (event.target.id === "main-sender-body") {
+      localStorage.setItem("mint_chatInputBackupChat", "");
+
+    } else {
+      localStorage.setItem("mint_chatInputBackupHover", "");
+    }
+    // Clear mint_chatMsgTemp
+    mint_chatMsgTemp = "";
+
+    // Get the recent history storage number
+    var msgBackupNumber = JSON.parse(localStorage.getItem("mint_chatBackupMsgNumber")) || 0;
+    // Increment the number and use it to store the message
+    var newMsgNumber = (msgBackupNumber + 1) % 10;
+    localStorage.setItem("mint_chatMsgBackup_" + newMsgNumber, JSON.stringify(inputValue));
+    // Increment and save the msgBackupNumber
+    localStorage.setItem("mint_chatBackupMsgNumber", JSON.stringify(newMsgNumber));
+    if (!event.ctrlKey && event.which === 13) {
+        event.target.value = event.target.value + ' \u200B';
+        $(this.form).trigger("submit");
+        event.preventDefault();
+    }
+}
 }
 
 /**
