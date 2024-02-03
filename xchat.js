@@ -7394,7 +7394,7 @@ function renderChatMessage(msg) {
   msg.fromMe = msg.from.id === me.charId;
   msg.toMe = msg.to.id === me.charId;
   msg.classes = msg.classes || [];
-  /*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
+/*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
 ░ ║ Here we create template elements for the eyecon contextual menu (info)
 ░ ║ Mustache seems to explode if we try to inject html, so we're using match.
 \*╚════════════════════════════════════════════════════════════════════════════════════════════════*/
@@ -7425,9 +7425,9 @@ function renderChatMessage(msg) {
 ░ ║ This is how we can pass data across instances within the chat functionality.
 ░ ║ Knowing a user is using Mint is useful as users can decide whether to use a mint-rendered feature.
 \*╚════════════════════════════════════════════════════════════════════════════════════════════════*/
-  if (msg.body.includes("\u200B")) {
-    msg.infoClass = "mint";
-  }
+if (msg.body.endsWith("\u200B")) {
+  msg.infoClass = "mint";
+}
 /*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
 ░ ║ We add obscure characters to later replace for the status, reply, and delete contextuals.
 \*╚════════════════════════════════════════════════════════════════════════════════════════════════*/
@@ -8613,11 +8613,16 @@ function tempUserListThing() {
  
   ule.highlighted = ses.highlighted[ule.charId] ? true : false;
     ule.ignored = ses.ignored[ule.charId] ? true : false;
+    if (!ule.status || ule.status === "null" ) {
+      ule.status = "online";
+      }   
 
 	mint_processFilters(ule)  
+  
     var rendered = Mustache.render(template, ule);
     var $ule = $($.parseHTML(rendered)).data("ule", ule);
-	   
+	 
+  
   if (!ule.highlighted ) {
     $ule.removeClass("highlighted");
   } else {
