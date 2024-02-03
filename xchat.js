@@ -9088,9 +9088,7 @@ function attachEventHandlers() {
   });
 
   // Auto-hide favcolor the first time we start typing
-  $("#main-sender-body").on(
-    "input.favcolorbox",
-    debounce(function () {
+  $("#main-sender-body").on("input.favcolorbox",debounce(function () {
       $("#textcolor-select-x").collapse("hide");
       $(this).off("input.favcolorbox");
     }, 500)

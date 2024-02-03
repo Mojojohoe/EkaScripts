@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.1.35
+// @version      0.1.36
 // @description  mods in new things
 // @author       Jobix
 // @match        https://rp.aryion.com/*
@@ -436,6 +436,10 @@ document.head.appendChild(pickerSupport);
       overrideOnEnterPressedInTextarea();
 
       window.onload = function() {
+        const clockVisibility = mint_localLoad("mint_settingTheme-Time");
+        const themeVisibility = mint_localLoad("mint_settingTheme-Chat");
+        const statusVisibility = mint_localLoad("mint_settingTheme-Statuses");
+        const fontVisibility = mint_localLoad("mint_settingTheme-Font");
 
           document.getElementById("mint_toggleTime").addEventListener("change", function() {
               mint_toggleTheme_Time();
@@ -453,8 +457,8 @@ document.head.appendChild(pickerSupport);
               mint_toggleTheme_Statuses();
           });
 
-          const clockVisibility = mint_localLoad("mint_settingTheme-Time");
-          if (clockVisibility === null) {
+          
+          if (clockVisibility === null || clockVisibility === 1) {
             mint_localStore("mint_settingTheme-Time", 1);
             mint_toggleTheme_Time(1);
             document.getElementById("mint_toggleTime").checked = true;
@@ -463,8 +467,8 @@ document.head.appendChild(pickerSupport);
             document.getElementById("mint_toggleTime").checked = clockVisibility === 1;
           }
           
-          const themeVisibility = mint_localLoad("mint_settingTheme-Chat");
-          if (themeVisibility === null) {
+          
+          if (themeVisibility === null || themeVisibility === 1) {
             mint_localStore("mint_settingTheme-Chat", 1);
             document.getElementById("mint_toggleChat").checked = true;
             mint_toggleTheme_Chat(1);
@@ -473,8 +477,8 @@ document.head.appendChild(pickerSupport);
             document.getElementById("mint_toggleChat").checked = themeVisibility === 1;
           }
           
-          const statusVisibility = mint_localLoad("mint_settingTheme-Statuses");
-          if (statusVisibility === null) {
+          
+          if (statusVisibility === null || statusVisibility === 1) {
             mint_localStore("mint_settingTheme-Statuses", 1);
             document.getElementById("mint_toggleStatuses").checked = true;
             mint_toggleTheme_Statuses(1);
@@ -483,8 +487,8 @@ document.head.appendChild(pickerSupport);
             document.getElementById("mint_toggleStatuses").checked = statusVisibility === 1
           }
           
-          const fontVisibility = mint_localLoad("mint_settingTheme-Font");
-          if (fontVisibility === null) {
+          
+          if (fontVisibility === null || fontVisibility === 1) {
             mint_localStore("mint_settingTheme-Font", 1);
             document.getElementById("mint_toggleFont").checked = true;
             mint_toggleTheme_Font(1);
