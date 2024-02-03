@@ -18,7 +18,19 @@
 /*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
 ░ ║ If Anywhere 
 \*╚════════════════════════════════════════════════════════════════════════════════════════════════*/
-  GM_addStyle(`
+      // Function to store settings in local storage
+      function mint_localStore(key, value) {
+        localStorage.setItem(key, JSON.stringify(value));
+    }
+
+    // Function to load settings from local storage
+    function mint_localLoad(key) {
+        const value = localStorage.getItem(key);
+        return value ? JSON.parse(value) : null;
+    }
+    
+
+GM_addStyle(`
     #mint_config-menu {
 background-color: #222222;
 color: #9bdec0;
@@ -1277,17 +1289,6 @@ font-size: 14px;
           layoutEntirePage();
           };
 
-      // Function to store settings in local storage
-      function mint_localStore(key, value) {
-          localStorage.setItem(key, JSON.stringify(value));
-      }
-
-      // Function to load settings from local storage
-      function mint_localLoad(key) {
-          const value = localStorage.getItem(key);
-          return value ? JSON.parse(value) : null;
-      }
-      
       // Now we reorder the list items based on data-code attribute.
       function orderAndUpdateStatusList() {
           const statusList = document.getElementById("status-list");
