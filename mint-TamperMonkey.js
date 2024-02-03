@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.1.52
+// @version      0.1.53
 // @icon         https://rp.aryion.com/img/profile/184938_f0842d7490194c2b9574ba049f3dda06.png
 // @description  Alpha version "Melting-mint-choc" (mods in new things)
 // @author       Jobix
@@ -30,6 +30,10 @@
         return value ? JSON.parse(value) : null;
     }
     
+    var clockVisibility = mint_localLoad("mint_settingTheme-Time");
+    var themeVisibility = mint_localLoad("mint_settingTheme-Chat");
+    var statusVisibility = mint_localLoad("mint_settingTheme-Statuses");
+    var fontVisibility = mint_localLoad("mint_settingTheme-Font");
 
 GM_addStyle(`
     #mint_config-menu {
@@ -319,10 +323,6 @@ document.head.appendChild(pickerSupport);
 ░ ║ Load the config menu components after page load
 \*╚------------------------------------------------------------------------------------------------*/
 window.onload = function(){
-    var clockVisibility = mint_localLoad("mint_settingTheme-Time");
-    var themeVisibility = mint_localLoad("mint_settingTheme-Chat");
-    var statusVisibility = mint_localLoad("mint_settingTheme-Statuses");
-    var fontVisibility = mint_localLoad("mint_settingTheme-Font");
     
       document.getElementById("mint_toggleTime").addEventListener("change", function() {
         clockVisibility = clockVisibility === 1 ? 0 : 1;
@@ -664,9 +664,9 @@ if (
       window.location.href.endsWith("chat.srv") ||
       window.location.href.endsWith("chat.srv#")
   ) {
-/*╔════════════════════════════════════════════════════════════════════════════════════════════════*\
+/*╔------------------------------------------------------------------------------------------------*\
 ░ ║ Wait for original xchat.js to be loaded in, then replace it with the mint version.
-\*╚════════════════════════════════════════════════════════════════════════════════════════════════*/
+\*╚------------------------------------------------------------------------------------------------*/
       new MutationObserver(async (mutations, observer) => {
           for (const mutation of mutations) {
               for (const addedNode of mutation.addedNodes) {
