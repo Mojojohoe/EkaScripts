@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.1.40
+// @version      0.1.41
 // @description  mods in new things
 // @author       Jobix
 // @match        https://rp.aryion.com/*
@@ -442,7 +442,9 @@ document.head.appendChild(pickerSupport);
         const fontVisibility = mint_localLoad("mint_settingTheme-Font");
 
           document.getElementById("mint_toggleTime").addEventListener("change", function() {
+            console.log("Visibility is currently " + clockVisibility);
             clockVisibility = clockVisibility === 1 ? 0 : 1;
+            console.log("And we're setting it to " + clockVisibility);
               mint_toggleTheme_Time(clockVisibility);
           });
 
