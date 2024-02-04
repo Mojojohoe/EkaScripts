@@ -72,7 +72,8 @@ color:#a1eda4;
   background: rgb(6 24 21 / 30%);
 }
 .chatmsg.highlight {
-  border: 1px solid #2d7a61;
+  border-top: 1px solid #2d7a61;
+  border-bottom: 1px solid #2d7a61;
   background: #060606;
 }
 .mini-highlight{
