@@ -8621,7 +8621,7 @@ function tempUserListThing() {
   
     var rendered = Mustache.render(template, ule);
     var $ule = $($.parseHTML(rendered)).data("ule", ule);
-	 
+    var cid = ule.charId;
   
   if (!ule.highlighted ) {
     $ule.removeClass("highlighted");
@@ -8638,7 +8638,7 @@ function tempUserListThing() {
     $ule.addClass("ignored");
     chatAction("ignoreCharacter", {
       charId: cid,
-      newVal: ses.highlighted[cid]
+      newVal: ses.ignored[cid]
     });
   }
 
