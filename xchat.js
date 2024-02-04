@@ -8569,8 +8569,8 @@ function renderStatusList(data) {
   $(rendered).appendTo($statusList);
   orderAndUpdateStatusList()
 }
-// Now we reorder the list items based on data-code attribute.
- function orderAndUpdateStatusList() {
+        // Now we reorder the list items based on data-code attribute.
+        function orderAndUpdateStatusList() {
           const statusList = document.getElementById("status-list");
           setTimeout(function() {
               const items = Array.from(statusList.children);
@@ -8589,7 +8589,65 @@ function renderStatusList(data) {
               });
           }, 1000);
       }
-      // 
+      // Helper function to get the data-code attribute value
+      function getCodeValue(item) {
+          const anchor = item.querySelector("a");
+          return anchor ? anchor.getAttribute("data-code") : "";
+      }
+      // Helper function to get the order of a status
+      function getStatusOrder(code) {
+          const order = [
+              "online",
+              "distracted",
+              "away",
+              "dnd",
+              "lfrp",
+              "open",
+              "pred",
+              "prey",
+              "long",
+              "gm",
+              "ic",
+              "ooc"
+          ];
+          return order.indexOf(code);
+      }
+      // Helper function to change the text to the more comprehensive defenitions.
+      function updateStatusText(item) {
+          const anchor = item.querySelector("a");
+          if (!anchor) return;
+
+          const code = getCodeValue(item);
+
+          switch (code) {
+              case "lfrp":
+                  anchor.innerHTML = '<i class="icon status-lfrp"></i> LF Private RP';
+                  break;
+              case "open":
+                  anchor.innerHTML = '<i class="icon status-open"></i> LF Public RP';
+                  break;
+              case "pred":
+                  anchor.innerHTML = '<i class="icon status-pred"></i> LFRP as Pred';
+                  break;
+              case "prey":
+                  anchor.innerHTML = '<i class="icon status-prey"></i> LFRP as Prey';
+                  break;
+              case "long":
+                  anchor.innerHTML = '<i class="icon status-long"></i> In an Open RP';
+                  break;
+              case "gm":
+                  anchor.innerHTML = '<i class="icon status-gm"></i> In a Closed RP';
+                  break;
+              case "ic":
+                  anchor.innerHTML = '<i class="icon status-ic"></i> In Character';
+                  break;
+              case "ooc":
+                  anchor.innerHTML = '<i class="icon status-ooc"></i> Out of Character';
+                  break;
+              default:
+                  break;
+          }
+      }
 function onClickStatusList(event) {
   var newStatus = $(this).attr("data-code");
   chatAction("setStatus", {
