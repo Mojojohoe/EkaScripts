@@ -8625,20 +8625,30 @@ function tempUserListThing() {
   
   if (!ule.highlighted ) {
     $ule.removeClass("highlighted");
-  } else {
-    $ule.addClass("highlighted");
+    ses.ignored[cid]
     chatAction("highlightCharacter", {
       charId: cid,
-      newVal: ses.highlighted[cid]
+      newVal: false
+    });
+  } else {
+    $ule.addClass("highlighted");
+    ses.ignored[cid]
+    chatAction("highlightCharacter", {
+      charId: cid,
+      newVal: true
     });
   }
   if (!ule.ignored ) {
     $ule.removeClass("ignored");
+    chatAction("ignoreCharacter", {
+      charId: cid,
+      newVal: false
+    });
   } else {
     $ule.addClass("ignored");
     chatAction("ignoreCharacter", {
       charId: cid,
-      newVal: ses.ignored[cid]
+      newVal: true
     });
   }
 
