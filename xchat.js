@@ -8694,8 +8694,6 @@ function tempUserListThing() {
   var template = $("#ulist-template").html().trim();
   window.renderUserListEntry = function renderUserListEntry(ule) {
  
-  ule.highlighted = ses.highlighted[ule.charId] ? true : false;
-    ule.ignored = ses.ignored[ule.charId] ? true : false;
     if (!ule.status || ule.status === "null" ) {
       ule.status = "online";
       }   
@@ -8721,7 +8719,6 @@ function tempUserListThing() {
   }
   if (!ule.ignored ) {
     $ule.removeClass("ignored");
-
     chatAction("ignoreCharacter", {
       charId: cid,
       newVal: false
