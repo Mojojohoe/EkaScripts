@@ -1233,27 +1233,7 @@ if (
             }
         });
   
-        // Now we reorder the list items based on data-code attribute.
-        function orderAndUpdateStatusList() {
-            const statusList = document.getElementById("status-list");
-            setTimeout(function() {
-                const items = Array.from(statusList.children);
-  
-                items.sort(function(a, b) {
-                    const codeA = getCodeValue(a);
-                    const codeB = getCodeValue(b);
-  
-                    return getStatusOrder(codeA) - getStatusOrder(codeB);
-                });
-  
-                // Re-append the sorted and updated list items to the statusList
-                items.forEach((item) => {
-                    statusList.appendChild(item);
-                    updateStatusText(item);
-                });
-            }, 1000);
-        }
-        // Helper function to get the data-code attribute value
+Helper function to get the data-code attribute value
         function getCodeValue(item) {
             const anchor = item.querySelector("a");
             return anchor ? anchor.getAttribute("data-code") : "";

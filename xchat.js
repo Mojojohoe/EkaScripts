@@ -8567,8 +8567,29 @@ function renderStatusList(data) {
     '{{#.}}<li><a href="#" data-code="{{code}}"><i class="icon status-{{code}}"></i> {{{name}}}</a></li>{{/.}}';
   var rendered = Mustache.render(template, data);
   $(rendered).appendTo($statusList);
+  orderAndUpdateStatusList()
 }
+// Now we reorder the list items based on data-code attribute.
+ function orderAndUpdateStatusList() {
+          const statusList = document.getElementById("status-list");
+          setTimeout(function() {
+              const items = Array.from(statusList.children);
 
+              items.sort(function(a, b) {
+                  const codeA = getCodeValue(a);
+                  const codeB = getCodeValue(b);
+
+                  return getStatusOrder(codeA) - getStatusOrder(codeB);
+              });
+
+              // Re-append the sorted and updated list items to the statusList
+              items.forEach((item) => {
+                  statusList.appendChild(item);
+                  updateStatusText(item);
+              });
+          }, 1000);
+      }
+      // 
 function onClickStatusList(event) {
   var newStatus = $(this).attr("data-code");
   chatAction("setStatus", {
