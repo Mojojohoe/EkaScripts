@@ -8694,6 +8694,8 @@ function tempUserListThing() {
   var template = $("#ulist-template").html().trim();
   window.renderUserListEntry = function renderUserListEntry(ule) {
  
+    ule.highlighted = ses.highlighted[ule.charId] ? true : false;
+    ule.ignored = ses.ignored[ule.charId] ? true : false;
     if (!ule.status || ule.status === "null" ) {
       ule.status = "online";
       }   
