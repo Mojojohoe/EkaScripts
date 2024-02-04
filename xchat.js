@@ -8625,14 +8625,12 @@ function tempUserListThing() {
   
   if (!ule.highlighted ) {
     $ule.removeClass("highlighted");
-    ses.ignored[cid]
     chatAction("highlightCharacter", {
       charId: cid,
       newVal: false
     });
   } else {
     $ule.addClass("highlighted");
-    ses.ignored[cid]
     chatAction("highlightCharacter", {
       charId: cid,
       newVal: true
@@ -8640,6 +8638,7 @@ function tempUserListThing() {
   }
   if (!ule.ignored ) {
     $ule.removeClass("ignored");
+
     chatAction("ignoreCharacter", {
       charId: cid,
       newVal: false
