@@ -8119,7 +8119,7 @@ function onEnterPressedInTextarea(event) {
         return;
       }
   
-      event.target.value = inputValue + ' \u200B';
+      event.target.value = inputValue + '\u200B';
       $(event.target.form).trigger("submit");
       event.preventDefault();
     }
