@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.2.82
+// @version      0.2.83
 // @icon         https://rp.aryion.com/img/profile/184938_f0842d7490194c2b9574ba049f3dda06.png
 // @description  Alpha version "Melting-mint-choc" (mods in new things)
 // @author       Jobix
@@ -247,9 +247,11 @@ mintConfigMenu.innerHTML = `
 <select class="behaviorDropdown" prop="behave">
 <option value="0">Nothing</option>
 <option value="1">Dull Name</option>
-<option value="2">Ping on Entering Room</option>
+<option value="2">Ping</option>
 <option value="3">Highlight Messages</option>
 <option value="4">Ignore Messages</option>
+<option value="5">Stop Highlighting Messages</option>
+<option value="6">Stop Ignoring Messages</option>
 </select>
 <select class="andDropdown" prop="case">
 <option value="0">and</option>
@@ -262,6 +264,8 @@ mintConfigMenu.innerHTML = `
 <option value="2">Ping</option>
 <option value="3">Highlight Messages</option>
 <option value="4">Ignore Messages</option>
+<option value="5">Stop Highlighting Messages</option>
+<option value="6">Stop Ignoring Messages</option>
 </select>
 <select class="caseDropdown" prop="trigger">#
 <option value="0">Nothing</option>

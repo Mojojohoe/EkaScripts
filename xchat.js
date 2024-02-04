@@ -7632,6 +7632,13 @@ function mint_processFilters(ule){
           if ((behave1 === 4 || behave2 === 4) && !ule.ignored && !(caseValue === 2)) {
             ule.ignored = true;
           }
+          if ((behave1 === 5 || behave2 === 5) && !ule.highlighted && !(caseValue === 2)) {
+            ule.highlighted = false;
+          }
+
+          if ((behave1 === 6 || behave2 === 6) && !ule.ignored && !(caseValue === 2)) {
+            ule.ignored = false;
+          }
           break;
 
         case 1:
@@ -7662,6 +7669,13 @@ function mint_processFilters(ule){
             if (behave1 === 4 && !ule.ignored) {
               ule.ignored = true;
             }
+            if (behave1 === 5) {
+              ule.highlighted = false;
+            }
+
+            if (behave1 === 6) {
+              ule.ignored = false;
+            }
           }
           break;
 		      case 2:
@@ -7691,6 +7705,13 @@ function mint_processFilters(ule){
 
             if (behave1 === 4 && !ule.ignored) {
               ule.ignored = true;
+            }
+            if (behave1 === 5) {
+              ule.highlighted = false;
+            }
+
+            if (behave1 === 6) {
+              ule.ignored = false;
             }
           }
           break;
