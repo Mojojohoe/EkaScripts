@@ -8111,9 +8111,17 @@ function onEnterPressedInTextarea(event) {
     // Increment and save the msgBackupNumber
     localStorage.setItem("mint_chatBackupMsgNumber", JSON.stringify(newMsgNumber));
     if (!event.ctrlKey && event.which === 13) {
-        event.target.value = event.target.value + ' \u200B';
-        $(this.form).trigger("submit");
+      const inputValue = event.target.value.trim();
+      const endsWithZeroWidthSpace = inputValue.endsWith('\u200B');
+  
+      if (!inputValue || endsWithZeroWidthSpace) {
         event.preventDefault();
+        return;
+      }
+  
+      event.target.value = inputValue + ' \u200B';
+      $(event.target.form).trigger("submit");
+      event.preventDefault();
     }
 }
 }
