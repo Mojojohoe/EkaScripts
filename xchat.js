@@ -8627,11 +8627,19 @@ function tempUserListThing() {
     $ule.removeClass("highlighted");
   } else {
     $ule.addClass("highlighted");
+    chatAction("highlightCharacter", {
+      charId: cid,
+      newVal: ses.highlighted[cid]
+    });
   }
   if (!ule.ignored ) {
     $ule.removeClass("ignored");
   } else {
     $ule.addClass("ignored");
+    chatAction("ignoreCharacter", {
+      charId: cid,
+      newVal: ses.highlighted[cid]
+    });
   }
 
    if(ule.flash){
