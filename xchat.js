@@ -7522,15 +7522,19 @@ function mint_goReply(id) {
   }
 
   $targetMessage.addClass('flash');
-  targetBox.animate({
-    scrollTop: $targetMessage.offset().top
-  }, 500);
+
+  // Wait for the element to be visible
+  $targetMessage[0].scrollIntoView({
+    behavior: 'smooth',
+    block: 'start',
+    inline: 'nearest'
+  });
 
   // Remove 'flash' class after 3 seconds
   setTimeout(function() {
     $targetMessage.removeClass('flash');
   }, 3000);
-};
+}
 /** Appends the rendered message to the chat pane
  * @param $pane The chat pane to append to
  * @param $msg Rendered message jQuery object.
