@@ -2,7 +2,7 @@
 // @name         Eka's Chat Mint
 // @namespace    http://tampermonkey.net/
 // @homepage     https://z0r.de/7432
-// @version      0.2.83
+// @version      0.2.84
 // @icon         https://rp.aryion.com/img/profile/184938_f0842d7490194c2b9574ba049f3dda06.png
 // @description  Alpha version "Melting-mint-choc" (mods in new things)
 // @author       Jobix
@@ -236,6 +236,22 @@ mintConfigMenu.innerHTML = `
 <div>Enable Font<span><input id="mint_toggleFont" type="checkbox" data="mint_font" checked="true"/></div>
 <div>Enable Chat Theme<span><input id="mint_toggleChat" type="checkbox" data="mint_theme" checked="true"/></div>
 <div>Enable Mint Statuses<span><input id="mint_toggleStatuses" type="checkbox" data="mint_statuses" checked="true"/></div>
+<div>Private Message Style:
+<select class="privStyle" prop="privStyle">
+<option value="0">Subtle</option>
+<option value="1">Default</option>
+<option value="2">Obvious</option>
+<option value="3">I'm Blind</option>
+</select>
+</div>
+<div>Name Ping Style:
+<select class="privStyle" prop="privStyle">
+<option value="0">Subtle</option>
+<option value="1">Default</option>
+<option value="2">Obvious</option>
+<option value="3">I'm Blind</option>
+</select>
+</div>
 <br><br>
 </span>
 </details>
